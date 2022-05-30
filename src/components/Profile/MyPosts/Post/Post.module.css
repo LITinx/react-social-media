@@ -1,0 +1,55 @@
+.info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+.name {
+  margin-top: -8px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.post {
+  position: relative;
+  background-color: #d9d9d9;
+  border-radius: 13px;
+  padding: 12px;
+  padding-bottom: 22px;
+  padding-right: 15px;
+  margin-top: 10px;
+  max-width: fit-content;
+  margin-bottom: 15px;
+}
+.post p {
+  font-size: 16px;
+}
+.post span {
+  cursor: pointer;
+  position: absolute;
+  bottom: 5px;
+  right: 7px;
+  font-size: 13px;
+  color: #4b484b;
+  transition: all 0.08s ease-in;
+}
+.post span:hover {
+  font-weight: 500;
+  transform: scale(1.02);
+}
+svg {
+  transition: all 0.08s ease-in;
+}
+span:hover svg {
+  fill: #61a6b7;
+  transform: scale(1.05);
+}
+@media (max-width: 600px) {
+  .info {
+    margin-top: 20px;
+  }
+}

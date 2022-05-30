@@ -1,0 +1,30 @@
+.header {
+  grid-area: head;
+  height: 60px;
+  background-color: var(--blue-primary);
+}
+
+.header-wrapper {
+  height: 100%;
+  padding: 0 86px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-wrapper > img {
+  width: 77px;
+  height: 25px;
+}
+.avatar img {
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  background-color: #494545;
+  border-radius: 50%;
+}
+
+@media (max-width: 760px) {
+  .header-wrapper {
+    padding: 0 40px;
+  }
+}
