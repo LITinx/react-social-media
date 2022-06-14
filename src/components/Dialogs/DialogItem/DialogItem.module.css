@@ -1,0 +1,42 @@
+.dialog {
+  max-width: calc(100% - 10px);
+  display: flex;
+  align-items: center;
+  margin: 1px 5px;
+  justify-content: center;
+  border-radius: 8px;
+}
+.dialog a {
+  width: calc(100% - 10px);
+  padding: 15px 0;
+  font-weight: 500;
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+  padding-left: min(10%, 20px);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+.dialog a:first-child {
+  margin-top: 3px;
+}
+/* .dialog a:last-child {
+  border-bottom: 2px solid var(--border-color);
+} */
+.dialog:hover {
+  background-color: var(--dialog-background-color);
+}
+.dialog:hover a,
+.dialog:hover img {
+  transform: scale(1.03);
+}
+.dialog.active {
+  background-color: #9ecfda;
+}
+
+.dialog img {
+  margin-left: 20px;
+  border-radius: 50%;
+  width: 40px;
+  aspect-ratio: 1 / 1;
+}

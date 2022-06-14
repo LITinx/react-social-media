@@ -19,8 +19,8 @@
   background-color: #d9d9d9;
   border-radius: 13px;
   padding: 12px;
-  padding-bottom: 22px;
-  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
   margin-top: 10px;
   max-width: fit-content;
   margin-bottom: 15px;
@@ -28,11 +28,14 @@
 .post p {
   font-size: 16px;
 }
+.post p.like {
+  padding-bottom: 10px;
+}
 .post span {
   cursor: pointer;
   position: absolute;
   bottom: 5px;
-  right: 7px;
+  left: 15px;
   font-size: 13px;
   color: #4b484b;
   transition: all 0.08s ease-in;

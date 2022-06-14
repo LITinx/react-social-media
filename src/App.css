@@ -1,15 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=IBM+Plex+Sans:regular,500,600);
 :root {
   --blue-primary: #5fc8df;
+  --border-color: rgba(130, 123, 123, 0.551);
+  --dialog-background-color: rgba(208, 200, 200, 0.551);
 }
 .app-wrapper {
   display: grid;
   grid-template-areas: "head head" "nav cont";
   grid-template-columns: 1fr 5fr;
 }
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
+.app-content-wrapper {
+  grid-area: cont;
+  background-color: #fff;
 }
 @media (max-width: 760px) {
   .app-wrapper {
