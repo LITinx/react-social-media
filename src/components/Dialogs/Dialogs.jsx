@@ -2,21 +2,18 @@ import Post from '../Post/Post'
 import DialogItem from './DialogItem/DialogItem'
 import dialog from './Dialogs.module.css'
 
-const Dialogs = () => {
+const Dialogs = ({ messages, users }) => {
 	return (
 		<div className={dialog.dialogs}>
 			<div className={dialog.dialogsItem}>
-				<DialogItem name='Daniel' id='1' isActive />
-				<DialogItem name='Islam' id='2' />
-				<DialogItem name='Joni' id='3' />
-				<DialogItem name='Doni' id='4' />
-				<DialogItem name='Poni' id='5' />
+				{users?.map(({ id, name, active }) => (
+					<DialogItem name={name} id={id} key={id} isActive={active} />
+				))}
 			</div>
 			<div className={dialog.messages}>
-				<Post>How are you?</Post>
-				<Post>Nurel krasavchik</Post>
-				<Post>How are you?</Post>
-				<Post>How are you?</Post>
+				{messages?.map(({ message, id }) => (
+					<Post key={id}>{message}</Post>
+				))}
 			</div>
 		</div>
 	)

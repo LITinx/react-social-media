@@ -1,6 +1,6 @@
 import post from './MyPosts.module.css'
 import Post from './../../Post/Post'
-const MyPosts = () => {
+const MyPosts = ({ posts }) => {
 	return (
 		<div className={post.post}>
 			<h2 className={post.postTitle}>My Posts</h2>
@@ -11,12 +11,11 @@ const MyPosts = () => {
 				<button className={post.button}>Post</button>
 			</div>
 			<div className={post.posts}>
-				<Post likes={15} isLike>
-					First Post!
-				</Post>
-				<Post likes={20} isLike>
-					Nurel!
-				</Post>
+				{posts?.map(({ id, message, likesCount }) => (
+					<Post key={id} isLike likes={likesCount}>
+						{message}
+					</Post>
+				))}
 			</div>
 		</div>
 	)
