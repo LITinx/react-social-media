@@ -1,0 +1,22 @@
+.wrapper {
+  cursor: pointer;
+  display: flex;
+  margin-top: 10px;
+  flex-direction: column;
+  transition: 0.05s all ease-in;
+}
+.wrapper:hover {
+  transform: scale(1.06);
+}
+.image {
+  width: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.436);
+}
+.info {
+  margin-top: 3px;
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  align-items: center;
+}

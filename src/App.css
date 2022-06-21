@@ -7,7 +7,7 @@
 .app-wrapper {
   display: grid;
   grid-template-areas: "head head" "nav cont";
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1.1fr 5fr;
 }
 .app-content-wrapper {
   grid-area: cont;
@@ -15,6 +15,6 @@
 }
 @media (max-width: 760px) {
   .app-wrapper {
-    grid-template-columns: 2fr 7fr;
+    grid-template-columns: 2.5fr 7fr;
   }
 }

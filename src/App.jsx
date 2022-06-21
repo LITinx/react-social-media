@@ -4,20 +4,24 @@ import './App.css'
 import Dialogs from './components/Dialogs/Dialogs'
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
+import NotFound from './components/NotFound/NotFound'
 import Profile from './components/Profile/Profile'
 
-function App({ messages, users, posts }) {
+function App({ state }) {
 	return (
 		<div className='app-wrapper'>
 			<Header />
-			<Navbar />
+			<Navbar state={state.sidebar} />
 			<div className='app-content-wrapper'>
 				<Routes path='/'>
-					<Route index element={<Profile posts={posts} />} />
+					<Route index element={<Profile state={state.profilePage} />} />
 					<Route
 						path='dialogs/*'
-						element={<Dialogs messages={messages} users={users} />}
+						element={<Dialogs state={state.messagesPage} />}
 					/>
+					<Route path='news/' element={<NotFound />} />
+					<Route path='music/' element={<NotFound />} />
+					<Route path='settings/' element={<NotFound />} />
 				</Routes>
 			</div>
 		</div>
