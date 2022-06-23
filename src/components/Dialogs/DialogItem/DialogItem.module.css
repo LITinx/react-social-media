@@ -32,12 +32,12 @@
 }
 
 .dialog.active {
-  background-color: #9ecfda;
+  background-color: var(--blue-secondary);
 }
 
 .dialog img {
   margin-left: 20px;
   border-radius: 50%;
   width: 40px;
-  aspect-ratio: 1 / 1;
+  height: 40px;
 }

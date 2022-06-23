@@ -1,5 +1,5 @@
 import post from './MyPosts.module.css'
-import Post from './../../Post/Post'
+import Post from './Post/Post'
 const MyPosts = ({ posts }) => {
 	return (
 		<div className={post.post}>
@@ -12,7 +12,7 @@ const MyPosts = ({ posts }) => {
 			</div>
 			<div className={post.posts}>
 				{posts?.map(({ id, message, likesCount }) => (
-					<Post key={id} isLike likes={likesCount}>
+					<Post key={id} likes={likesCount}>
 						{message}
 					</Post>
 				))}

@@ -6,7 +6,7 @@
 
 .logo img {
   width: 40px;
-  aspect-ratio: 1 / 1;
+  height: 40px;
   border-radius: 50%;
 }
 .name {
@@ -22,10 +22,12 @@
   padding-bottom: 15px;
   padding-left: 15px;
   margin-top: 10px;
+  max-width: -moz-fit-content;
   max-width: fit-content;
   margin-bottom: 15px;
 }
 .post p {
+  max-width: 65%;
   font-size: 16px;
 }
 .post p.like {
@@ -44,10 +46,11 @@
   font-weight: 500;
   transform: scale(1.02);
 }
-svg {
+
+.post svg {
   transition: all 0.08s ease-in;
 }
-span:hover svg {
+.post span:hover svg {
   fill: #61a6b7;
   transform: scale(1.05);
 }

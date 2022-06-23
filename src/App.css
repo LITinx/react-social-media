@@ -1,8 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=IBM+Plex+Sans:regular,500,600);
 :root {
   --blue-primary: #5fc8df;
+  --blue-secondary: #9ecfda;
+
   --border-color: rgba(130, 123, 123, 0.551);
   --dialog-background-color: rgba(208, 200, 200, 0.551);
+  --mydialog-background-color: rgba(115, 214, 217, 0.551);
 }
 .app-wrapper {
   display: grid;

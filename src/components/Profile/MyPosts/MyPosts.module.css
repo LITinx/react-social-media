@@ -55,10 +55,10 @@ textarea::-webkit-scrollbar {
 
 textarea::-webkit-scrollbar-track {
   background-color: #7b787894;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 textarea::-webkit-scrollbar-thumb {
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: var(--blue-primary);
 }

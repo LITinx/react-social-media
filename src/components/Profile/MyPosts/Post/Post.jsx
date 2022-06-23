@@ -1,6 +1,6 @@
 import post from './Post.module.css'
 import { AiFillLike } from 'react-icons/ai'
-const Post = ({ children, likes, isLike, name = 'Nurik' }) => {
+const Post = ({ children, likes, name = 'Nurik' }) => {
 	return (
 		<div className={post.postWrapper}>
 			<div className={post.info}>
@@ -12,18 +12,17 @@ const Post = ({ children, likes, isLike, name = 'Nurik' }) => {
 				</div>
 				<div className={post.name}>{name}</div>
 			</div>
-			<div className={post.post}>
-				<p className={`${isLike ? `${post.like}` : ''}`}>{children}</p>
-				{isLike && (
-					<span>
-						{likes}{' '}
-						<AiFillLike
-							color='#4b484b'
-							size={12}
-							value={{ className: `${post.reactIcon}` }}
-						/>
-					</span>
-				)}
+
+			<div className={`${post.post} ${post.myPost}`}>
+				<p className={post.like}>{children}</p>
+				<span>
+					{likes}{' '}
+					<AiFillLike
+						color='#4b484b'
+						size={12}
+						value={{ className: `${post.reactIcon}` }}
+					/>
+				</span>
 			</div>
 		</div>
 	)
