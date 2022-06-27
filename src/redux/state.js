@@ -1,9 +1,11 @@
+let renderTree
 export const state = {
 	profilePage: {
 		posts: [
 			{ id: 0, message: 'First Post!', likesCount: 15 },
 			{ id: 1, message: 'Nurel!', likesCount: 20 },
 		],
+		newPostValue: '',
 	},
 	messagesPage: {
 		users: [
@@ -27,7 +29,9 @@ export const state = {
 			{ id: 2, fromMe: false, message: "I'm good too" },
 			{ id: 3, fromMe: true, message: 'What is your name?' },
 			{ id: 4, fromMe: false, message: 'My name is ...' },
+			{ id: 5, fromMe: true, message: 'Oh, your name is cool ' },
 		],
+		newMessageValue: '',
 	},
 	sidebar: {
 		friends: [
@@ -41,4 +45,42 @@ export const state = {
 			{ id: '241', personName: 'Ken', bestFriend: false },
 		],
 	},
+}
+export function addPost() {
+	if (!state.profilePage.newPostValue) return
+	let newPost = {
+		id:
+			Math.max(0, Math.max(...state.profilePage.posts.map(({ id }) => id))) + 1,
+		message: state.profilePage.newPostValue,
+		likesCount: 0,
+	}
+	state.profilePage.posts.unshift(newPost)
+	state.profilePage.newPostValue = ''
+	renderTree(state)
+}
+export function updateNewPostValue(newValue) {
+	state.profilePage.newPostValue = newValue
+	renderTree(state)
+}
+export function sendMessage() {
+	if (!state.messagesPage.newMessageValue) return
+	let newPost = {
+		id:
+			Math.max(
+				0,
+				Math.max(...state.messagesPage.messages.map(({ id }) => id)),
+			) + 1,
+		message: state.messagesPage.newMessageValue,
+		fromMe: true,
+	}
+	state.messagesPage.messages.push(newPost)
+	state.messagesPage.newMessageValue = ''
+	renderTree(state)
+}
+export function updateNewMessageValue(newValue) {
+	state.messagesPage.newMessageValue = newValue
+	renderTree(state)
+}
+export function subscribe(observer) {
+	renderTree = observer
 }

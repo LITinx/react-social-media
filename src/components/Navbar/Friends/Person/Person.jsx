@@ -1,9 +1,6 @@
 import { AiFillStar } from 'react-icons/ai'
 import person from './Person.module.css'
-const Person = ({ name, isBestFriend }) => {
-	const randomID = (min, max) => {
-		return Math.floor(Math.random() * (max - min + 1)) + min
-	}
+const Person = ({ name, isBestFriend, id }) => {
 	const friendChecker = {
 		color: `${isBestFriend ? '#178b17' : '#000'}`,
 	}
@@ -12,7 +9,7 @@ const Person = ({ name, isBestFriend }) => {
 		<div className={person.wrapper}>
 			<img
 				className={person.image}
-				src={`https://picsum.photos/200?random=${randomID(1, 200)}`}
+				src={`https://picsum.photos/200?random=${id}`}
 				alt='logo'
 			/>
 			<div

@@ -7,17 +7,38 @@ import Navbar from './components/Navbar/Navbar'
 import NotFound from './components/NotFound/NotFound'
 import Profile from './components/Profile/Profile'
 
-function App({ state }) {
+function App({
+	state,
+	addPost,
+	updateNewPostValue,
+	updateNewMessageValue,
+	sendMessage,
+}) {
 	return (
 		<div className='app-wrapper'>
 			<Header />
 			<Navbar state={state.sidebar} />
 			<div className='app-content-wrapper'>
 				<Routes path='/'>
-					<Route index element={<Profile state={state.profilePage} />} />
+					<Route
+						index
+						element={
+							<Profile
+								profilePage={state.profilePage}
+								addPost={addPost}
+								updateNewPostValue={updateNewPostValue}
+							/>
+						}
+					/>
 					<Route
 						path='dialogs/*'
-						element={<Dialogs state={state.messagesPage} />}
+						element={
+							<Dialogs
+								messagesPage={state.messagesPage}
+								updateNewMessageValue={updateNewMessageValue}
+								sendMessage={sendMessage}
+							/>
+						}
 					/>
 					<Route path='news/' element={<NotFound />} />
 					<Route path='music/' element={<NotFound />} />

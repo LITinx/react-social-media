@@ -7,7 +7,12 @@ const Friends = ({ friends }) => {
 			<h4 className={styleFriends.title}>Friends</h4>
 			<div className={styleFriends.flexWrapper}>
 				{sortedFriends?.map(({ id, personName, bestFriend }) => (
-					<Person key={id} isBestFriend={bestFriend} name={personName} />
+					<Person
+						key={id}
+						isBestFriend={bestFriend}
+						id={id}
+						name={personName}
+					/>
 				))}
 			</div>
 		</div>

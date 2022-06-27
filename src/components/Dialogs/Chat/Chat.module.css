@@ -1,0 +1,34 @@
+.messages {
+  position: relative;
+  background-color: aliceblue;
+  padding: min(10%, 30px);
+  width: 100%;
+  margin-top: -4px;
+  height: calc(100% - 109px);
+  overflow-y: auto;
+  z-index: 0;
+}
+.messages-wrapper {
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
+}
+.messages-header {
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
+  z-index: 10;
+  background-color: var(--blue-secondary);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.33);
+  padding: 10px 20px;
+  border-bottom-left-radius: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.messages-logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.messages-name {
+  margin-top: -8px;
+  font-size: 18px;
+  font-weight: 500;
+}
