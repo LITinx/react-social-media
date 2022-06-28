@@ -1,16 +1,29 @@
+.messages-wrapper {
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
+}
 .messages {
   position: relative;
   background-color: aliceblue;
   padding: min(10%, 30px);
   width: 100%;
   margin-top: -4px;
-  height: calc(100% - 109px);
+  height: calc(100vh - 170px);
   overflow-y: auto;
   z-index: 0;
 }
-.messages-wrapper {
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
+.messages::-webkit-scrollbar {
+  width: 7px;
 }
+
+.messages::-webkit-scrollbar-track {
+  background-color: #7b787894;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: var(--blue-secondary);
+}
+
 .messages-header {
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
   z-index: 10;

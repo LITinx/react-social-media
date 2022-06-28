@@ -2,7 +2,7 @@ import Chat from './Chat/Chat'
 import DialogItem from './DialogItem/DialogItem'
 import dialog from './Dialogs.module.css'
 
-const Dialogs = ({ messagesPage, updateNewMessageValue, sendMessage }) => {
+const Dialogs = ({ messagesPage, dispatch }) => {
 	const { messages, users, newMessageValue } = messagesPage
 	return (
 		<div className={dialog.dialogs}>
@@ -21,8 +21,7 @@ const Dialogs = ({ messagesPage, updateNewMessageValue, sendMessage }) => {
 				newMessageValue={newMessageValue}
 				messages={messages}
 				users={users}
-				updateNewMessageValue={updateNewMessageValue}
-				sendMessage={sendMessage}
+				dispatch={dispatch}
 			/>
 		</div>
 	)

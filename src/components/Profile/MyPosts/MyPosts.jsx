@@ -1,12 +1,11 @@
-import { useEffect, useRef } from 'react'
 import post from './MyPosts.module.css'
 import Post from './Post/Post'
-const MyPosts = ({ posts, addPost, newPostValue, updateNewPostValue }) => {
+const MyPosts = ({ posts, newPostValue, dispatch }) => {
 	const onBtnClick = (e) => {
-		addPost()
+		dispatch({ type: 'ADD_POST' })
 	}
 	const onValueChange = (e) => {
-		updateNewPostValue(e.target.value)
+		dispatch({ type: 'UPDATE_NEW_POST_VALUE', newValue: e.target.value })
 	}
 	const keyListener = (event) => {
 		if (event.keyCode === 13) {
