@@ -1,13 +1,14 @@
 .messages-wrapper {
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
+  max-height: min(100%, calc(100vh - 170px));
 }
 .messages {
   position: relative;
   background-color: aliceblue;
   padding: min(10%, 30px);
   width: 100%;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
+  height: 100%;
   margin-top: -4px;
-  height: calc(100vh - 170px);
   overflow-y: auto;
   z-index: 0;
 }

@@ -2,11 +2,11 @@ import Friends from './Friends/Friends'
 import Links from './Links/Links'
 import nav from './Navbar.module.css'
 
-const Navbar = ({ state }) => {
+const Navbar = ({ friends }) => {
 	return (
 		<nav className={nav.nav}>
 			<Links />
-			<Friends friends={state.friends} />
+			<Friends friends={friends} />
 		</nav>
 	)
 }

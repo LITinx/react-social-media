@@ -1,6 +1,7 @@
 .wrapper {
   background-color: var(--blue-secondary);
   height: 49px;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
   display: flex;
   align-items: center;
 }

@@ -1,7 +1,13 @@
 import chat from './Chat.module.css'
 import Message from '../Message/Message'
 import Input from './Input/Input'
-const Chat = ({ messages, users, dispatch, newMessageValue }) => {
+const Chat = ({
+	messages,
+	users,
+	newMessageValue,
+	onBtnClick,
+	onInpChange,
+}) => {
 	const activeUserIndex = users.findIndex((el) => el.active === true)
 
 	return (
@@ -22,7 +28,11 @@ const Chat = ({ messages, users, dispatch, newMessageValue }) => {
 					</Message>
 				))}
 			</div>
-			<Input dispatch={dispatch} newMessageValue={newMessageValue} />
+			<Input
+				newMessageValue={newMessageValue}
+				onInpChange={onInpChange}
+				onBtnClick={onBtnClick}
+			/>
 		</div>
 	)
 }

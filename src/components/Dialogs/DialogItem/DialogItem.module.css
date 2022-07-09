@@ -7,6 +7,7 @@
   justify-content: center;
   transition: all 0.2s ease-out;
   border-radius: 8px;
+  overflow-x: hidden;
 }
 .dialog a {
   width: calc(100% - 10px);

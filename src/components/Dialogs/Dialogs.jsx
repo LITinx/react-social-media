@@ -1,9 +1,13 @@
 import Chat from './Chat/Chat'
 import DialogItem from './DialogItem/DialogItem'
 import dialog from './Dialogs.module.css'
-
-const Dialogs = ({ messagesPage, dispatch }) => {
-	const { messages, users, newMessageValue } = messagesPage
+function Dialogs({
+	users,
+	newMessageValue,
+	messages,
+	onInpChange,
+	onBtnClick,
+}) {
 	return (
 		<div className={dialog.dialogs}>
 			<div className={dialog.dialogsItem}>
@@ -21,10 +25,10 @@ const Dialogs = ({ messagesPage, dispatch }) => {
 				newMessageValue={newMessageValue}
 				messages={messages}
 				users={users}
-				dispatch={dispatch}
+				onInpChange={onInpChange}
+				onBtnClick={onBtnClick}
 			/>
 		</div>
 	)
 }
-
 export default Dialogs

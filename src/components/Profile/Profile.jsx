@@ -1,15 +1,11 @@
-import MyPosts from './MyPosts/MyPosts'
+import MyPostsContainer from './MyPosts/MyPostContainers'
 import profile from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-const Profile = ({ profilePage, dispatch }) => {
+const Profile = ({ store }) => {
 	return (
 		<main className={profile.profile}>
 			<ProfileInfo />
-			<MyPosts
-				posts={profilePage.posts}
-				newPostValue={profilePage.newPostValue}
-				dispatch={dispatch}
-			/>
+			<MyPostsContainer store={store} />
 		</main>
 	)
 }

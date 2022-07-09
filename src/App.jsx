@@ -1,31 +1,20 @@
-import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Dialogs from './components/Dialogs/Dialogs'
+import DialogsContainer from './components/Dialogs/DialogsContainer'
 import Header from './components/Header/Header'
-import Navbar from './components/Navbar/Navbar'
+import NavbarContainer from './components/Navbar/NavbarContainer'
 import NotFound from './components/NotFound/NotFound'
 import Profile from './components/Profile/Profile'
 
-function App({ state, dispatch }) {
+function App({ store }) {
 	return (
 		<div className='app-wrapper'>
 			<Header />
-			<Navbar state={state.sidebar} />
+			<NavbarContainer />
 			<div className='app-content-wrapper'>
 				<Routes path='/'>
-					<Route
-						index
-						element={
-							<Profile profilePage={state.profilePage} dispatch={dispatch} />
-						}
-					/>
-					<Route
-						path='dialogs/*'
-						element={
-							<Dialogs messagesPage={state.messagesPage} dispatch={dispatch} />
-						}
-					/>
+					<Route index element={<Profile />} />
+					<Route path='dialogs/*' element={<DialogsContainer />} />
 					<Route path='news/' element={<NotFound />} />
 					<Route path='music/' element={<NotFound />} />
 					<Route path='settings/' element={<NotFound />} />
