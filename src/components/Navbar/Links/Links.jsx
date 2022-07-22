@@ -16,6 +16,11 @@ const Links = () => {
 				</NavLink>
 			</li>
 			<li className={links.list}>
+				<NavLink to='/users' className={isActiveClass}>
+					Users
+				</NavLink>
+			</li>
+			<li className={links.list}>
 				<NavLink to='/news' className={isActiveClass}>
 					News
 				</NavLink>

@@ -1,5 +1,9 @@
 import input from './Input.module.css'
-
+import { connect } from 'react-redux'
+import {
+	sendMessageActionCreator,
+	updateNewMessageValueActionCreator,
+} from '../../../../redux/reducers/messagesReducer'
 const Input = ({ newMessageValue, onInpChange, onBtnClick }) => {
 	const keyListener = (event) => {
 		if (event.keyCode === 13) {
@@ -28,5 +32,19 @@ const Input = ({ newMessageValue, onInpChange, onBtnClick }) => {
 		</div>
 	)
 }
+const mapStateToProps = (state) => ({
+	newMessageValue: state.messagesPage.newMessageValue,
+})
 
-export default Input
+const mapDispatchToProps = (dispatch) => ({
+	onBtnClick() {
+		dispatch(sendMessageActionCreator())
+	},
+	onInpChange(text) {
+		dispatch(updateNewMessageValueActionCreator(text))
+	},
+})
+
+const InputContainer = connect(mapStateToProps, mapDispatchToProps)(Input)
+
+export default InputContainer

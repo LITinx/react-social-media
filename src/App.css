@@ -5,6 +5,8 @@
   --border-color: rgba(130, 123, 123, 0.551);
   --dialog-background-color: rgba(208, 200, 200, 0.551);
   --mydialog-background-color: rgba(115, 214, 217, 0.551);
+  --gray-primary: rgb(82, 82, 82);
+  --red-primary: rgba(202, 40, 40, 0.853);
 }
 .app-wrapper {
   display: grid;

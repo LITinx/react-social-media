@@ -1,4 +1,5 @@
 import profile from './ProfileInfo.module.css'
+import {useState} from "react";
 
 const ProfileInfo = () => {
 	return (

@@ -18,17 +18,20 @@ const profileReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
 		case ADD_POST:
 			if (!state.newPostValue) return
-			let newPost = {
-				id: Math.max(0, Math.max(...state.posts.map(({ id }) => id))) + 1,
-				message: state.newPostValue,
-				likesCount: 0,
+			return {
+				...state,
+				newPostValue: '',
+				posts: [
+					{
+						id: Math.max(0, Math.max(...state.posts.map(({ id }) => id))) + 1,
+						message: state.newPostValue,
+						likesCount: 0,
+					},
+					...state.posts,
+				],
 			}
-			state.posts.unshift(newPost)
-			state.newPostValue = ''
-			return state
 		case UPDATE_NEW_POST_VALUE:
-			state.newPostValue = payload
-			return state
+			return { ...state, newPostValue: payload }
 		default:
 			return state
 	}

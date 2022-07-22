@@ -1,13 +1,7 @@
 import chat from './Chat.module.css'
 import Message from '../Message/Message'
-import Input from './Input/Input'
-const Chat = ({
-	messages,
-	users,
-	newMessageValue,
-	onBtnClick,
-	onInpChange,
-}) => {
+import InputContainer from './Input/Input'
+const Chat = ({ messages, users }) => {
 	const activeUserIndex = users.findIndex((el) => el.active === true)
 
 	return (
@@ -28,11 +22,7 @@ const Chat = ({
 					</Message>
 				))}
 			</div>
-			<Input
-				newMessageValue={newMessageValue}
-				onInpChange={onInpChange}
-				onBtnClick={onBtnClick}
-			/>
+			<InputContainer />
 		</div>
 	)
 }

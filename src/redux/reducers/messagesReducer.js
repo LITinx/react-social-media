@@ -1,5 +1,6 @@
 const SEND_MESSAGE = 'SEND_MESSAGE'
 const UPDATE_NEW_MESSAGE_VALUE = 'UPDATE_NEW_MESSAGE_VALUE'
+// const SET_USERS = 'SET_USERS' // ! DO users set in messages page
 const initialState = {
 	users: [
 		{ id: 0, active: false, name: 'Heller' },
@@ -22,21 +23,25 @@ const initialState = {
 	],
 	newMessageValue: '',
 }
-const messagesReducer = (state = initialState, { type, payload }) => {
-	switch (type) {
+const messagesReducer = (state = initialState, action) => {
+	switch (action.type) {
 		case UPDATE_NEW_MESSAGE_VALUE:
-			state.newMessageValue = payload
-			return state
+			return { ...state, newMessageValue: action.payload }
 		case SEND_MESSAGE:
 			if (!state.newMessageValue) return
-			let newMessage = {
-				id: Math.max(0, Math.max(...state.messages.map(({ id }) => id))) + 1,
-				message: state.newMessageValue,
-				fromMe: true,
+			return {
+				...state,
+				newMessageValue: '',
+				messages: [
+					...state.messages,
+					{
+						id:
+							Math.max(0, Math.max(...state.messages.map(({ id }) => id))) + 1,
+						message: state.newMessageValue,
+						fromMe: true,
+					},
+				],
 			}
-			state.messages.push(newMessage)
-			state.newMessageValue = ''
-			return state
 		default:
 			return state
 	}

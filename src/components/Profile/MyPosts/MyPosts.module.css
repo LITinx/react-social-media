@@ -32,15 +32,15 @@
   width: 60%;
   padding: 5px;
   padding-left: 8px;
-  height: 60px;
+  height: 40px;
   border-radius: 13px;
   border: none;
   /* border: solid 2px #8b898b; */
   background-color: #d9d9d9;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.449);
 }
-.text-area textarea {
-  font-size: 18px;
+.text-area input {
+  font-size: 15px;
   outline: none;
   border: none;
   width: 100%;
@@ -49,16 +49,16 @@
   background-color: transparent;
 }
 
-textarea::-webkit-scrollbar {
+input::-webkit-scrollbar {
   width: 7px;
 }
 
-textarea::-webkit-scrollbar-track {
+input::-webkit-scrollbar-track {
   background-color: #7b787894;
   border-radius: 5px;
 }
 
-textarea::-webkit-scrollbar-thumb {
+input::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background-color: var(--blue-primary);
 }
