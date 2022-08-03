@@ -1,6 +1,7 @@
 import Chat from './Chat/Chat'
 import DialogItem from './DialogItem/DialogItem'
 import dialog from './Dialogs.module.css'
+
 function Dialogs({ users, messages }) {
 	return (
 		<div className={dialog.dialogs}>

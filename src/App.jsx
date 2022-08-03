@@ -8,22 +8,22 @@ import Profile from './components/Profile/Profile'
 import UsersContainer from './components/Users/UsersContainer'
 
 function App({ store }) {
-	return (
-		<div className='app-wrapper'>
-			<Header />
-			<NavbarContainer />
-			<div className='app-content-wrapper'>
-				<Routes path='/'>
-					<Route index element={<Profile />} />
-					<Route path='dialogs/*' element={<DialogsContainer />} />
-					<Route path='users/' element={<UsersContainer />} />
-					<Route path='news/' element={<NotFound />} />
-					<Route path='music/' element={<NotFound />} />
-					<Route path='settings/' element={<NotFound />} />
-				</Routes>
-			</div>
-		</div>
-	)
+    return (
+        <div className='app-wrapper'>
+            <Header />
+            <NavbarContainer />
+            <div className='app-content-wrapper'>
+                <Routes path='/'>
+                    <Route index element={<Profile />} />
+                    <Route path='dialogs/*' element={<DialogsContainer />} />
+                    <Route path='users/' element={<UsersContainer />} />
+                    <Route path='news/' element={<NotFound />} />
+                    <Route path='music/' element={<NotFound />} />
+                    <Route path='settings/' element={<NotFound />} />
+                </Routes>
+            </div>
+        </div>
+    )
 }
 
 export default App

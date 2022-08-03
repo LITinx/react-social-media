@@ -1,6 +1,5 @@
 const SEND_MESSAGE = 'SEND_MESSAGE'
 const UPDATE_NEW_MESSAGE_VALUE = 'UPDATE_NEW_MESSAGE_VALUE'
-// const SET_USERS = 'SET_USERS' // ! DO users set in messages page
 const initialState = {
 	users: [
 		{ id: 0, active: false, name: 'Heller' },
@@ -53,4 +52,5 @@ export const updateNewMessageValueActionCreator = (newValue) => ({
 	type: UPDATE_NEW_MESSAGE_VALUE,
 	payload: newValue,
 })
+
 export default messagesReducer
