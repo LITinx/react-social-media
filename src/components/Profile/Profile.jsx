@@ -1,10 +1,11 @@
 import MyPosts from './MyPosts/MyPosts'
-import profile from './Profile.module.css'
+import style from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-const Profile = ({ store }) => {
+const Profile = ({ profile }) => {
+
 	return (
-		<main className={profile.profile}>
-			<ProfileInfo />
+		<main className={style.profile}>
+			<ProfileInfo profile={profile}/>
 			<MyPosts />
 		</main>
 	)

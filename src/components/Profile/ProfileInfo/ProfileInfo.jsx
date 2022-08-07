@@ -1,29 +1,50 @@
-import profile from './ProfileInfo.module.css'
-import {useState} from "react";
+import styles from './ProfileInfo.module.css'
+import noLogo from '../../../assets/img/no-logo.jpg'
+import Preloader from "../../Preloader/Preloader";
 
-const ProfileInfo = () => {
-	return (
-		<>
-			<div className={profile.profileImages}>
-				<div className={profile.profileBackground}>
-					<img src='https://wallpapercave.com/wp/wp2587538.jpg' alt='' />
-				</div>
-				<div className={profile.profileLogo}>
-					<img
-						src='https://i.pinimg.com/564x/0f/93/79/0f93798d7dbd239809f07f7b00e9891e.jpg'
-						alt=''
-					/>
-				</div>
-			</div>
-			<div className={profile.profileInfo}>
-				<div className={profile.profileName}>Nurik</div>
-				<div className={profile.profileDescription}>
-					Good Boy Good Boy Good Boy Good Boy Good Boy Good Boy Good Boy Good
-					Boy
-				</div>
-			</div>
-		</>
-	)
+const ProfileInfo = ({profile}) => {
+  if (!profile) return <Preloader variant='profile'/>
+  let contacts = []
+  for (let url in profile.contacts) {
+    profile.contacts[url] ? contacts.push(url) : null
+  }
+  return (<>
+      <div className={styles.profileImages}>
+        <div className={styles.profileBackground}>
+          <img src={profile.photos?.large ? profile.photos?.large : noLogo} alt='background-photo'/>
+        </div>
+        <div className={styles.profileLogo}>
+          <img
+            src={profile.photos?.small ? profile.photos?.small : noLogo}
+            alt='logo'
+          />
+        </div>
+      </div>
+      <div className={styles.profileInfo}>
+        <div className={styles.profileName}><h6>{profile.fullName}</h6></div>
+        <div>
+          <strong>About: <span
+            style={{fontWeight: '400'}}>{profile.aboutMe ? profile.aboutMe : 'No bio'}</span></strong>
+        </div>
+        <div>
+          <strong>Looking for a job: <span
+            style={{fontWeight: '400'}}>{profile.lookingForAJob ? 'Yes' : 'No'}</span></strong>
+        </div>
+        <div>
+          <strong>Description for looking a job: <span
+            style={{fontWeight: '400'}}>{profile.lookingForAJobDescription ? profile.lookingForAJobDescription : 'No desc'}</span></strong>
+        </div>
+        <div>
+          <h6 style={{fontSize: '16px'}}>Contacts:</h6>
+          <ul>
+            {contacts.length ? contacts.map((contact, index) => {
+              return <li className={styles.contacts} key={index}><a target='_blank' href={'//' + profile.contacts[contact]}>{contact}</a>
+              </li>
+            }) : 'No contacts'}
+          </ul>
+        </div>
+      </div>
+    </>)
 }
 
 export default ProfileInfo

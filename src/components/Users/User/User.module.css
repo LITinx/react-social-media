@@ -47,6 +47,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .location {
   padding-right: 50px;
 }
@@ -58,7 +59,11 @@
   font-size: 18px;
   margin-bottom: 10px;
 }
+.full-name:hover {
+  border-bottom: 1px solid #000000;
+}
 .status {
   font-size: 15px;
+  width: max-content;
   color: var(--gray-primary);
 }

@@ -1,25 +1,18 @@
 import {
-	addPostActionCreator,
-	updateNewPostValueActionCreator,
+  addPostActionCreator, updateNewPostValueActionCreator,
 } from '../../../../redux/reducers/profileReducer'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import PostTextarea from './PostTextarea'
 
-const mapStateToProps = (state) => ({
-	newPostValue: state.profilePage.newPostValue,
-})
 
-const mapDispatchToProps = (dispatch) => ({
-	onBtnClick() {
-		dispatch(addPostActionCreator())
-	},
-	onValueChange(e) {
-		dispatch(updateNewPostValueActionCreator(e.target.value))
-	},
-})
-const PostTextareaContainer = connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(PostTextarea)
+const mapStateToProps = (state) => {
+  return {newPostValue: state.profilePage.newPostValue}
+}
 
-export default PostTextareaContainer
+const mapDispatchToProps = {
+  onBtnClick: addPostActionCreator,
+  onValueChange: updateNewPostValueActionCreator
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostTextarea)

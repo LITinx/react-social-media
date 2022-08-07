@@ -6,6 +6,7 @@ import NavbarContainer from './components/Navbar/NavbarContainer'
 import NotFound from './components/NotFound/NotFound'
 import Profile from './components/Profile/Profile'
 import UsersContainer from './components/Users/UsersContainer'
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 function App({ store }) {
     return (
@@ -14,7 +15,7 @@ function App({ store }) {
             <NavbarContainer />
             <div className='app-content-wrapper'>
                 <Routes path='/'>
-                    <Route index element={<Profile />} />
+                    <Route path='profile/*' element={<ProfileContainer />} />
                     <Route path='dialogs/*' element={<DialogsContainer />} />
                     <Route path='users/' element={<UsersContainer />} />
                     <Route path='news/' element={<NotFound />} />

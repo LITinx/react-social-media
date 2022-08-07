@@ -6,7 +6,7 @@ const Links = () => {
 	return (
 		<ul className={links.listUl}>
 			<li className={links.list}>
-				<NavLink to='/' className={isActiveClass}>
+				<NavLink to='/profile' className={isActiveClass}>
 					Profile
 				</NavLink>
 			</li>
