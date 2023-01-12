@@ -36,6 +36,9 @@
   transition: all 0.15s ease-in-out;
   cursor: pointer;
 }
+.follow-btn:disabled {
+  background-color: rgb(137, 132, 132) !important;
+}
 
 .follow-btn:hover {
   background-color: var(--blue-primary);
@@ -56,11 +59,25 @@
 }
 
 .full-name {
+  position: relative;
   font-size: 18px;
   margin-bottom: 10px;
+  width: min-content;
 }
-.full-name:hover {
-  border-bottom: 1px solid #000000;
+.full-name::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: #000;
+  left: 0;
+  height: 1px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.full-name:hover::after {
+  opacity: 1;
 }
 .status {
   font-size: 15px;

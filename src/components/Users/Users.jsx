@@ -1,7 +1,7 @@
-import User from './User/User'
-import React from 'react'
 import { createTheme, Pagination, Stack, ThemeProvider } from '@mui/material'
-import Preloader from "../Preloader/Preloader";
+import React from 'react'
+import Preloader from '../Preloader/Preloader'
+import User from './User/User'
 
 const theme = createTheme({
 	components: {
@@ -26,10 +26,13 @@ const Users = ({
 	pageSize,
 	currentPage,
 	users,
+	unfollow,
 	follow,
-	getUsers,
+	onPageChanged,
 	setCurrentPage,
-	isFetching
+	isFetching,
+	toggleFollowingProgress,
+	followingInProgress,
 }) => {
 	let pageCount = Math.ceil(totalCount / pageSize)
 	let pages = []
@@ -39,9 +42,8 @@ const Users = ({
 
 	const handleClick = (e, value) => {
 		setCurrentPage(value)
-		getUsers(value, pageSize)
+		onPageChanged(value, pageSize)
 	}
-
 
 	return (
 		<div>
@@ -62,7 +64,18 @@ const Users = ({
 				</ThemeProvider>
 			</Stack>
 			{users?.map((user, i) => {
-					return isFetching ? <Preloader/> : <User {...user} follow={follow} key={i} />
+				return isFetching ? (
+					<Preloader />
+				) : (
+					<User
+						{...user}
+						follow={follow}
+						toggleFollowingProgress={toggleFollowingProgress}
+						followingInProgress={followingInProgress}
+						unfollow={unfollow}
+						key={i + Math.random().toFixed(3)}
+					/>
+				)
 			})}
 		</div>
 	)

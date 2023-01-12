@@ -9,5 +9,5 @@ export default defineConfig({
 			localsConvention: 'camelCaseOnly',
 			generateScopedName: '[local]_[hash:base64:3]',
 		},
-	},
+	}
 })

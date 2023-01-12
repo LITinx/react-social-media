@@ -1,5 +1,5 @@
-import links from './Links.module.css'
 import { NavLink } from 'react-router-dom'
+import links from './Links.module.css'
 const Links = () => {
 	const isActiveClass = ({ isActive }) =>
 		isActive ? `${links.active} ${links.url}` : links.url
@@ -11,7 +11,7 @@ const Links = () => {
 				</NavLink>
 			</li>
 			<li className={links.list}>
-				<NavLink to='/dialogs' className={isActiveClass}>
+				<NavLink to='/dialogs/2' className={isActiveClass}>
 					Messages
 				</NavLink>
 			</li>

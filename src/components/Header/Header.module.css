@@ -17,12 +17,28 @@
   width: 77px;
   height: 25px;
 }
+.avatar a {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.avatar a:hover {
+  text-decoration: underline;
+}
 .avatar img {
   cursor: pointer;
   width: 38px;
+  margin-right: 10px;
   height: 38px;
   background-color: #494545;
   border-radius: 50%;
+}
+.avatar h2 {
+  font-size: 18px;
+  font-weight: 500;
 }
 
 @media (max-width: 760px) {
