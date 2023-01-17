@@ -1,6 +1,4 @@
-import axios from 'axios'
 import { NavLink } from 'react-router-dom'
-import { usersAPI } from '../../../api/api'
 import logo from './../../../assets/img/no-logo.jpg'
 import style from './User.module.css'
 
@@ -13,7 +11,6 @@ const User = ({
 	unfollow,
 	photos,
 	followingInProgress,
-	toggleFollowingProgress,
 }) => {
 	const stylesForBtn = {
 		backgroundColor: followed ? 'var(--red-primary)' : 'var(--blue-secondary)',
@@ -37,13 +34,7 @@ const User = ({
 						<button
 							disabled={followingInProgress.some((userID) => userID === id)}
 							onClick={() => {
-								toggleFollowingProgress(true, id)
-								usersAPI.unfollow(id).then((response) => {
-									if (response.data.resultCode == 0) {
-										unfollow(id)
-										toggleFollowingProgress(false, id)
-									}
-								})
+								unfollow(id)
 							}}
 							className={style.followBtn}
 							style={stylesForBtn}
@@ -54,13 +45,7 @@ const User = ({
 						<button
 							disabled={followingInProgress.some((userID) => userID === id)}
 							onClick={() => {
-								toggleFollowingProgress(true, id)
-								usersAPI.follow(id).then((response) => {
-									if (response.data.resultCode == 0) {
-										follow(id)
-										toggleFollowingProgress(false, id)
-									}
-								})
+								follow(id)
 							}}
 							className={style.followBtn}
 							style={stylesForBtn}

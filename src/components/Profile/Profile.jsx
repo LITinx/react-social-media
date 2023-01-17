@@ -1,8 +1,7 @@
 import MyPosts from './MyPosts/MyPosts'
 import style from './Profile.module.css'
-import ProfileInfo from './ProfileInfo/ProfileInfo'
 import ProfileInfoContainer from './ProfileInfo/ProfileInfoContainerFunc'
-const Profile = ({ profile }) => {
+const Profile = () => {
 	return (
 		<main className={style.profile}>
 			<ProfileInfoContainer />

@@ -31,7 +31,6 @@ const Users = ({
 	onPageChanged,
 	setCurrentPage,
 	isFetching,
-	toggleFollowingProgress,
 	followingInProgress,
 }) => {
 	let pageCount = Math.ceil(totalCount / pageSize)
@@ -70,10 +69,9 @@ const Users = ({
 					<User
 						{...user}
 						follow={follow}
-						toggleFollowingProgress={toggleFollowingProgress}
 						followingInProgress={followingInProgress}
 						unfollow={unfollow}
-						key={i + Math.random().toFixed(3)}
+						key={i}
 					/>
 				)
 			})}

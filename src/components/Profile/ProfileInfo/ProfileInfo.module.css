@@ -1,28 +1,12 @@
-.profile-images {
-    position: relative;
-    cursor: pointer;
-}
-
-.profile-background img {
-    object-fit: cover;
-    width: min(85%, 960px);
-    border-radius: 15px;
-    aspect-ratio: 15 / 5;
-}
-
 .profile-logo img {
-    position: absolute;
-    bottom: 20px;
-    left: 43px;
     width: 90px;
+    margin-left: 10px;
     background-color: #494545;
-    aspect-ratio: 1 / 1;
     border-radius: 50%;
 }
 
-
 .profile-info {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .profile-info div {
@@ -51,7 +35,7 @@
 }
 .contacts a::after {
     transition: transform 0.15s ease-in-out;
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -64,7 +48,6 @@
     transform: scale(1);
 }
 
-
 @media (max-width: 760px) {
     .profile {
         margin-left: 40px;
@@ -72,17 +55,13 @@
     }
 
     .profile-logo img {
-        width: 50px;
+        width: 70px;
     }
 }
 
 @media (max-width: 600px) {
     .profile {
         margin: 10px 20px;
-    }
-
-    .profile-background {
-        width: 100%;
     }
 
     .profile-info {
@@ -92,6 +71,6 @@
 
 @media (max-width: 490px) {
     .profile-logo img {
-        width: 40px;
+        width: 55px;
     }
 }

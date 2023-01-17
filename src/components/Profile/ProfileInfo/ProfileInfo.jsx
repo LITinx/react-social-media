@@ -1,6 +1,6 @@
-import styles from './ProfileInfo.module.css'
 import noLogo from '../../../assets/img/no-logo.jpg'
 import Preloader from '../../Preloader/Preloader'
+import styles from './ProfileInfo.module.css'
 
 const ProfileInfo = ({ profile }) => {
 	if (!profile) return <Preloader variant='profile' />
@@ -10,21 +10,13 @@ const ProfileInfo = ({ profile }) => {
 	}
 	return (
 		<>
-			<div className={styles.profileImages}>
-				<div className={styles.profileBackground}>
-					<img
-						src={profile.photos?.large ? profile.photos?.large : noLogo}
-						alt='background-photo'
-					/>
-				</div>
+			<div className={styles.profileInfo}>
 				<div className={styles.profileLogo}>
 					<img
 						src={profile.photos?.small ? profile.photos?.small : noLogo}
 						alt='logo'
 					/>
 				</div>
-			</div>
-			<div className={styles.profileInfo}>
 				<div className={styles.profileName}>
 					<h6>{profile.fullName}</h6>
 				</div>
