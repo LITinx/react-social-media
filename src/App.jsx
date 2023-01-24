@@ -1,3 +1,4 @@
+import { connect } from 'react-redux'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
@@ -9,7 +10,7 @@ import Profile from './components/Profile/Profile'
 import ScrollToTop from './components/ScrollToTop'
 import UsersContainer from './components/Users/UsersContainer'
 
-function App() {
+function App({ isAuth }) {
 	const { pathname } = useLocation()
 
 	return (
@@ -19,6 +20,9 @@ function App() {
 			<div className='app-content-wrapper'>
 				<ScrollToTop />
 				{pathname === '/' && <Navigate to={'/profile'} replace={true} />}
+				{pathname === '/login' && isAuth && (
+					<Navigate to={'/profile'} replace={true} />
+				)}
 				<Routes path='/'>
 					<Route path='profile/*' element={<Profile />} />
 					<Route path='dialogs/:id' element={<DialogsContainer />} />
@@ -32,5 +36,8 @@ function App() {
 		</div>
 	)
 }
+const mapStateToProps = (state) => ({
+	isAuth: state.auth.isAuth,
+})
 
-export default App
+export default connect(mapStateToProps)(App)

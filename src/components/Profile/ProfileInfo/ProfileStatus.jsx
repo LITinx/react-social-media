@@ -1,27 +1,38 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './ProfileInfo.module.css'
 
-const ProfileStatus = ({ status }) => {
+const ProfileStatus = ({ status, updateUserStatus }) => {
 	const [editMode, setEditMode] = useState(false)
-	const toggleEditMode = () => {
-		setEditMode((prev) => !prev)
+	const [value, setValue] = useState(status)
+	useEffect(() => {
+		setValue(status)
+	}, [status])
+	const activateEditMode = () => {
+		setEditMode(true)
 	}
-	// const activateEditMode = () => {
-	// 	setEditMode((prev) => (prev = true))
-	// }
-	// const deactivateEditMode = () => {
-	// 	setEditMode((prev) => (prev = false))
-	// }
-	console.log(editMode)
+	const deactivateEditMode = () => {
+		setEditMode(false)
+		updateUserStatus(value)
+	}
+
+	const handleValue = (e) => {
+		setValue(e.target.value)
+	}
 	return (
 		<div>
 			{editMode ? (
 				<div className={styles.statusInput}>
-					<input autoFocus type='text' value={status} onBlur={toggleEditMode} />
+					<input
+						autoFocus
+						type='text'
+						onBlur={deactivateEditMode}
+						onChange={(e) => handleValue(e)}
+						value={value}
+					/>
 				</div>
 			) : (
-				<div className={styles.statusText} onDoubleClick={toggleEditMode}>
-					<span>{status}</span>
+				<div className={styles.statusText} onDoubleClick={activateEditMode}>
+					<span>{status || 'This place for your status'}</span>
 				</div>
 			)}
 		</div>
