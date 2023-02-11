@@ -17,6 +17,12 @@
   width: 77px;
   height: 25px;
 }
+.avatar {
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
 .avatar a {
   text-decoration: none;
   color: #000;
@@ -40,7 +46,16 @@
   font-size: 18px;
   font-weight: 500;
 }
-
+.avatar > button {
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+}
+.avatar > button:hover {
+  text-decoration: underline;
+}
 @media (max-width: 760px) {
   .header-wrapper {
     padding: 0 40px;

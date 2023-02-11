@@ -23,6 +23,7 @@ function ProfileInfoContainer({
 	const userId = params['*'] ? params['*'] : id
 	useEffect(() => {
 		if (id) {
+			console.log(userId)
 			getUserProfile(userId)
 			getUserStatus(userId)
 		}
