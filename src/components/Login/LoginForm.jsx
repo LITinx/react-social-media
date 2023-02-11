@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { authLogin } from '../../redux/reducers/authReducer'
 import styles from './Login.module.css'
@@ -25,9 +26,11 @@ const LoginForm = ({ authLogin }) => {
 		resolver: yupResolver(schema),
 		mode: 'onBlur',
 	})
+	const navigate = useNavigate()
 	const onSubmit = (data) => {
 		console.log(data, errors)
 		authLogin(data)
+		navigate('/profile')
 	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>

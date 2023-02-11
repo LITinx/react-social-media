@@ -7,7 +7,6 @@ const Header = ({ login, isAuth, userId, authLogout }) => {
 	const logout = () => {
 		authLogout()
 		navigate('/login/', { replace: true })
-		window.location.reload()
 	}
 	return (
 		<header className={header.header}>
