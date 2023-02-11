@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import withAuthRedirect from '../../../hoc/withAuthRedirect'
 import withRouter from '../../../hoc/withRouter'
+import { login } from '../../../redux/reducers/authReducer'
 import {
 	getUserProfile,
 	getUserStatus,
@@ -23,13 +24,14 @@ function ProfileInfoContainer({
 	const userId = params['*'] ? params['*'] : id
 	useEffect(() => {
 		if (id) {
-			console.log(userId)
 			getUserProfile(userId)
 			getUserStatus(userId)
 		}
 	}, [userId, isAuth])
 	return (
 		<ProfileInfo
+			profileId={id}
+			userId={userId}
 			profile={profile}
 			status={status}
 			updateUserStatus={updateUserStatus}

@@ -4,9 +4,15 @@ import styles from './ProfileInfo.module.css'
 import ProfileLinks from './ProfileLinks'
 import ProfileStatus from './ProfileStatus'
 
-const ProfileInfo = ({ profile, status, updateUserStatus }) => {
+const ProfileInfo = ({
+	profile,
+	status,
+	updateUserStatus,
+	profileId,
+	userId,
+}) => {
 	if (!profile) return <Preloader variant='profile' />
-
+	console.log(userId, profileId)
 	return (
 		<>
 			<div className={styles.profileInfo}>
@@ -19,7 +25,9 @@ const ProfileInfo = ({ profile, status, updateUserStatus }) => {
 				<div className={styles.profileName}>
 					<h6>{profile.fullName}</h6>
 				</div>
-				<ProfileStatus status={status} updateUserStatus={updateUserStatus} />
+				{profileId == userId ? (
+					<ProfileStatus status={status} updateUserStatus={updateUserStatus} />
+				) : undefined}
 				<ProfileLinks profile={profile} />
 			</div>
 		</>
