@@ -1,30 +1,29 @@
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
 import post from './../MyPosts.module.css'
-function PostTextarea({ onValueChange, newPostValue, onBtnClick }) {
-	const keyListener = (event) => {
-		if (event.keyCode === 13) {
-			onBtnClick()
-		}
-	}
-	const handleInput = (e) => {
-		onValueChange(e.target.value)
-	}
-	const onClickBtn = () => {
-		onBtnClick()
+
+const schema = yup.object().shape({
+	postText: yup.string().max(250),
+})
+
+function PostTextarea({ onBtnClick }) {
+	const { register, handleSubmit, reset } = useForm({
+		resolver: yupResolver(schema),
+	})
+	const onSubmit = (data) => {
+		onBtnClick(data.postText)
+		reset()
 	}
 	return (
-		<div className={post.postItems}>
+		<form onSubmit={handleSubmit(onSubmit)} className={post.postItems}>
 			<div className={post.textArea}>
-				<input
-					placeholder='New Post...'
-					onChange={handleInput}
-					value={newPostValue}
-					onKeyDown={keyListener}
-				/>
+				<textarea placeholder='New Post...' {...register('postText')} />
 			</div>
-			<button className={post.button} onClick={onClickBtn}>
+			<button className={post.button} type='submit'>
 				Post
 			</button>
-		</div>
+		</form>
 	)
 }
 export default PostTextarea

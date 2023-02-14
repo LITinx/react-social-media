@@ -6,7 +6,6 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 
 const initialState = {
-	newPostValue: '',
 	profile: {
 		aboutMe: null,
 		contacts: {
@@ -35,21 +34,18 @@ const initialState = {
 const profileReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_POST:
-			if (!state.newPostValue) return
+			if (!action.postText) return { ...state }
 			return {
 				...state,
-				newPostValue: '',
 				posts: [
 					{
 						id: Math.max(0, Math.max(...state.posts.map(({ id }) => id))) + 1,
-						message: state.newPostValue,
+						message: action.postText,
 						likesCount: 0,
 					},
 					...state.posts,
 				],
 			}
-		case UPDATE_NEW_POST_VALUE:
-			return { ...state, newPostValue: action.newValue }
 		case SET_STATUS:
 			return { ...state, status: action.status }
 		case SET_USER_PROFILE:
@@ -58,12 +54,9 @@ const profileReducer = (state = initialState, action) => {
 			return state
 	}
 }
-export const addPostActionCreator = () => ({
+export const addPostActionCreator = (postText) => ({
 	type: ADD_POST,
-})
-export const updateNewPostValueActionCreator = (newValue) => ({
-	type: UPDATE_NEW_POST_VALUE,
-	newValue,
+	postText,
 })
 export const setUserProfile = (profile) => ({
 	type: SET_USER_PROFILE,

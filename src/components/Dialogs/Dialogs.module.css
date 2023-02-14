@@ -5,6 +5,7 @@
 }
 .dialogs-item {
   overflow-y: auto;
+  max-height: calc(100vh - 60px);
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.33);
 }
 .dialogs-item::-webkit-scrollbar {

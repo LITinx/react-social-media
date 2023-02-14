@@ -1,64 +1,64 @@
 .post {
-  margin-top: 30px;
+	margin-top: 30px;
 }
 .post-title {
-  font-size: 22px;
-  font-weight: bold;
+	font-size: 22px;
+	font-weight: bold;
 }
 .postItems {
-  margin-top: 20px;
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  margin-bottom: 30px;
+	margin-top: 20px;
+	display: flex;
+	gap: 20px;
+	align-items: flex-start;
+	margin-bottom: 30px;
 }
 .button {
-  border: none;
-  background-color: #d9d9d9;
-  padding: 5px 10px;
-  border-radius: 8px;
-  transition: all 0.06s ease-in;
-  cursor: pointer;
-  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.455);
+	border: none;
+	background-color: #d9d9d9;
+	padding: 5px 10px;
+	border-radius: 8px;
+	transition: all 0.06s ease-in;
+	cursor: pointer;
+	box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.455);
 }
 .button:hover {
-  background-color: hsl(0, 0%, 78%);
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.455);
-  transform: scale(1.03);
+	background-color: hsl(0, 0%, 78%);
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.455);
+	transform: scale(1.03);
 }
 
 .text-area {
-  display: inline-block;
-  width: 60%;
-  padding: 5px;
-  padding-left: 8px;
-  height: 40px;
-  border-radius: 13px;
-  border: none;
-  /* border: solid 2px #8b898b; */
-  background-color: #d9d9d9;
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.449);
+	display: inline-block;
+	width: 60%;
+	padding: 5px;
+	padding-left: 8px;
+	height: 60px;
+	border-radius: 13px;
+	border: none;
+	/* border: solid 2px #8b898b; */
+	background-color: #d9d9d9;
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.449);
 }
-.text-area input {
-  font-size: 15px;
-  outline: none;
-  border: none;
-  width: 100%;
-  height: 100%;
-  resize: none;
-  background-color: transparent;
+.text-area textarea {
+	font-size: 15px;
+	outline: none;
+	border: none;
+	width: 100%;
+	height: 100%;
+	resize: none;
+	background-color: transparent;
 }
 
 input::-webkit-scrollbar {
-  width: 7px;
+	width: 7px;
 }
 
 input::-webkit-scrollbar-track {
-  background-color: #7b787894;
-  border-radius: 5px;
+	background-color: #7b787894;
+	border-radius: 5px;
 }
 
 input::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-  background-color: var(--blue-primary);
+	border-radius: 8px;
+	background-color: var(--blue-primary);
 }

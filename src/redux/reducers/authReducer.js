@@ -3,8 +3,6 @@ import { authAPI } from '../../api/api'
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
 const SET_AUTH = 'SET_AUTH'
 const LOGIN = 'LOGIN'
-const LOGOUT = 'LOGOUT'
-
 const initialState = {
 	userId: null,
 	login: null,
@@ -18,8 +16,6 @@ export default (state = initialState, { type, data, userId }) => {
 			return { ...state, ...data }
 		case SET_AUTH:
 			return { ...state, isAuth: true }
-		case LOGOUT:
-			return { ...state, isAuth: false }
 		case LOGIN:
 			return { ...state, userId, isAuth: true }
 		default:
@@ -27,9 +23,9 @@ export default (state = initialState, { type, data, userId }) => {
 	}
 }
 
-export const setAuthUserData = (userId, login, email) => ({
+export const setAuthUserData = (userId, login, email, isAuth) => ({
 	type: SET_AUTH_USER_DATA,
-	data: { userId, login, email },
+	data: { userId, login, email, isAuth },
 })
 
 export const setAuth = () => ({
@@ -39,29 +35,24 @@ export const login = (userId) => ({
 	type: LOGIN,
 	userId,
 })
-export const logout = () => ({
-	type: LOGOUT,
-})
-
 export const authMe = () => (dispatch) => {
 	authAPI.me().then((data) => {
 		const { id, login, email } = data.data
 		if (data.resultCode === 0) dispatch(setAuth())
-		dispatch(setAuthUserData(id, login, email))
+		dispatch(setAuthUserData(id, login, email, true))
 	})
 }
 export const authLogin = (data) => (dispatch) => {
 	authAPI.login(data).then((response) => {
 		if (response.data.resultCode === 0) {
-			dispatch(login(response.data.data.userId))
-			authMe()
+			dispatch(authMe())
 		}
 	})
 }
 export const authLogout = () => (dispatch) => {
 	authAPI.logout().then((response) => {
 		if (response.data.resultCode === 0) {
-			dispatch(logout())
+			dispatch(setAuthUserData(null, null, null, false))
 		}
 	})
 }

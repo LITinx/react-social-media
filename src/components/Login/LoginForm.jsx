@@ -21,6 +21,7 @@ const LoginForm = ({ authLogin }) => {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema),
@@ -28,9 +29,9 @@ const LoginForm = ({ authLogin }) => {
 	})
 	const navigate = useNavigate()
 	const onSubmit = (data) => {
-		console.log(data, errors)
 		authLogin(data)
 		navigate('/profile')
+		reset()
 	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
@@ -39,6 +40,7 @@ const LoginForm = ({ authLogin }) => {
 			<input
 				{...register('password')}
 				autoComplete='off'
+				type='password'
 				placeholder='Password'
 			/>
 			{errors.password?.message && <p>{errors.password?.message}</p>}

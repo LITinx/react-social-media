@@ -14,10 +14,15 @@
 }
 .messages::-webkit-scrollbar {
   width: 7px;
+  position: absolute;
+  bottom: 0;
+  overflow-y: scroll;
 }
-
 .messages::-webkit-scrollbar-track {
   background-color: #7b787894;
+
+  position: relative;
+  height: 100%;
 }
 
 .messages::-webkit-scrollbar-thumb {

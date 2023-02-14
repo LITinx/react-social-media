@@ -20,23 +20,19 @@ const initialState = {
 		{ id: 4, fromMe: false, message: 'My name is ...' },
 		{ id: 5, fromMe: true, message: 'Oh, your name is cool ' },
 	],
-	newMessageValue: '',
 }
 const messagesReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case UPDATE_NEW_MESSAGE_VALUE:
-			return { ...state, newMessageValue: action.payload }
 		case SEND_MESSAGE:
-			if (!state.newMessageValue) return
+			if (!action.text) return
 			return {
 				...state,
-				newMessageValue: '',
 				messages: [
 					...state.messages,
 					{
 						id:
 							Math.max(0, Math.max(...state.messages.map(({ id }) => id))) + 1,
-						message: state.newMessageValue,
+						message: action.text,
 						fromMe: true,
 					},
 				],
@@ -45,12 +41,9 @@ const messagesReducer = (state = initialState, action) => {
 			return state
 	}
 }
-export const sendMessageActionCreator = () => ({
+export const sendMessageActionCreator = (text) => ({
 	type: SEND_MESSAGE,
-})
-export const updateNewMessageValueActionCreator = (newValue) => ({
-	type: UPDATE_NEW_MESSAGE_VALUE,
-	payload: newValue,
+	text,
 })
 
 export default messagesReducer

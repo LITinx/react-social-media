@@ -3,10 +3,8 @@ import logo from '../../assets/img/logo.svg'
 import header from './Header.module.css'
 
 const Header = ({ login, isAuth, userId, authLogout }) => {
-	const navigate = useNavigate()
 	const logout = () => {
 		authLogout()
-		navigate('/login/', { replace: true })
 	}
 	return (
 		<header className={header.header}>
