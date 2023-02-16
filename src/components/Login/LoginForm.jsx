@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { authLogin } from '../../redux/reducers/authReducer'
 import styles from './Login.module.css'
@@ -13,25 +13,26 @@ const schema = yup.object().shape({
 	password: yup
 		.string()
 		.min(6, 'Password must be at least 6 characters')
-		.max(16, 'Password must be at most 16 characters')
+		.max(20, 'Password must be at most 20 characters')
 		.required('This is required field'),
 })
 
-const LoginForm = ({ authLogin }) => {
+const LoginForm = ({ authLogin, isAuth, errorMessage }) => {
 	const {
 		register,
 		handleSubmit,
-		reset,
+		setError,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema),
 		mode: 'onBlur',
 	})
-	const navigate = useNavigate()
 	const onSubmit = (data) => {
 		authLogin(data)
-		navigate('/profile')
-		reset()
+		setError('globalError', { type: 'custom', message: errorMessage })
+	}
+	if (isAuth) {
+		return <Navigate to='/profile' />
 	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
@@ -48,11 +49,15 @@ const LoginForm = ({ authLogin }) => {
 				<input {...register('rememberMe')} id='rememberMe' type='checkbox' />
 				<label htmlFor='rememberMe'>Remember me</label>
 			</div>
+			{errors.globalError?.message && <p>{errors.globalError?.message}</p>}
 			<button type='submit'>Login</button>
 		</form>
 	)
 }
 
-const mapStateToProps = () => ({})
+const mapStateToProps = (state) => ({
+	isAuth: state.auth.isAuth,
+	errorMessage: state.auth.errorMessage,
+})
 
 export default connect(mapStateToProps, { authLogin })(LoginForm)

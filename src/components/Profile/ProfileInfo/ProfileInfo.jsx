@@ -12,7 +12,6 @@ const ProfileInfo = ({
 	userId,
 }) => {
 	if (!profile) return <Preloader variant='profile' />
-	console.log(userId, profileId)
 	return (
 		<>
 			<div className={styles.profileInfo}>
