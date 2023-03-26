@@ -1,24 +1,29 @@
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
 import Login from './components/Login/Login'
 import NavbarContainer from './components/Navbar/NavbarContainer'
 import NotFound from './components/NotFound/NotFound'
+import Preloader from './components/Preloader/Preloader'
 import Profile from './components/Profile/Profile'
 import ScrollToTop from './components/ScrollToTop'
 import UsersContainer from './components/Users/UsersContainer'
+import { initializeApp } from './redux/reducers/appReducer'
 
-function App() {
-	const { pathname } = useLocation()
-
+function App({ initializeApp, initialized }) {
+	useEffect(() => {
+		initializeApp()
+	}, [])
+	if (!initialized) return <Preloader />
 	return (
 		<div className='app-wrapper'>
 			<HeaderContainer />
 			<NavbarContainer />
 			<div className='app-content-wrapper'>
 				<ScrollToTop />
-				{pathname === '/' && <Navigate to={'/profile'} replace={true} />}
 				<Routes path='/'>
 					<Route path='profile/*' element={<Profile />} />
 					<Route path='dialogs/:id' element={<DialogsContainer />} />
@@ -32,4 +37,6 @@ function App() {
 		</div>
 	)
 }
-export default App
+export default connect((state) => ({ initialized: state.app.initialized }), {
+	initializeApp,
+})(App)

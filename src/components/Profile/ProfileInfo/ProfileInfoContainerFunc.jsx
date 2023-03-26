@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { compose } from 'redux'
 import withAuthRedirect from '../../../hoc/withAuthRedirect'
 import withRouter from '../../../hoc/withRouter'
@@ -20,6 +21,7 @@ function ProfileInfoContainer({
 	status,
 	updateUserStatus,
 }) {
+	const navigate = useNavigate()
 	const userId = params['*'] ? params['*'] : id
 	useEffect(() => {
 		if (id) {

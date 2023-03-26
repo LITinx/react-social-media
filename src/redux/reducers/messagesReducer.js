@@ -1,10 +1,9 @@
 const SEND_MESSAGE = 'SEND_MESSAGE'
-const UPDATE_NEW_MESSAGE_VALUE = 'UPDATE_NEW_MESSAGE_VALUE'
 const initialState = {
 	users: [
 		{ id: 0, active: false, name: 'Heller' },
 		{ id: 1, active: false, name: 'Larson' },
-		{ id: 2, active: true, name: 'Ebert' },
+		{ id: 2, active: true, name: 'Jenner' },
 		{ id: 3, active: false, name: 'Monahan' },
 		{ id: 4, active: false, name: 'Volkman' },
 		{ id: 5, active: false, name: 'Hoppe' },

@@ -1,8 +1,6 @@
-import axios from 'axios'
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { usersAPI } from '../../api/api'
 import withAuthRedirect from '../../hoc/withAuthRedirect'
 import {
 	follow,
@@ -13,6 +11,14 @@ import {
 	toggleIsFetching,
 	unfollow,
 } from '../../redux/reducers/usersReducer'
+import {
+	getCurrentPageSelector,
+	getFollowingInProgressSelector,
+	getIsFetchingSelector,
+	getPageSizeSelector,
+	getTotalCountSelector,
+	getUsersSelector,
+} from '../../redux/selectors/usersSelectors'
 import Users from './Users'
 
 class UsersContainer extends React.Component {
@@ -32,12 +38,12 @@ class UsersContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	users: state.usersPage.users,
-	pageSize: state.usersPage.pageSize,
-	totalCount: state.usersPage.totalCount,
-	currentPage: state.usersPage.currentPage,
-	isFetching: state.usersPage.isFetching,
-	followingInProgress: state.usersPage.followingInProgress,
+	users: getUsersSelector(state),
+	pageSize: getPageSizeSelector(state),
+	totalCount: getTotalCountSelector(state),
+	currentPage: getCurrentPageSelector(state),
+	isFetching: getIsFetchingSelector(state),
+	followingInProgress: getFollowingInProgressSelector(state),
 })
 
 const mapDispatchToProps = {

@@ -61,7 +61,9 @@ const User = ({
 					>
 						<div>
 							<h4 className={style.fullName}>{name}</h4>
-							<p className={style.status}>{status ? status : 'No status'}</p>
+							<div className={style.statusWrapper}>
+								<p className={style.status}>{status ? status : 'No status'}</p>
+							</div>
 						</div>
 					</NavLink>
 				</div>
