@@ -1,7 +1,12 @@
-import post from './Post.module.css'
 import { AiFillLike } from 'react-icons/ai'
-import { BsThreeDots } from 'react-icons/bs'
-const Post = ({ children, likes, name = 'Nurik' }) => {
+import { MdDeleteOutline } from 'react-icons/md'
+import { connect } from 'react-redux'
+import { deletePost } from './../../../../redux/reducers/profileReducer'
+import post from './Post.module.css'
+const Post = ({ children, likes, name = 'Nurik', deletePost, id }) => {
+	const onBtnClick = () => {
+		deletePost(id)
+	}
 	return (
 		<div className={post.postWrapper}>
 			<div className={post.wrapper}>
@@ -15,7 +20,7 @@ const Post = ({ children, likes, name = 'Nurik' }) => {
 					<div className={post.name}>{name}</div>
 				</div>
 				<div className={post.icon}>
-					<BsThreeDots size={18} />
+					<MdDeleteOutline size={18} onClick={onBtnClick} />
 				</div>
 			</div>
 
@@ -29,4 +34,4 @@ const Post = ({ children, likes, name = 'Nurik' }) => {
 	)
 }
 
-export default Post
+export default connect(null, { deletePost })(Post)

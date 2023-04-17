@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import withAuthRedirect from '../../hoc/withAuthRedirect'
 import {
 	follow,
-	getUsers,
+	requestUsers,
 	setCurrentPage,
 	setTotalCount,
 	setUsers,
@@ -12,38 +12,52 @@ import {
 	unfollow,
 } from '../../redux/reducers/usersReducer'
 import {
-	getCurrentPageSelector,
-	getFollowingInProgressSelector,
-	getIsFetchingSelector,
-	getPageSizeSelector,
-	getTotalCountSelector,
-	getUsersSelector,
+	getCurrentPage,
+	getFollowingInProgress,
+	getIsFetching,
+	getPageSize,
+	getTotalCount,
+	getUsers,
 } from '../../redux/selectors/usersSelectors'
 import Users from './Users'
 
-class UsersContainer extends React.Component {
-	componentDidMount() {
-		if (this.props.users.length === 0) {
-			this.props.getUsers(this.props.currentPage, this.props.pageSize)
+function UsersContainer(props) {
+	useEffect(() => {
+		if (props.users.length === 0) {
+			props.requestUsers(props.currentPage, props.pageSize)
 		}
+	}, [])
+
+	const onPageChanged = (currentPage, pageSize) => {
+		props.requestUsers(currentPage, pageSize)
 	}
 
-	onPageChanged = (currentPage, pageSize) => {
-		this.props.getUsers(currentPage, pageSize)
-	}
-
-	render() {
-		return <Users {...this.props} onPageChanged={this.onPageChanged} />
-	}
+	return <Users {...props} onPageChanged={onPageChanged} />
 }
 
+// class UsersContainer extends React.Component {
+// 	componentDidMount() {
+// 		if (this.props.users.length === 0) {
+// 			this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+// 		}
+// 	}
+
+// 	onPageChanged = (currentPage, pageSize) => {
+// 		this.props.requestUsers(currentPage, pageSize)
+// 	}
+
+// 	render() {
+// 		return <Users {...this.props} onPageChanged={this.onPageChanged} />
+// 	}
+// }
+
 const mapStateToProps = (state) => ({
-	users: getUsersSelector(state),
-	pageSize: getPageSizeSelector(state),
-	totalCount: getTotalCountSelector(state),
-	currentPage: getCurrentPageSelector(state),
-	isFetching: getIsFetchingSelector(state),
-	followingInProgress: getFollowingInProgressSelector(state),
+	users: getUsers(state),
+	pageSize: getPageSize(state),
+	totalCount: getTotalCount(state),
+	currentPage: getCurrentPage(state),
+	isFetching: getIsFetching(state),
+	followingInProgress: getFollowingInProgress(state),
 })
 
 const mapDispatchToProps = {
@@ -53,7 +67,7 @@ const mapDispatchToProps = {
 	setTotalCount,
 	setCurrentPage,
 	toggleIsFetching,
-	getUsers,
+	requestUsers,
 }
 
 export default compose(

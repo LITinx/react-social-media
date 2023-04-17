@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -14,6 +14,7 @@ import UsersContainer from './components/Users/UsersContainer'
 import { initializeApp } from './redux/reducers/appReducer'
 
 function App({ initializeApp, initialized }) {
+	const { pathname } = useLocation()
 	useEffect(() => {
 		initializeApp()
 	}, [])
@@ -23,6 +24,7 @@ function App({ initializeApp, initialized }) {
 			<HeaderContainer />
 			<NavbarContainer />
 			<div className='app-content-wrapper'>
+				{pathname === '/' && <Navigate to={'/profile'} replace={true} />}
 				<ScrollToTop />
 				<Routes path='/'>
 					<Route path='profile/*' element={<Profile />} />
