@@ -1,6 +1,12 @@
 import { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Provider, connect } from 'react-redux'
+import {
+	BrowserRouter,
+	Navigate,
+	Route,
+	Routes,
+	useLocation,
+} from 'react-router-dom'
 import './App.css'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -12,6 +18,7 @@ import Profile from './components/Profile/Profile'
 import ScrollToTop from './components/ScrollToTop'
 import UsersContainer from './components/Users/UsersContainer'
 import { initializeApp } from './redux/reducers/appReducer'
+import store from './redux/reduxStore'
 
 function App({ initializeApp, initialized }) {
 	const { pathname } = useLocation()
@@ -39,6 +46,21 @@ function App({ initializeApp, initialized }) {
 		</div>
 	)
 }
-export default connect((state) => ({ initialized: state.app.initialized }), {
-	initializeApp,
-})(App)
+const AppContainer = connect(
+	(state) => ({ initialized: state.app.initialized }),
+	{
+		initializeApp,
+	},
+)(App)
+
+const MainApp = () => {
+	return (
+		<BrowserRouter>
+			<Provider store={store}>
+				<AppContainer />
+			</Provider>
+		</BrowserRouter>
+	)
+}
+
+export default MainApp
