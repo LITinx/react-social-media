@@ -46,21 +46,7 @@ function App({ initializeApp, initialized }) {
 		</div>
 	)
 }
-const AppContainer = connect(
-	(state) => ({ initialized: state.app.initialized }),
-	{
-		initializeApp,
-	},
-)(App)
 
-const MainApp = () => {
-	return (
-		<BrowserRouter>
-			<Provider store={store}>
-				<AppContainer />
-			</Provider>
-		</BrowserRouter>
-	)
-}
-
-export default MainApp
+export default connect((state) => ({ initialized: state.app.initialized }), {
+	initializeApp,
+})(App)
