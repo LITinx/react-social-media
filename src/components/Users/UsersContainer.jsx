@@ -35,22 +35,6 @@ function UsersContainer(props) {
 	return <Users {...props} onPageChanged={onPageChanged} />
 }
 
-// class UsersContainer extends React.Component {
-// 	componentDidMount() {
-// 		if (this.props.users.length === 0) {
-// 			this.props.requestUsers(this.props.currentPage, this.props.pageSize)
-// 		}
-// 	}
-
-// 	onPageChanged = (currentPage, pageSize) => {
-// 		this.props.requestUsers(currentPage, pageSize)
-// 	}
-
-// 	render() {
-// 		return <Users {...this.props} onPageChanged={this.onPageChanged} />
-// 	}
-// }
-
 const mapStateToProps = (state) => ({
 	users: getUsers(state),
 	pageSize: getPageSize(state),

@@ -14,7 +14,7 @@ describe('ProfileStatus test', () => {
 		expect(container.querySelector('span')).toBeTruthy()
 	})
 	test('after render input should not be displayed', () => {
-		const { container, debug } = render(<ProfileStatus status={status} />)
+		const { container } = render(<ProfileStatus status={status} />)
 		expect(container.querySelector('input')).toBeNull()
 	})
 	test('after render span should contain correct status', () => {

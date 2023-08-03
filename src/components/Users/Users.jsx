@@ -34,10 +34,6 @@ const Users = ({
 	followingInProgress,
 }) => {
 	let pageCount = Math.ceil(totalCount / pageSize)
-	let pages = []
-	for (let i = 1; i <= pageCount; i++) {
-		pages.push(i)
-	}
 
 	const handleClick = (e, value) => {
 		setCurrentPage(value)

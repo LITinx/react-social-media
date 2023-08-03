@@ -31,8 +31,10 @@ const ProfileStatus = ({ status, updateUserStatus }) => {
 					/>
 				</div>
 			) : (
-				<div className={styles.statusText} onDoubleClick={activateEditMode}>
-					<span>{status || 'This place for your status'}</span>
+				<div className={styles.statusText}>
+					<span onDoubleClick={activateEditMode}>
+						{status || 'This place for your status'}
+					</span>
 				</div>
 			)}
 		</div>
