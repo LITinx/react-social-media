@@ -2,7 +2,7 @@ import Chat from './Chat/Chat'
 import DialogItem from './DialogItem/DialogItem'
 import dialog from './Dialogs.module.css'
 
-function Dialogs({ users, messages, toggleUser }) {
+function Dialogs({ users, toggleUser }) {
 	return (
 		<div className={dialog.dialogs}>
 			<div className={dialog.dialogsItem}>
@@ -13,11 +13,13 @@ function Dialogs({ users, messages, toggleUser }) {
 						key={id + name}
 						isActive={active}
 						toggleUser={toggleUser}
-						lastMessage={messages[messages.length - 1].message}
+						lastMessage={
+							users[id].messages[users[id].messages.length - 1].message
+						}
 					/>
 				))}
 			</div>
-			<Chat messages={messages} users={users} />
+			<Chat users={users} />
 		</div>
 	)
 }

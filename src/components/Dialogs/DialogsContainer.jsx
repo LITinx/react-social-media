@@ -10,7 +10,6 @@ const DialogsContainer = (props) => {
 
 const mapStateToProps = (state) => ({
 	users: state.messagesPage.users,
-	messages: state.messagesPage.messages,
 })
 
 export default compose(

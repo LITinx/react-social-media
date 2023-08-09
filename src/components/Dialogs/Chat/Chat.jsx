@@ -1,7 +1,7 @@
-import chat from './Chat.module.css'
 import Message from '../Message/Message'
+import chat from './Chat.module.css'
 import InputContainer from './Input/Input'
-const Chat = ({ messages, users }) => {
+const Chat = ({ users }) => {
 	const activeUserIndex = users?.findIndex((el) => el.active === true)
 	return (
 		<div className={chat.messagesWrapper}>
@@ -15,7 +15,7 @@ const Chat = ({ messages, users }) => {
 				<div className={chat.messagesName}>{users[activeUserIndex]?.name}</div>
 			</div>
 			<div className={chat.messages}>
-				{messages?.map(({ message, id, fromMe }) => (
+				{users[activeUserIndex].messages?.map(({ message, id, fromMe }) => (
 					<Message key={id} fromMe={fromMe}>
 						{message}
 					</Message>

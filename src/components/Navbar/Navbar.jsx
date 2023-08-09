@@ -2,10 +2,10 @@ import Friends from './Friends/Friends'
 import Links from './Links/Links'
 import nav from './Navbar.module.css'
 
-const Navbar = ({ friends }) => {
+const Navbar = ({ friends, users }) => {
 	return (
 		<nav className={nav.nav}>
-			<Links />
+			<Links users={users} />
 			<Friends friends={friends} />
 		</nav>
 	)

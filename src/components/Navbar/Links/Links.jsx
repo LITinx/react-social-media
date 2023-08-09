@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import links from './Links.module.css'
-const Links = () => {
+const Links = ({ users }) => {
+	const activeUserIndex = users?.findIndex((el) => el.active === true)
 	const isActiveClass = ({ isActive }) =>
 		isActive ? `${links.active} ${links.url}` : links.url
 	return (
@@ -11,7 +12,7 @@ const Links = () => {
 				</NavLink>
 			</li>
 			<li className={links.list}>
-				<NavLink to='/dialogs/2' className={isActiveClass}>
+				<NavLink to={`/dialogs/${activeUserIndex}`} className={isActiveClass}>
 					Messages
 				</NavLink>
 			</li>
