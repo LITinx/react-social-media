@@ -3,7 +3,7 @@ import { MdDeleteOutline } from 'react-icons/md'
 import { connect } from 'react-redux'
 import { deletePost } from './../../../../redux/reducers/profileReducer'
 import post from './Post.module.css'
-const Post = ({ children, likes, name = 'Nurik', deletePost, id }) => {
+const Post = ({ children, likes, name = 'No name', deletePost, id, logo }) => {
 	const onBtnClick = () => {
 		deletePost(id)
 	}
@@ -12,10 +12,7 @@ const Post = ({ children, likes, name = 'Nurik', deletePost, id }) => {
 			<div className={post.wrapper}>
 				<div className={post.info}>
 					<div className={post.logo}>
-						<img
-							src='https://i.pinimg.com/564x/0f/93/79/0f93798d7dbd239809f07f7b00e9891e.jpg'
-							alt=''
-						/>
+						<img src={logo} alt='' />
 					</div>
 					<div className={post.name}>{name}</div>
 				</div>
