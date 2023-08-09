@@ -1,15 +1,10 @@
 const SEND_MESSAGE = 'SEND_MESSAGE'
+const TOGGLE_USER = 'TOGGLE_USER'
 const initialState = {
 	users: [
 		{ id: 0, active: false, name: 'Heller' },
 		{ id: 1, active: false, name: 'Larson' },
 		{ id: 2, active: true, name: 'Jenner' },
-		{ id: 3, active: false, name: 'Monahan' },
-		{ id: 4, active: false, name: 'Volkman' },
-		{ id: 5, active: false, name: 'Hoppe' },
-		{ id: 6, active: false, name: 'Robel' },
-		{ id: 8, active: false, name: 'Spinka' },
-		{ id: 9, active: false, name: 'Bernhard' },
 	],
 	messages: [
 		{ id: 0, fromMe: false, message: 'How are you?' },
@@ -36,6 +31,15 @@ const messagesReducer = (state = initialState, action) => {
 					},
 				],
 			}
+		case TOGGLE_USER:
+			return {
+				...state,
+				users: [
+					...state.users.map((user) => {
+						return { ...user, active: action.id === user.id ? true : false }
+					}),
+				],
+			}
 		default:
 			return state
 	}
@@ -43,6 +47,11 @@ const messagesReducer = (state = initialState, action) => {
 export const sendMessageActionCreator = (text) => ({
 	type: SEND_MESSAGE,
 	text,
+})
+
+export const toggleUserAC = (id) => ({
+	type: TOGGLE_USER,
+	id,
 })
 
 export default messagesReducer
