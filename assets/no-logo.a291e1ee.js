@@ -1,1 +1,1 @@
-var o="/assets/no-logo.cabb5744.jpg";export{o as l};
+var a="/react-social-media/assets/no-logo.cabb5744.jpg";export{a as l};
