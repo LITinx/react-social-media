@@ -8,12 +8,13 @@ const schema = yup.object().shape({
 	messageText: yup.string().max(150),
 })
 
-const Input = ({ onBtnClick }) => {
+const Input = ({ onBtnClick, users }) => {
+	const activeUserIndex = users?.findIndex((el) => el.active === true)
 	const { register, handleSubmit, reset } = useForm({
 		resolver: yupResolver(schema),
 	})
 	const btnClickHandler = (data) => {
-		onBtnClick(data.messageText)
+		onBtnClick(data.messageText, activeUserIndex)
 		reset()
 	}
 	return (
@@ -35,13 +36,13 @@ const Input = ({ onBtnClick }) => {
 	)
 }
 const mapStateToProps = (state) => ({
-	newMessageValue: state.messagesPage.newMessageValue,
+	users: state.messagesPage.users,
 })
 
 const mapDispatchToProps = {
 	onBtnClick: sendMessageActionCreator,
 }
 
-const InputContainer = connect(() => ({}), mapDispatchToProps)(Input)
+const InputContainer = connect(mapStateToProps, mapDispatchToProps)(Input)
 
 export default InputContainer

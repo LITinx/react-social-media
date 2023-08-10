@@ -46,15 +46,27 @@ const messagesReducer = (state = initialState, action) => {
 			if (!action.text) return
 			return {
 				...state,
-				messages: [
-					...state.messages,
-					{
-						id:
-							Math.max(0, Math.max(...state.messages.map(({ id }) => id))) + 1,
-						message: action.text,
-						fromMe: true,
-					},
-				],
+				users: state.users.map((user) => {
+					if (action.id === user.id) {
+						return {
+							...user,
+							messages: [
+								...user.messages,
+								{
+									id:
+										Math.max(
+											0,
+											Math.max(...user.messages.map(({ id }) => id)),
+										) + 1,
+									fromMe: true,
+									message: action.text,
+								},
+							],
+						}
+					} else {
+						return { ...user }
+					}
+				}),
 			}
 		case TOGGLE_USER:
 			return {
@@ -69,9 +81,10 @@ const messagesReducer = (state = initialState, action) => {
 			return state
 	}
 }
-export const sendMessageActionCreator = (text) => ({
+export const sendMessageActionCreator = (text, id) => ({
 	type: SEND_MESSAGE,
 	text,
+	id,
 })
 
 export const toggleUserAC = (id) => ({

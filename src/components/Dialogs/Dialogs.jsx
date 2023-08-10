@@ -6,18 +6,20 @@ function Dialogs({ users, toggleUser }) {
 	return (
 		<div className={dialog.dialogs}>
 			<div className={dialog.dialogsItem}>
-				{users?.map(({ id, name, active }) => (
-					<DialogItem
-						name={name}
-						id={id}
-						key={id + name}
-						isActive={active}
-						toggleUser={toggleUser}
-						lastMessage={
-							users[id].messages[users[id].messages.length - 1].message
-						}
-					/>
-				))}
+				{users?.map(({ id, name, active }) => {
+					return (
+						<DialogItem
+							name={name}
+							id={id}
+							key={id + name}
+							isActive={active}
+							toggleUser={toggleUser}
+							lastMessage={
+								users[id].messages[users[id].messages.length - 1].message
+							}
+						/>
+					)
+				})}
 			</div>
 			<Chat users={users} />
 		</div>
