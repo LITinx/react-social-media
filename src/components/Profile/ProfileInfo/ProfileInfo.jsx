@@ -4,13 +4,7 @@ import styles from './ProfileInfo.module.css'
 import ProfileLinks from './ProfileLinks'
 import ProfileStatus from './ProfileStatus'
 
-const ProfileInfo = ({
-	profile,
-	status,
-	updateUserStatus,
-	profileId,
-	userId,
-}) => {
+const ProfileInfo = ({ profile, status, updateUserStatus, isOwner }) => {
 	if (!profile) return <Preloader variant='profile' />
 	return (
 		<>
@@ -24,9 +18,15 @@ const ProfileInfo = ({
 				<div className={styles.profileName}>
 					<h6>{profile.fullName}</h6>
 				</div>
-				{profileId == userId ? (
+				{isOwner ? (
 					<ProfileStatus status={status} updateUserStatus={updateUserStatus} />
-				) : undefined}
+				) : (
+					<div>
+						<div className={styles.statusText}>
+							<span>{status || 'No status'}</span>
+						</div>
+					</div>
+				)}
 				<ProfileLinks profile={profile} />
 			</div>
 		</>

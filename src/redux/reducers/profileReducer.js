@@ -27,11 +27,7 @@ const initialState = {
 			large: null,
 		},
 	},
-	posts: [
-		{ id: 1, likesCount: 11, message: "It's my first post" },
-		{ id: 2, likesCount: 3, message: 'How great weather is' },
-		{ id: 3, likesCount: 1, message: 'Wow you are so smart!' },
-	],
+	posts: [],
 	status: '',
 }
 
