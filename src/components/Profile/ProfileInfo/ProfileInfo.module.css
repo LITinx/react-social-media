@@ -1,108 +1,127 @@
 .profile-logo img {
-  width: 90px;
-  margin-left: 10px;
-  background-color: #494545;
-  border-radius: 50%;
+	width: 90px;
+	margin-left: 10px;
+	background-color: #494545;
+	border-radius: 50%;
 }
 
 .profile-info {
-  margin-left: 10px;
+	margin-left: 10px;
 }
 
-.profile-info div {
-  margin-right: 20px;
-  margin-left: -5px;
-  font-size: 16px;
+.profile-info > * {
+	margin-right: 20px;
+	margin-left: -5px;
+	font-size: 16px;
 }
 
 .profile-name h6 {
-  font-size: 34px;
-  font-weight: bold;
+	font-size: 34px;
+	font-weight: bold;
 }
 
 .contacts {
-  list-style: circle;
-  margin-left: 5px;
+	list-style: circle;
+	margin-left: 5px;
 }
 
 .contacts a {
-  position: relative;
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 16px;
-  text-transform: capitalize;
+	position: relative;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 16px;
+	text-transform: capitalize;
 }
 .contacts a::after {
-  transition: transform 0.15s ease-in-out;
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: #000;
-  transform: scale(0);
+	transition: transform 0.15s ease-in-out;
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #000;
+	transform: scale(0);
 }
 .contacts a:hover::after {
-  transform: scale(1);
+	transform: scale(1);
 }
 
 .status-text {
-  padding: 2px 6px;
-  font-size: 14px;
+	font-size: 14px;
 }
 
 .status-input {
-  display: inline-block;
-  display: flex;
-  justify-content: space-between;
-  width: max-content;
-  background-color: var(--border-color);
-  padding: 2px 6px;
-  border: 1.5px solid var(--border-color);
-  border-radius: 10px;
+	display: inline-block;
+	display: flex;
+	justify-content: space-between;
+	width: max-content;
+	background-color: var(--border-color);
+	padding: 2px 6px;
+	border: 1.5px solid var(--border-color);
+	border-radius: 10px;
 }
 .status-input input {
-  outline: none;
-  border-radius: 6px;
-  padding: 5px 3px;
-  width: 240px;
-  font-size: 14px;
-  border: none;
+	outline: none;
+	border-radius: 6px;
+	padding: 5px 3px;
+	width: 240px;
+	font-size: 14px;
+	border: none;
 }
 
 .status-input button {
-  border: none;
-  cursor: pointer;
-  padding: 2px 4px;
-  border-radius: 5px;
-  background-color: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 2px 4px;
+	border-radius: 5px;
+	background-color: transparent;
+}
+
+.file-input {
+	display: none;
+}
+
+.file-input-label {
+	display: inline-block;
+	background-color: var(--blue-secondary);
+	color: white;
+	font-size: 14px;
+	padding: 5px 15px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+/* Optional hover effect */
+.file-input-label:hover {
+	background-color: var(--blue-primary);
 }
 
 @media (max-width: 760px) {
-  .profile {
-    margin-left: 40px;
-    margin-top: 20px;
-  }
+	.profile {
+		margin-left: 40px;
+		margin-top: 20px;
+	}
 
-  .profile-logo img {
-    width: 70px;
-  }
+	.profile-logo img {
+		width: 70px;
+	}
 }
 
 @media (max-width: 600px) {
-  .profile {
-    margin: 10px 20px;
-  }
+	.profile {
+		margin: 10px 20px;
+	}
 
-  .profile-info {
-    margin-left: 10px;
-  }
+	.profile-info {
+		margin-left: 10px;
+	}
 }
 
 @media (max-width: 490px) {
-  .profile-logo img {
-    width: 55px;
-  }
+	.profile-logo img {
+		width: 55px;
+	}
 }

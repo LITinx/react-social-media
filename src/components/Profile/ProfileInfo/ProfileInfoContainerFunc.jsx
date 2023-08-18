@@ -6,6 +6,7 @@ import withRouter from '../../../hoc/withRouter'
 import {
 	getUserProfile,
 	getUserStatus,
+	setPhoto,
 	updateUserStatus,
 } from '../../../redux/reducers/profileReducer'
 import ProfileInfo from './ProfileInfo'
@@ -19,6 +20,7 @@ function ProfileInfoContainer({
 	getUserStatus,
 	status,
 	updateUserStatus,
+	setPhoto,
 }) {
 	const userId = params['*'] ? params['*'] : id
 	const isOwner = id === userId
@@ -33,6 +35,7 @@ function ProfileInfoContainer({
 			isOwner={isOwner}
 			profile={profile}
 			status={status}
+			setPhoto={setPhoto}
 			updateUserStatus={updateUserStatus}
 		/>
 	)
@@ -43,7 +46,12 @@ const mapStateToProps = (state) => ({
 	userId: state.auth.userId,
 	status: state.profilePage.status,
 })
-const mapDispatchToProps = { getUserProfile, getUserStatus, updateUserStatus }
+const mapDispatchToProps = {
+	getUserProfile,
+	getUserStatus,
+	updateUserStatus,
+	setPhoto,
+}
 
 export default compose(
 	connect(mapStateToProps, mapDispatchToProps),

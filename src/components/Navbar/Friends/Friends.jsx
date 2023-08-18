@@ -1,11 +1,15 @@
+import style from './Friends.module.css'
 import Person from './Person/Person'
-import styleFriends from './Friends.module.css'
 const Friends = ({ friends }) => {
 	const sortedFriends = friends.sort((a, b) => b.bestFriend - a.bestFriend)
+
+	friends
 	return (
-		<div className={styleFriends.wrapper}>
-			<h4 className={styleFriends.title}>Friends</h4>
-			<div className={styleFriends.flexWrapper}>
+		<div className={style.wrapper}>
+			<h4 className={style.title}>
+				{friends.length < 1 ? 'No Friends' : 'Friends'}
+			</h4>
+			<div className={style.flexWrapper}>
 				{sortedFriends?.map(({ id, personName, bestFriend }) => (
 					<Person
 						key={id}
