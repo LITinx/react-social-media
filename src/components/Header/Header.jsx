@@ -15,8 +15,9 @@ const Header = ({ login, isAuth, userId, authLogout }) => {
 				<div className={header.avatar}>
 					{isAuth ? (
 						<>
-							<NavLink to={`/profile/${userId}`}>
+							<NavLink to={`/profile/${userId}`} className={header.login}>
 								<h2>{login}</h2>
+								<p>ID:{userId}</p>
 							</NavLink>
 							<button onClick={logout}>Logout</button>
 						</>

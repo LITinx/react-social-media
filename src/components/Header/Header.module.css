@@ -1,63 +1,67 @@
 .header {
-  grid-area: head;
-  height: 60px;
-  background-color: var(--blue-primary);
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
-  z-index: 10;
+	grid-area: head;
+	height: 60px;
+	background-color: var(--blue-primary);
+	box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.33);
+	z-index: 10;
 }
 
 .header-wrapper {
-  height: 100%;
-  padding: 0 86px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	height: 100%;
+	padding: 0 86px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .header-wrapper > img {
-  width: 77px;
-  height: 25px;
+	width: 77px;
+	height: 25px;
 }
 .avatar {
-  display: flex;
-  gap: 50px;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	gap: 50px;
+	justify-content: space-between;
+	align-items: center;
 }
-.avatar a {
-  text-decoration: none;
-  color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-}
-.avatar a:hover {
-  text-decoration: underline;
-}
+
 .avatar img {
-  cursor: pointer;
-  width: 38px;
-  margin-right: 10px;
-  height: 38px;
-  background-color: #494545;
-  border-radius: 50%;
+	cursor: pointer;
+	width: 38px;
+	margin-right: 10px;
+	height: 38px;
+	background-color: #494545;
+	border-radius: 50%;
 }
 .avatar h2 {
-  font-size: 18px;
-  font-weight: 500;
+	font-size: 18px;
+	font-weight: 500;
 }
 .avatar > button {
-  font-size: 16px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-weight: 400;
+	font-size: 16px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-weight: 400;
 }
 .avatar > button:hover {
-  text-decoration: underline;
+	text-decoration: underline;
+}
+.login {
+	text-decoration: none;
+	color: #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.login h2:hover {
+	text-decoration: underline;
+}
+.login p {
+	font-size: 12px;
 }
 @media (max-width: 760px) {
-  .header-wrapper {
-    padding: 0 40px;
-  }
+	.header-wrapper {
+		padding: 0 40px;
+	}
 }
