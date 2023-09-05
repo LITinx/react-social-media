@@ -22,16 +22,18 @@ const ProfileInfo = ({
 	return (
 		<>
 			<div className={styles.profileInfo}>
-				<div className={styles.profileLogo}>
-					<label htmlFor={inputId} className={styles.fileInputLabel}>
-						<img
-							src={profile.photos?.large ? profile.photos?.large : noLogo}
-							alt='logo'
-						/>
-					</label>
-				</div>
-				<div className={styles.profileName}>
-					<h6>{profile.fullName}</h6>
+				<div className={styles.profileMain}>
+					<div className={styles.profileLogo}>
+						<label htmlFor={inputId} className={styles.fileInputLabel}>
+							<img
+								src={profile.photos?.large ? profile.photos?.large : noLogo}
+								alt='logo'
+							/>
+						</label>
+					</div>
+					<div className={styles.profileName}>
+						<h6>{profile.fullName}</h6>
+					</div>
 				</div>
 				{isOwner && (
 					<input

@@ -28,7 +28,12 @@ const ProfileStatus = ({ status, updateUserStatus }) => {
 			{editMode ? (
 				<div className={styles.statusInput}>
 					<form onSubmit={handleSubmit(deactivateEditMode)}>
-						<input {...register('statusText')} autoFocus type='text' />
+						<input
+							{...register('statusText')}
+							autoFocus
+							type='text'
+							defaultValue={value}
+						/>
 					</form>
 				</div>
 			) : (
