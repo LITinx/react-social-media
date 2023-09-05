@@ -35,7 +35,7 @@
 }
 .contacts a::after {
 	transition: transform 0.15s ease-in-out;
-	content: '';
+	content: "";
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -84,19 +84,7 @@
 }
 
 .file-input-label {
-	display: inline-block;
-	background-color: var(--blue-secondary);
-	color: white;
-	font-size: 14px;
-	padding: 5px 15px;
-	border-radius: 5px;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
-}
-
-/* Optional hover effect */
-.file-input-label:hover {
-	background-color: var(--blue-primary);
 }
 
 @media (max-width: 760px) {

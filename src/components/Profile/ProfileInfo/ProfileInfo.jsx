@@ -23,24 +23,23 @@ const ProfileInfo = ({
 		<>
 			<div className={styles.profileInfo}>
 				<div className={styles.profileLogo}>
-					<img
-						src={profile.photos?.large ? profile.photos?.large : noLogo}
-						alt='logo'
-					/>
+					<label htmlFor={inputId} className={styles.fileInputLabel}>
+						<img
+							src={profile.photos?.large ? profile.photos?.large : noLogo}
+							alt='logo'
+						/>
+					</label>
 				</div>
 				<div className={styles.profileName}>
 					<h6>{profile.fullName}</h6>
 				</div>
 				{isOwner && (
-					<label htmlFor={inputId} className={styles.fileInputLabel}>
-						Choose image
-						<input
-							type='file'
-							onChange={onLogoSelected}
-							id={inputId}
-							className={styles.fileInput}
-						/>
-					</label>
+					<input
+						type='file'
+						onChange={onLogoSelected}
+						id={inputId}
+						className={styles.fileInput}
+					/>
 				)}
 				{isOwner ? (
 					<ProfileStatus status={status} updateUserStatus={updateUserStatus} />
