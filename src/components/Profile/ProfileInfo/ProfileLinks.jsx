@@ -8,7 +8,7 @@ const ProfileLinks = ({ profile }) => {
 		<>
 			<div>
 				<strong>
-					About:{' '}
+					About me:{' '}
 					<span style={{ fontWeight: '400' }}>
 						{profile.aboutMe ? profile.aboutMe : 'No bio'}
 					</span>

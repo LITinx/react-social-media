@@ -24,7 +24,13 @@ const ProfileInfo = ({
 			<div className={styles.profileInfo}>
 				<div className={styles.profileMain}>
 					<div className={styles.profileLogo}>
-						<label htmlFor={inputId} className={styles.fileInputLabel}>
+						<label
+							htmlFor={inputId}
+							className={styles.fileInputLabel}
+							style={{
+								cursor: isOwner ? 'pointer' : 'auto',
+							}}
+						>
 							<img
 								src={profile.photos?.large ? profile.photos?.large : noLogo}
 								alt='logo'
