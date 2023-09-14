@@ -24,7 +24,7 @@ const ProfileLinks = ({ profile }) => {
 			</div>
 			<div>
 				<strong>
-					Description for looking a job:{' '}
+					Job description:{' '}
 					<span style={{ fontWeight: '400' }}>
 						{profile.lookingForAJobDescription
 							? profile.lookingForAJobDescription

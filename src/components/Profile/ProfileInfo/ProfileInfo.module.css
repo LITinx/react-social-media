@@ -1,6 +1,6 @@
 .profile-logo img {
-	width: 90px;
-	margin-left: 10px;
+	width: 150px;
+	margin-left: 5px;
 	background-color: #494545;
 	border-radius: 50%;
 }
@@ -10,7 +10,7 @@
 }
 
 .profile-info > * {
-	margin-right: 20px;
+	margin-right: -20px;
 	font-size: 16px;
 }
 .profile-logo {

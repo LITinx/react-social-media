@@ -12,10 +12,11 @@
 		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
-		"@emotion/react": "^11.10.0",
-		"@emotion/styled": "^11.10.0",
+		"@emotion/react": "^11.11.1",
+		"@emotion/styled": "^11.11.0",
 		"@hookform/resolvers": "^2.9.10",
-		"@mui/material": "^5.9.3",
+		"@mui/icons-material": "^5.14.8",
+		"@mui/material": "^5.14.8",
 		"axios": "^0.27.2",
 		"react": "^18.0.0",
 		"react-content-loader": "^6.2.0",

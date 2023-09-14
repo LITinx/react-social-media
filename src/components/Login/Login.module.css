@@ -42,12 +42,12 @@
 .label > * {
   margin-left: 5px;
 }
-form > p {
+.form-container > p {
   color: #bf1650;
   font-size: 14px;
 }
 
-form > p::before {
+.form-container > p::before {
   display: inline;
   content: "⚠ ";
 }

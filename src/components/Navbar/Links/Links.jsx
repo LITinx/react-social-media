@@ -1,37 +1,37 @@
 import { NavLink } from 'react-router-dom'
-import links from './Links.module.css'
+import style from './Links.module.css'
 const Links = ({ users }) => {
 	const activeUserIndex = users?.findIndex((el) => el.active === true)
 	const isActiveClass = ({ isActive }) =>
-		isActive ? `${links.active} ${links.url}` : links.url
+		isActive ? `${style.active} ${style.url}` : style.url
 	return (
-		<ul className={links.listUl}>
-			<li className={links.list}>
+		<ul className={style.listUl}>
+			<li className={style.list}>
 				<NavLink to='/profile' className={isActiveClass}>
 					Profile
 				</NavLink>
 			</li>
-			<li className={links.list}>
+			<li className={style.list}>
 				<NavLink to={`/dialogs/${activeUserIndex}`} className={isActiveClass}>
 					Messages
 				</NavLink>
 			</li>
-			<li className={links.list}>
+			<li className={style.list}>
 				<NavLink to='/users' className={isActiveClass}>
 					Users
 				</NavLink>
 			</li>
-			<li className={links.list}>
+			<li className={style.list}>
 				<NavLink to='/news' className={isActiveClass}>
 					News
 				</NavLink>
 			</li>
-			<li className={links.list}>
+			<li className={style.list}>
 				<NavLink to='/music' className={isActiveClass}>
 					Music
 				</NavLink>
 			</li>
-			<li className={links.list}>
+			<li className={style.list}>
 				<NavLink to='/settings' className={isActiveClass}>
 					Settings
 				</NavLink>

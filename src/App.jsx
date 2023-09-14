@@ -9,6 +9,7 @@ import NotFound from './components/NotFound/NotFound'
 import Preloader from './components/Preloader/Preloader'
 import ScrollToTop from './components/ScrollToTop'
 import { initializeApp } from './redux/reducers/appReducer'
+import { Settings } from './components/Settings/Settings'
 
 const Profile = lazy(() => import('./components/Profile/Profile'))
 const DialogsContainer = lazy(() =>
@@ -36,7 +37,7 @@ function App({ initializeApp, initialized }) {
 						<Route path='users/' element={<UsersContainer />} />
 						<Route path='news/' element={<NotFound />} />
 						<Route path='music/' element={<NotFound />} />
-						<Route path='settings/' element={<NotFound />} />
+						<Route path='settings/*' element={<Settings />} />
 						<Route path='login/' element={<Login />} />
 					</Routes>
 				</Suspense>

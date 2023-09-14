@@ -1,0 +1,39 @@
+.main {
+  margin-left: 40px;
+  margin-top: 20px;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.main > h2 {
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 30px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-link.active > div {
+  background-color: #6b68683c;
+}
+.nav-link > div {
+  border-radius: 3px;
+}
+
+.notifications > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notifications p {
+  font-size: 17px;
+}
