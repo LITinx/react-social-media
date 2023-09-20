@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import style from './Settings.module.css'
 
 const SettingsListItem = ({ icon, primary, link }) => {
-	const path = `settings/${link}`
+	const path = `${link}`
 	const isActiveClass = ({ isActive }) =>
 		isActive ? `${style.active} ${style.navLink}` : style.navLink
 	return (

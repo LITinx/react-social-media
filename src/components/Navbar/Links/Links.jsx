@@ -32,7 +32,7 @@ const Links = ({ users }) => {
 				</NavLink>
 			</li>
 			<li className={style.list}>
-				<NavLink to='/settings' className={isActiveClass}>
+				<NavLink to='/settings/general' className={isActiveClass}>
 					Settings
 				</NavLink>
 			</li>

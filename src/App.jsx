@@ -8,8 +8,8 @@ import NavbarContainer from './components/Navbar/NavbarContainer'
 import NotFound from './components/NotFound/NotFound'
 import Preloader from './components/Preloader/Preloader'
 import ScrollToTop from './components/ScrollToTop'
-import { initializeApp } from './redux/reducers/appReducer'
 import { Settings } from './components/Settings/Settings'
+import { initializeApp } from './redux/reducers/appReducer'
 
 const Profile = lazy(() => import('./components/Profile/Profile'))
 const DialogsContainer = lazy(() =>

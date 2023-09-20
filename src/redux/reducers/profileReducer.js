@@ -7,7 +7,7 @@ const SET_STATUS = 'profile/SET_STATUS'
 const SAVE_PHOTOS_SUCCESS = 'profile/SAVE_PHOTOS_SUCCESS'
 const initialState = {
 	profile: {
-		aboutMe: null,
+		aboutMe: '',
 		contacts: {
 			facebook: null,
 			website: null,
@@ -19,7 +19,7 @@ const initialState = {
 			mainLink: null,
 		},
 		lookingForAJob: false,
-		lookingForAJobDescription: null,
+		lookingForAJobDescription: '',
 		fullName: 'No name',
 		userId: 0,
 		photos: {
@@ -99,6 +99,13 @@ export const setPhoto = (file) => async (dispatch) => {
 	const response = await profileAPI.savePhoto(file)
 	if (response.data.resultCode === 0) {
 		dispatch(savePhotoSuccess(response.data.data.photos))
+	}
+}
+export const setProfile = (data) => async (dispatch, getState) => {
+	const userId = getState().auth.userId
+	const response = await profileAPI.saveProfile(data)
+	if (response.data.resultCode === 0) {
+		dispatch(getUserProfile(userId))
 	}
 }
 export default profileReducer

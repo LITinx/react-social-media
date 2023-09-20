@@ -15,11 +15,8 @@ export const Settings = () => {
 				<SettingsSideList />
 				<div className=''>
 					<Routes>
-						<Route path='settings/general' element={<GeneralListSection />} />
-						<Route
-							path='settings/notifications'
-							element={<NotificationsSection />}
-						/>
+						<Route path='/general' element={<GeneralListSection />} />
+						<Route path='/notifications' element={<NotificationsSection />} />
 					</Routes>
 				</div>
 			</div>
