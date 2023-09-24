@@ -17,7 +17,7 @@ const schema = yup.object().shape({
 		.required('This is required field'),
 })
 
-const LoginForm = ({ authLogin, isAuth, errorMessage }) => {
+const LoginForm = ({ authLogin, isAuth, errorMessage, captchaUrl }) => {
 	const {
 		register,
 		handleSubmit,
@@ -49,6 +49,12 @@ const LoginForm = ({ authLogin, isAuth, errorMessage }) => {
 				<input {...register('rememberMe')} id='rememberMe' type='checkbox' />
 				<label htmlFor='rememberMe'>Remember me</label>
 			</div>
+			{captchaUrl && (
+				<>
+					<img src={captchaUrl} />
+					<input {...register('captcha')} />
+				</>
+			)}
 			{errors.globalError?.message && <p>{errors.globalError?.message}</p>}
 			<button type='submit'>Login</button>
 		</form>
@@ -57,6 +63,7 @@ const LoginForm = ({ authLogin, isAuth, errorMessage }) => {
 
 const mapStateToProps = (state) => ({
 	isAuth: state.auth.isAuth,
+	captchaUrl: state.auth.captchaUrl,
 	errorMessage: state.auth.errorMessage,
 })
 
