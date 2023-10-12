@@ -15,3 +15,4 @@ root.render(
 		</Provider>
 	</HashRouter>,
 )
+// BrowserRouter basename={import.meta.env.BASE_URL}

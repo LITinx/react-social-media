@@ -35,10 +35,9 @@ function App({ initializeApp, initialized }) {
 						<Route path='profile/*' element={<Profile />} />
 						<Route path='dialogs/:id' element={<DialogsContainer />} />
 						<Route path='users/' element={<UsersContainer />} />
-						<Route path='news/' element={<NotFound />} />
-						<Route path='music/' element={<NotFound />} />
 						<Route path='settings/*' element={<Settings />} />
 						<Route path='login/' element={<Login />} />
+						<Route path='*' element={<NotFound />} />
 					</Routes>
 				</Suspense>
 			</div>
