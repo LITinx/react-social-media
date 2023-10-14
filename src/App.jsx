@@ -12,8 +12,8 @@ import { Settings } from './components/Settings/Settings'
 import { initializeApp } from './redux/reducers/appReducer'
 
 const Profile = lazy(() => import('./components/Profile/Profile'))
-const DialogsContainer = lazy(() =>
-	import('./components/Dialogs/DialogsContainer'),
+const DialogsContainer = lazy(
+	() => import('./components/Dialogs/DialogsContainer'),
 )
 const UsersContainer = lazy(() => import('./components/Users/UsersContainer'))
 
