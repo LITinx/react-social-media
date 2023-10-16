@@ -1,6 +1,8 @@
+import { messagesInitialStateType } from '../../types/messageReducerTypes'
+
 const SEND_MESSAGE = 'SEND_MESSAGE'
 const TOGGLE_USER = 'TOGGLE_USER'
-const initialState = {
+const initialState: messagesInitialStateType = {
 	users: [
 		{
 			id: 0,
@@ -40,7 +42,8 @@ const initialState = {
 		},
 	],
 }
-const messagesReducer = (state = initialState, action) => {
+
+const messagesReducer = (state = initialState, action: any) => {
 	switch (action.type) {
 		case SEND_MESSAGE:
 			if (!action.text) return
@@ -81,13 +84,16 @@ const messagesReducer = (state = initialState, action) => {
 			return state
 	}
 }
-export const sendMessageActionCreator = (text, id) => ({
+export const sendMessageActionCreator: (text: string, id: number) => void = (
+	text,
+	id,
+) => ({
 	type: SEND_MESSAGE,
 	text,
 	id,
 })
 
-export const toggleUserAC = (id) => ({
+export const toggleUserAC: (id: number) => void = (id) => ({
 	type: TOGGLE_USER,
 	id,
 })

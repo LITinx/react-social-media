@@ -1,0 +1,34 @@
+type PhotosType = {
+	small: string
+	large: string
+}
+type ContactsType = {
+	facebook: string
+	website: string
+	vk: string
+	twitter: string
+	instagram: string
+	youtube: string
+	github: string
+	mainLink: string
+}
+
+type ProfileType = {
+	aboutMe: string
+	contacts: ContactsType
+	lookingForAJob: boolean
+	lookingForAJobDescription: string
+	fullName: string
+	userId: number
+	photos: PhotosType
+}
+type PostsType = {
+	id: number
+	message: string
+	likesCount: number
+}
+export type ProfileInitialStateType = {
+	profile: ProfileType
+	posts: Array<PostsType>
+	status: string
+}
