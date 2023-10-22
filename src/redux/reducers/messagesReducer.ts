@@ -1,8 +1,8 @@
-import { messagesInitialStateType } from '../../types/messageReducerTypes'
+import { MessagesInitialStateType } from '../../types/messageReducerTypes'
 
 const SEND_MESSAGE = 'SEND_MESSAGE'
 const TOGGLE_USER = 'TOGGLE_USER'
-const initialState: messagesInitialStateType = {
+const initialState: MessagesInitialStateType = {
 	users: [
 		{
 			id: 0,
@@ -43,10 +43,13 @@ const initialState: messagesInitialStateType = {
 	],
 }
 
-const messagesReducer = (state = initialState, action: any) => {
+const messagesReducer = (
+	state: MessagesInitialStateType = initialState,
+	action: any,
+): MessagesInitialStateType => {
 	switch (action.type) {
 		case SEND_MESSAGE:
-			if (!action.text) return
+			if (!action.text) return state
 			return {
 				...state,
 				users: state.users.map((user) => {

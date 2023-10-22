@@ -10,6 +10,6 @@ type UserType = {
 	messages: Array<MessagesType>
 }
 
-export type messagesInitialStateType = {
+export type MessagesInitialStateType = {
 	users: Array<UserType>
 }
