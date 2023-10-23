@@ -1,3 +1,5 @@
+import { ADD_POST, SET_USER_PROFILE } from '../redux/reducers/profileReducer'
+
 type PhotosType = {
 	small: string
 	large: string
@@ -13,7 +15,7 @@ type ContactsType = {
 	mainLink: string
 }
 
-type ProfileType = {
+export type ProfileType = {
 	aboutMe: string
 	contacts: ContactsType
 	lookingForAJob: boolean
@@ -31,4 +33,13 @@ export type ProfileInitialStateType = {
 	profile: ProfileType
 	posts: Array<PostsType>
 	status: string
+}
+export type AddPostActionCreatorType = {
+	type: typeof ADD_POST
+	payload: string
+}
+
+export type SetUserProfileActionType = {
+	type: typeof SET_USER_PROFILE
+	payload: ProfileType
 }

@@ -2,7 +2,6 @@ import {
 	InitialStateType,
 	InitializedSuccessType,
 } from '../../types/appReducerTypes'
-// @ts-ignore
 import { authMe } from './authReducer'
 export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 

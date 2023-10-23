@@ -55,3 +55,8 @@ export type AuthLoginDataType = {
 	rememberMe: boolean
 	captcha: string
 }
+export type AuthLogoutResponseActionType = {
+	data: {
+		resultCode: number
+	}
+}

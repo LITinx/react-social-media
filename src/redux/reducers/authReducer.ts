@@ -3,6 +3,7 @@ import { authAPI, securityApi } from '../../api/api'
 import {
 	AuthInitialState,
 	AuthLoginDataType,
+	AuthLogoutResponseActionType,
 	AuthResponseType,
 	GetCaptchaUrlSuccessActionType,
 	LoginActionType,
@@ -95,8 +96,9 @@ export const authLogin = (data: AuthLoginDataType) => (dispatch: any) => {
 		}
 	})
 }
+
 export const authLogout = () => (dispatch: any) => {
-	authAPI.logout().then((response: any) => {
+	authAPI.logout().then((response: AuthLogoutResponseActionType) => {
 		if (response.data.resultCode === 0) {
 			dispatch(setAuthUserData(null, null, null, false))
 		}
