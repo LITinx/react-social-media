@@ -1,9 +1,9 @@
 import {
+	AppActionType,
 	InitialStateType,
 	InitializedSuccessType,
 } from '../../types/appReducerTypes'
 import { authMe } from './authReducer'
-export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 
 const initialState: InitialStateType = {
 	initialized: false,
@@ -11,10 +11,10 @@ const initialState: InitialStateType = {
 
 export default (
 	state: InitialStateType = initialState,
-	{ type }: any,
+	action: { type: AppActionType.INITIALIZED_SUCCESS },
 ): InitialStateType => {
-	switch (type) {
-		case INITIALIZED_SUCCESS:
+	switch (action.type) {
+		case AppActionType.INITIALIZED_SUCCESS:
 			return { ...state, initialized: true }
 		default:
 			return state
@@ -22,7 +22,7 @@ export default (
 }
 
 export const initializedSuccess = (): InitializedSuccessType => ({
-	type: INITIALIZED_SUCCESS,
+	type: AppActionType.INITIALIZED_SUCCESS,
 })
 export const initializeApp = () => (dispatch: any) => {
 	const promise = dispatch(authMe())

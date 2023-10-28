@@ -1,10 +1,9 @@
-import {
-	GET_CAPTCHA_URL,
-	LOGIN,
-	SET_AUTH_USER_DATA,
-	SET_ERROR,
-} from '../redux/reducers/authReducer'
-
+export enum AuthActionType {
+	SET_AUTH_USER_DATA = 'auth/SET_AUTH_USER_DATA',
+	LOGIN = 'auth/LOGIN',
+	SET_ERROR = 'auth/SET_ERROR',
+	GET_CAPTCHA_URL = 'auth/GET_CAPTCHA_URL',
+}
 export type AuthInitialState = {
 	userId: number | null
 	login: string | null
@@ -21,23 +20,29 @@ type SetAuthUserDataPayloadType = {
 	isAuth: boolean
 }
 export type SetAuthUserDataActionType = {
-	type: typeof SET_AUTH_USER_DATA
+	type: AuthActionType.SET_AUTH_USER_DATA
 	data: SetAuthUserDataPayloadType
 }
 
 export type SetErrorMessageActionType = {
-	type: typeof SET_ERROR
+	type: AuthActionType.SET_ERROR
 	errorMessage: string
 }
 export type GetCaptchaUrlSuccessActionType = {
-	type: typeof GET_CAPTCHA_URL
+	type: AuthActionType.GET_CAPTCHA_URL
 	captchaUrl: string | null
 }
 
 export type LoginActionType = {
-	type: typeof LOGIN
+	type: AuthActionType.LOGIN
 	userId: number
 }
+
+export type AuthAction =
+	| SetAuthUserDataActionType
+	| SetErrorMessageActionType
+	| GetCaptchaUrlSuccessActionType
+	| LoginActionType
 
 type DataType = {
 	id: number
@@ -58,5 +63,17 @@ export type AuthLoginDataType = {
 export type AuthLogoutResponseActionType = {
 	data: {
 		resultCode: number
+	}
+}
+
+export type AuthCaptchaUrlType = { data: { url: string } }
+
+export type AuthLoginType = {
+	data: {
+		resultCode: number
+		messages: Array<string>
+		data: {
+			userId: number
+		}
 	}
 }

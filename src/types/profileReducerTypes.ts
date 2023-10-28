@@ -1,6 +1,12 @@
-import { ADD_POST, SET_USER_PROFILE } from '../redux/reducers/profileReducer'
+export enum ProfileActionType {
+	ADD_POST = 'profile/ADD_POST',
+	DELETE_POST = 'profile/DELETE_POST',
+	SET_STATUS = 'profile/SET_STATUS',
+	SET_USER_PROFILE = 'profile/SET_USER_PROFILE',
+	SAVE_PHOTOS_SUCCESS = 'profile/SAVE_PHOTOS_SUCCESS',
+}
 
-type PhotosType = {
+export type PhotosType = {
 	small: string
 	large: string
 }
@@ -35,11 +41,23 @@ export type ProfileInitialStateType = {
 	status: string
 }
 export type AddPostActionCreatorType = {
-	type: typeof ADD_POST
+	type: ProfileActionType.ADD_POST
 	payload: string
 }
 
 export type SetUserProfileActionType = {
-	type: typeof SET_USER_PROFILE
+	type: ProfileActionType.SET_USER_PROFILE
 	payload: ProfileType
+}
+export type SetStatusActionType = {
+	type: typeof ProfileActionType.SET_STATUS
+	payload: string
+}
+export type DeletePostActionType = {
+	type: typeof ProfileActionType.DELETE_POST
+	payload: number
+}
+export type SavePhotoSuccessActionType = {
+	type: typeof ProfileActionType.SAVE_PHOTOS_SUCCESS
+	payload: PhotosType
 }

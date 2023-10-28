@@ -1,8 +1,10 @@
-import { INITIALIZED_SUCCESS } from '../redux/reducers/appReducer'
+export enum AppActionType {
+	INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS',
+}
 
 export type InitialStateType = {
 	initialized: boolean
 }
 export type InitializedSuccessType = {
-	type: typeof INITIALIZED_SUCCESS
+	type: AppActionType.INITIALIZED_SUCCESS
 }

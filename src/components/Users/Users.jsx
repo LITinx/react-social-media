@@ -60,7 +60,7 @@ const Users = ({
 			</Stack>
 			{users?.map((user, i) => {
 				return isFetching ? (
-					<Preloader />
+					<Preloader key={i} />
 				) : (
 					<User
 						{...user}
