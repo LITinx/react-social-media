@@ -12,11 +12,12 @@ import {
 	UserType,
 	UsersAction,
 	UsersActionType,
+	UsersReducerInitialStateType,
 } from '../../types/usersReducerTypes'
 // @ts-ignore
 import { updateObjectInArray } from '../../utils/objectHelpers'
 
-const initialState = {
+const initialState: UsersReducerInitialStateType = {
 	users: [],
 	pageSize: 10,
 	totalCount: 0,

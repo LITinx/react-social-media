@@ -1,7 +1,8 @@
 import { createTheme, Pagination, Stack, ThemeProvider } from '@mui/material'
-import React from 'react'
+import { ChangeEvent } from 'react'
 import Preloader from '../Preloader/Preloader'
 import User from './User/User'
+import { UsersPropsType } from './UsersContainer'
 
 const theme = createTheme({
 	components: {
@@ -20,7 +21,9 @@ const theme = createTheme({
 		},
 	},
 })
-
+type PropsType = UsersPropsType & {
+	onPageChanged: (currentPage: number, pageSize: number) => void
+}
 const Users = ({
 	totalCount,
 	pageSize,
@@ -32,12 +35,12 @@ const Users = ({
 	setCurrentPage,
 	isFetching,
 	followingInProgress,
-}) => {
+}: PropsType) => {
 	let pageCount = Math.ceil(totalCount / pageSize)
 
-	const handleClick = (e, value) => {
-		setCurrentPage(value)
-		onPageChanged(value, pageSize)
+	const handleClick = (_e: ChangeEvent<unknown>, page: number) => {
+		setCurrentPage(page)
+		onPageChanged(page, pageSize)
 	}
 
 	return (

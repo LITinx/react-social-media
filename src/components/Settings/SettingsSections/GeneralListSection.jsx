@@ -5,10 +5,7 @@ import { useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import FormInput from '../../FormInput'
 import style from '../Settings.module.css'
-import {
-	getUserProfile,
-	setProfile,
-} from './../../../redux/reducers/profileReducer'
+import { setProfile } from './../../../redux/reducers/profileReducer'
 
 const GeneralListSection = ({ profile, setProfile, userId }) => {
 	const [open, setOpen] = useState(false)

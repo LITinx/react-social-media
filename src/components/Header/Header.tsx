@@ -1,8 +1,11 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+// @ts-ignore
 import logo from '../../assets/img/logo.svg'
+// @ts-ignore
 import header from './Header.module.css'
+import { HeaderProps } from './HeaderContainer'
 
-const Header = ({ login, isAuth, userId, authLogout }) => {
+const Header = ({ login, isAuth, userId, authLogout }: HeaderProps) => {
 	const logout = () => {
 		authLogout()
 	}

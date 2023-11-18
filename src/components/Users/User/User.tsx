@@ -1,6 +1,19 @@
 import { NavLink } from 'react-router-dom'
+// @ts-ignore
 import logo from './../../../assets/img/no-logo.jpg'
+// @ts-ignore
 import style from './User.module.css'
+
+type PropsType = {
+	id: number
+	followed: boolean
+	name: string
+	status: string
+	follow: (id: number) => void
+	unfollow: (id: number) => void
+	photos: { small: string; large: string }
+	followingInProgress: Array<number>
+}
 
 const User = ({
 	id,
@@ -11,7 +24,7 @@ const User = ({
 	unfollow,
 	photos,
 	followingInProgress,
-}) => {
+}: PropsType) => {
 	const stylesForBtn = {
 		backgroundColor: followed ? 'var(--red-primary)' : 'var(--blue-secondary)',
 		color: followed ? '#000' : 'var(--gray-primary)',

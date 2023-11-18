@@ -1,6 +1,9 @@
 import ContentLoader from 'react-content-loader'
 
-const Preloader = ({ variant }) => {
+type PropsType = {
+	variant?: 'profile'
+}
+const Preloader = ({ variant }: PropsType) => {
 	if (variant === 'profile') {
 		return (
 			<ContentLoader
@@ -32,8 +35,6 @@ const Preloader = ({ variant }) => {
 			}}
 			height={80}
 			width={1060}
-			primaryColor='#d9d9d9'
-			secondaryColor='#ecebeb'
 		>
 			<rect x='103' y='22' rx='3' ry='3' width='170' height='7' />
 			<rect x='103' y='40' rx='3' ry='3' width='250' height='7' />
