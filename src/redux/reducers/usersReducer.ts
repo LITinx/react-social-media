@@ -13,6 +13,7 @@ import {
 	UsersAction,
 	UsersActionType,
 	UsersReducerInitialStateType,
+	UsersThunkType,
 } from '../../types/usersReducerTypes'
 // @ts-ignore
 import { updateObjectInArray } from '../../utils/objectHelpers'
@@ -112,20 +113,22 @@ export const toggleFollowingProgress = (
 })
 
 export const requestUsers =
-	(currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
+	(currentPage: number, pageSize: number): UsersThunkType =>
+	async (dispatch: Dispatch<UsersAction>) => {
 		dispatch(toggleIsFetching(true))
-
 		const data = await usersAPI.getUsers(currentPage, pageSize)
 		dispatch(toggleIsFetching(false))
 		dispatch(setUsers(data.items))
 		dispatch(setTotalCount(data.totalCount))
 	}
 
-const followUnfollow = async (
-	dispatch: Dispatch,
+const _followUnfollow = async (
+	dispatch: Dispatch<UsersAction>,
 	userId: number,
 	apiMethod: Function,
-	actionCreator: any,
+	actionCreator: (
+		userId: number,
+	) => FollowSuccessActionType | UnfollowSuccessActionType,
 ) => {
 	dispatch(toggleFollowingProgress(true, userId))
 	const response = await apiMethod(userId)
@@ -135,14 +138,18 @@ const followUnfollow = async (
 	}
 }
 
-export const follow = (userId: number) => async (dispatch: Dispatch) => {
-	const apiMethod = usersAPI.follow.bind(usersAPI)
-	const actionCreator = followSuccess
-	followUnfollow(dispatch, userId, apiMethod, actionCreator)
-}
-export const unfollow = (userId: number) => async (dispatch: Dispatch) => {
-	const apiMethod = usersAPI.unfollow.bind(usersAPI)
-	const actionCreator = unfollowSuccess
-	followUnfollow(dispatch, userId, apiMethod, actionCreator)
-}
+export const follow =
+	(userId: number): UsersThunkType =>
+	async (dispatch) => {
+		const apiMethod = usersAPI.follow.bind(usersAPI)
+		const actionCreator = followSuccess
+		_followUnfollow(dispatch, userId, apiMethod, actionCreator)
+	}
+export const unfollow =
+	(userId: number): UsersThunkType =>
+	async (dispatch: Dispatch<UsersAction>) => {
+		const apiMethod = usersAPI.unfollow.bind(usersAPI)
+		const actionCreator = unfollowSuccess
+		_followUnfollow(dispatch, userId, apiMethod, actionCreator)
+	}
 export default usersReducer

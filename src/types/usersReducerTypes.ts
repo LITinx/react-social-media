@@ -1,4 +1,6 @@
+import { ThunkAction } from 'redux-thunk'
 import { PhotosType } from './profileReducerTypes'
+import { RootReducerType } from '../redux/reduxStore'
 
 export enum UsersActionType {
 	FOLLOW = 'users/FOLLOW',
@@ -63,3 +65,10 @@ export type UsersAction =
 	| SetCurrentPageActionType
 	| ToggleIsFetchingActionType
 	| ToggleFollowingProgressActionType
+
+export type UsersThunkType = ThunkAction<
+	Promise<void>,
+	RootReducerType,
+	unknown,
+	UsersAction
+>
