@@ -12,6 +12,7 @@ import {
 	AuthResponseType,
 	GetCaptchaUrlSuccessActionType,
 	LoginActionType,
+	ResultCode,
 	SetAuthUserDataActionType,
 	SetErrorMessageActionType,
 } from '../../types/authReducerTypes'
@@ -74,7 +75,7 @@ export const login = (userId: number): LoginActionType => ({
 export const authMe = () => (dispatch: Dispatch<AuthAction>) => {
 	return authAPI.me().then((data: AuthResponseType) => {
 		const { id, login, email } = data.data
-		if (data.resultCode === 0) {
+		if (data.resultCode === ResultCode.Success) {
 			dispatch(setAuthUserData(id, login, email, true))
 		}
 	})
@@ -84,16 +85,14 @@ export const authLogin = (data: AuthLoginDataType) => (dispatch: any) => {
 	authAPI.login(data).then((response: AuthLoginType) => {
 		console.log(response)
 
-		if (response.data.resultCode === 0) {
+		if (response.resultCode === ResultCode.Success) {
 			dispatch(authMe())
 			dispatch(getCaptchaUrlSuccess(null))
 		} else {
-			if (response.data.resultCode === 10) {
+			if (response.resultCode === ResultCode.CaptchaIsRequired) {
 				dispatch(getCaptchaUrl())
 			}
-			const message = response.data.messages
-				? response.data.messages[0]
-				: 'Some Error'
+			const message = response.messages ? response.messages[0] : 'Some Error'
 			dispatch(setErrorMessage(message))
 		}
 	})
@@ -101,7 +100,7 @@ export const authLogin = (data: AuthLoginDataType) => (dispatch: any) => {
 
 export const authLogout = () => (dispatch: Dispatch<AuthAction>) => {
 	authAPI.logout().then((response: AuthLogoutResponseActionType) => {
-		if (response.data.resultCode === 0) {
+		if (response.resultCode === ResultCode.Success) {
 			dispatch(setAuthUserData(null, null, null, false))
 		}
 	})

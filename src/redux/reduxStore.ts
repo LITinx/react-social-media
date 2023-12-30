@@ -18,6 +18,11 @@ const rootReducer = combineReducers({
 
 export type RootReducerType = ReturnType<typeof rootReducer>
 
+type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never
+export type ActionsTypes<
+	T extends { [key: string]: (...args: any[]) => void },
+> = ReturnType<PropertiesType<T>>
+
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 // @ts-ignore
 window.store = store

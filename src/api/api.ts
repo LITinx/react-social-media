@@ -1,5 +1,11 @@
 import axios from 'axios'
-
+import {
+	AuthLoginDataType,
+	AuthLoginType,
+	AuthLogoutType,
+	AuthMeType,
+} from '../types/authReducerTypes.ts'
+import { ProfileType } from './../types/profileReducerTypes.ts'
 const instance = axios.create({
 	withCredentials: true,
 	baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -9,30 +15,30 @@ const instance = axios.create({
 })
 
 export const usersAPI = {
-	getUsers(currentPage, pageSize) {
+	getUsers(currentPage: number, pageSize: number) {
 		return instance
 			.get(`users?page=${currentPage}&count=${pageSize}`)
 			.then((response) => response.data)
 	},
-	follow(id) {
+	follow(id: number) {
 		return instance.post(`follow/${id}`)
 	},
-	unfollow(id) {
+	unfollow(id: number) {
 		return instance.delete(`follow/${id}`)
 	},
 }
 
 export const profileAPI = {
-	getProfile(userId) {
+	getProfile(userId: number) {
 		return instance.get(`profile/${userId}`).then((response) => response.data)
 	},
-	getStatus(userId) {
+	getStatus(userId: number) {
 		return instance.get(`profile/status/${userId}`)
 	},
-	updateStatus(status) {
+	updateStatus(status: string) {
 		return instance.put('profile/status', { status })
 	},
-	savePhoto(photoFile) {
+	savePhoto(photoFile: any) {
 		const formData = new FormData()
 		formData.append('image', photoFile)
 		return instance.put('profile/photo', formData, {
@@ -41,25 +47,27 @@ export const profileAPI = {
 			},
 		})
 	},
-	saveProfile(data) {
+	saveProfile(data: ProfileType) {
 		return instance.put('profile', data)
 	},
 }
 
 export const authAPI = {
 	me() {
-		return instance.get('auth/me').then((response) => response.data)
+		return instance.get<AuthMeType>('auth/me').then((response) => response.data)
 	},
-	login({ email, password, rememberMe, captcha }) {
-		return instance.post('auth/login', {
-			email,
-			password,
-			rememberMe,
-			captcha,
-		})
+	login({ email, password, rememberMe, captcha }: AuthLoginDataType) {
+		return instance
+			.post<AuthLoginType>('auth/login', {
+				email,
+				password,
+				rememberMe,
+				captcha,
+			})
+			.then((res) => res.data)
 	},
 	logout() {
-		return instance.post('auth/logout')
+		return instance.post<AuthLogoutType>('auth/logout').then((res) => res.data)
 	},
 }
 

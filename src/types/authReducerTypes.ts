@@ -4,6 +4,11 @@ export enum AuthActionType {
 	SET_ERROR = 'auth/SET_ERROR',
 	GET_CAPTCHA_URL = 'auth/GET_CAPTCHA_URL',
 }
+export enum ResultCode {
+	Success = 0,
+	Error = 1,
+	CaptchaIsRequired = 10,
+}
 export type AuthInitialState = {
 	userId: number | null
 	login: string | null
@@ -61,19 +66,25 @@ export type AuthLoginDataType = {
 	captcha: string
 }
 export type AuthLogoutResponseActionType = {
-	data: {
-		resultCode: number
-	}
+	resultCode: number
 }
-
+export type AuthMeType = {
+	resultCode: number
+	messages: Array<string>
+	data: DataType
+}
 export type AuthCaptchaUrlType = { data: { url: string } }
 
 export type AuthLoginType = {
+	resultCode: number
+	messages: Array<string>
 	data: {
-		resultCode: number
-		messages: Array<string>
-		data: {
-			userId: number
-		}
+		userId: number
 	}
+}
+
+export type AuthLogoutType = {
+	resultCode: number
+	messages: Array<string>
+	data: {}
 }

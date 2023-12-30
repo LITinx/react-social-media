@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { authLogin } from '../../redux/reducers/authReducer'
+import { RootReducerType } from '../../redux/reduxStore'
+import { AuthLoginDataType } from '../../types/authReducerTypes'
+// @ts-ignore
 import styles from './Login.module.css'
 const schema = yup.object().shape({
 	email: yup
@@ -17,17 +20,39 @@ const schema = yup.object().shape({
 		.required('This is required field'),
 })
 
-const LoginForm = ({ authLogin, isAuth, errorMessage, captchaUrl }) => {
+type FormValuesType = {
+	password: string
+	email: string
+	rememberMe: boolean
+	captcha: string
+	globalError: string
+}
+
+type MapStateToPropsType = {
+	isAuth: boolean
+	captchaUrl: string | null
+	errorMessage: string
+}
+type MapDispatchToPropsType = {
+	authLogin: (data: AuthLoginDataType) => void
+}
+type LoginFormType = MapStateToPropsType & MapDispatchToPropsType
+const LoginForm = ({
+	authLogin,
+	isAuth,
+	errorMessage,
+	captchaUrl,
+}: LoginFormType) => {
 	const {
 		register,
 		handleSubmit,
 		setError,
 		formState: { errors },
-	} = useForm({
+	} = useForm<FormValuesType>({
 		resolver: yupResolver(schema),
 		mode: 'onBlur',
 	})
-	const onSubmit = (data) => {
+	const onSubmit = (data: AuthLoginDataType) => {
 		authLogin(data)
 		setError('globalError', { type: 'custom', message: errorMessage })
 	}
@@ -61,7 +86,7 @@ const LoginForm = ({ authLogin, isAuth, errorMessage, captchaUrl }) => {
 	)
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
 	isAuth: state.auth.isAuth,
 	captchaUrl: state.auth.captchaUrl,
 	errorMessage: state.auth.errorMessage,

@@ -1,3 +1,4 @@
+// @ts-ignore
 import styles from './Login.module.css'
 import LoginForm from './LoginForm'
 const Login = () => {
