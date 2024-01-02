@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 // @ts-ignore
-import { profileAPI } from '../../api/api'
+import { profileAPI } from '../../api/profileApi'
 import {
 	AddPostActionCreatorType,
 	DeletePostActionType,
@@ -110,22 +110,22 @@ export const getUserStatus = (userId: number) => async (dispatch: Dispatch) => {
 export const updateUserStatus =
 	(status: string) => async (dispatch: Dispatch) => {
 		const response = await profileAPI.updateStatus(status)
-		if (response.data.resultCode === 0) {
+		if (response.resultCode === 0) {
 			dispatch(setStatus(status))
 		}
 	}
 export const setPhoto = (file: any) => async (dispatch: Dispatch) => {
 	const response = await profileAPI.savePhoto(file)
 
-	if (response.data.resultCode === 0) {
-		dispatch(savePhotoSuccess(response.data.data.photos))
+	if (response.resultCode === 0) {
+		dispatch(savePhotoSuccess(response.data))
 	}
 }
 export const setProfile =
 	(data: ProfileType) => async (dispatch: any, getState: any) => {
 		const userId = getState().auth.userId
 		const response = await profileAPI.saveProfile(data)
-		if (response.data.resultCode === 0) {
+		if (response.resultCode === 0) {
 			dispatch(getUserProfile(userId))
 		}
 	}

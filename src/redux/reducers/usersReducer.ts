@@ -1,14 +1,14 @@
 import { Dispatch } from 'redux'
+import { ThunkAction } from 'redux-thunk'
 // @ts-ignore
-import { usersAPI } from '../../api/api'
+import { usersAPI } from '../../api/usersApi'
 import {
 	UserType,
 	UsersReducerInitialStateType,
-	UsersThunkType,
 } from '../../types/usersReducerTypes'
 // @ts-ignore
 import { updateObjectInArray } from '../../utils/objectHelpers'
-import { ActionsTypes } from '../reduxStore'
+import { ActionsTypes, RootReducerType } from '../reduxStore'
 
 const initialState: UsersReducerInitialStateType = {
 	users: [],
@@ -67,6 +67,13 @@ const usersReducer = (state = initialState, action: UsersAction) => {
 	}
 }
 
+type UsersThunkType = ThunkAction<
+	Promise<void>,
+	RootReducerType,
+	unknown,
+	UsersAction
+>
+
 export type UsersAction = ActionsTypes<typeof actions>
 
 export const actions = {
@@ -80,7 +87,7 @@ export const actions = {
 			type: 'UNFOLLOW',
 			userId,
 		} as const),
-	setUsers: (users: UserType) =>
+	setUsers: (users: Array<UserType>) =>
 		({
 			type: 'SET_USERS',
 			users,
