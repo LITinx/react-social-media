@@ -1,5 +1,9 @@
 import { PhotosType, ProfileType } from './../types/profileReducerTypes.ts'
-import { ResponseType, instance } from './api.ts'
+import { APIResponseType, instance } from './api.ts'
+
+type SavePhotoResponseDataType = {
+	photos: PhotosType
+}
 
 export const profileAPI = {
 	getProfile(userId: number) {
@@ -12,21 +16,27 @@ export const profileAPI = {
 	},
 	updateStatus(status: string) {
 		return instance
-			.put<ResponseType>('profile/status', { status })
+			.put<APIResponseType>('profile/status', { status })
 			.then((res) => res.data)
 	},
 	savePhoto(photoFile: any) {
 		const formData = new FormData()
 		formData.append('image', photoFile)
 		return instance
-			.put<ResponseType<PhotosType>>('profile/photo', formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
+			.put<APIResponseType<SavePhotoResponseDataType>>(
+				'profile/photo',
+				formData,
+				{
+					headers: {
+						'Content-Type': 'multipart/form-data',
+					},
 				},
-			})
+			)
 			.then((res) => res.data)
 	},
 	saveProfile(data: ProfileType) {
-		return instance.put<ResponseType>('profile', data).then((res) => res.data)
+		return instance
+			.put<APIResponseType>('profile', data)
+			.then((res) => res.data)
 	},
 }

@@ -95,7 +95,7 @@ export const deletePost = (postId: number): DeletePostActionType => ({
 })
 export const savePhotoSuccess = (photos: PhotosType) => ({
 	type: ProfileActionType.SAVE_PHOTOS_SUCCESS,
-	photos,
+	payload: photos,
 })
 export const getUserProfile =
 	(userId: number) => async (dispatch: Dispatch) => {
@@ -118,7 +118,7 @@ export const setPhoto = (file: any) => async (dispatch: Dispatch) => {
 	const response = await profileAPI.savePhoto(file)
 
 	if (response.resultCode === 0) {
-		dispatch(savePhotoSuccess(response.data))
+		dispatch(savePhotoSuccess(response.data.photos))
 	}
 }
 export const setProfile =

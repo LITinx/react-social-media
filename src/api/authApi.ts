@@ -1,5 +1,10 @@
 import { AuthLoginDataType } from '../types/authReducerTypes'
-import { ResponseType, ResultCode, ResultCodeForCaptcha, instance } from './api'
+import {
+	APIResponseType,
+	ResultCode,
+	ResultCodeForCaptcha,
+	instance,
+} from './api'
 
 type MeDataType = {
 	id: number
@@ -16,12 +21,12 @@ type CaptchaType = {
 export const authApi = {
 	me() {
 		return instance
-			.get<ResponseType<MeDataType>>('auth/me')
+			.get<APIResponseType<MeDataType>>('auth/me')
 			.then((response) => response.data)
 	},
 	login({ email, password, rememberMe, captcha }: AuthLoginDataType) {
 		return instance
-			.post<ResponseType<LoginDataType, ResultCode | ResultCodeForCaptcha>>(
+			.post<APIResponseType<LoginDataType, ResultCode | ResultCodeForCaptcha>>(
 				'auth/login',
 				{
 					email,
@@ -33,7 +38,7 @@ export const authApi = {
 			.then((res) => res.data)
 	},
 	logout() {
-		return instance.post<ResponseType>('auth/logout').then((res) => res.data)
+		return instance.post<APIResponseType>('auth/logout').then((res) => res.data)
 	},
 }
 

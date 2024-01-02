@@ -61,3 +61,10 @@ export type SavePhotoSuccessActionType = {
 	type: typeof ProfileActionType.SAVE_PHOTOS_SUCCESS
 	payload: PhotosType
 }
+
+export type ProfileAction =
+	| AddPostActionCreatorType
+	| SetUserProfileActionType
+	| SetStatusActionType
+	| DeletePostActionType
+	| SavePhotoSuccessActionType
