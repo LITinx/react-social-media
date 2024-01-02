@@ -1,8 +1,9 @@
 import { AiFillLike } from 'react-icons/ai'
 import { MdDeleteOutline } from 'react-icons/md'
 import { connect } from 'react-redux'
-import { deletePost } from './../../../../redux/reducers/profileReducer'
+import { ProfileActions } from '../../../../redux/reducers/profileReducer'
 import post from './Post.module.css'
+
 const Post = ({ children, likes, name = 'No name', deletePost, id, logo }) => {
 	const onBtnClick = () => {
 		deletePost(id)
@@ -30,5 +31,4 @@ const Post = ({ children, likes, name = 'No name', deletePost, id, logo }) => {
 		</div>
 	)
 }
-
-export default connect(null, { deletePost })(Post)
+export default connect(null, { deletePost: ProfileActions.deletePost })(Post)
