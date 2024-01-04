@@ -1,6 +1,4 @@
 import { Dispatch } from 'redux'
-import { ThunkAction } from 'redux-thunk'
-// @ts-ignore
 import { usersAPI } from '../../api/usersApi'
 import {
 	UserType,
@@ -8,7 +6,7 @@ import {
 } from '../../types/usersReducerTypes'
 // @ts-ignore
 import { updateObjectInArray } from '../../utils/objectHelpers'
-import { ActionsTypes, BaseThunkType, RootReducerType } from '../reduxStore'
+import { ActionsTypes, BaseThunkType } from '../reduxStore'
 
 const initialState: UsersReducerInitialStateType = {
 	users: [],

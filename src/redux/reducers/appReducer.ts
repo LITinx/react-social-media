@@ -1,4 +1,4 @@
-import { ActionsTypes } from '../reduxStore'
+import { ActionsTypes, BaseThunkType } from '../reduxStore'
 import { authMe } from './authReducer'
 type InitialStateType = typeof initialState
 const initialState = {
@@ -18,6 +18,7 @@ export default (
 }
 
 type AppAction = ActionsTypes<typeof actions>
+type AppThunkType = BaseThunkType<AppAction, void>
 
 const actions = {
 	initializedSuccess: () =>
@@ -26,7 +27,7 @@ const actions = {
 		} as const),
 }
 
-export const initializeApp = () => (dispatch: any) => {
+export const initializeApp = (): AppThunkType => (dispatch) => {
 	const promise = dispatch(authMe())
 	promise.then(() => {
 		dispatch(actions.initializedSuccess())

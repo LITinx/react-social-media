@@ -121,7 +121,7 @@ export const updateUserStatus =
 		}
 	}
 export const setPhoto =
-	(file: any): ProfileThunkType =>
+	(file: File): ProfileThunkType =>
 	async (dispatch) => {
 		const response = await profileAPI.savePhoto(file)
 
