@@ -1,4 +1,4 @@
-import { AuthLoginDataType } from '../types/authReducerTypes'
+import { AuthLoginDataType } from '../redux/reducers/authReducer'
 import {
 	APIResponseType,
 	ResultCode,

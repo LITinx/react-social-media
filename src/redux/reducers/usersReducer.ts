@@ -8,7 +8,7 @@ import {
 } from '../../types/usersReducerTypes'
 // @ts-ignore
 import { updateObjectInArray } from '../../utils/objectHelpers'
-import { ActionsTypes, RootReducerType } from '../reduxStore'
+import { ActionsTypes, BaseThunkType, RootReducerType } from '../reduxStore'
 
 const initialState: UsersReducerInitialStateType = {
 	users: [],
@@ -67,12 +67,7 @@ const usersReducer = (state = initialState, action: UsersAction) => {
 	}
 }
 
-type UsersThunkType = ThunkAction<
-	Promise<void>,
-	RootReducerType,
-	unknown,
-	UsersAction
->
+type UsersThunkType = BaseThunkType<UsersAction>
 
 export type UsersAction = ActionsTypes<typeof actions>
 
@@ -117,7 +112,7 @@ export const actions = {
 
 export const requestUsers =
 	(currentPage: number, pageSize: number): UsersThunkType =>
-	async (dispatch: Dispatch<UsersAction>) => {
+	async (dispatch) => {
 		dispatch(actions.toggleIsFetching(true))
 		const data = await usersAPI.getUsers(currentPage, pageSize)
 		dispatch(actions.setCurrentPage(currentPage))
@@ -149,7 +144,7 @@ export const follow =
 	}
 export const unfollow =
 	(userId: number): UsersThunkType =>
-	async (dispatch: Dispatch<UsersAction>) => {
+	async (dispatch) => {
 		const apiMethod = usersAPI.unfollow.bind(usersAPI)
 		const actionCreator = actions.unfollowSuccess
 		_followUnfollow(dispatch, userId, apiMethod, actionCreator)
