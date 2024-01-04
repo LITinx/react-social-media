@@ -33,7 +33,7 @@ const initialState: ProfileInitialStateType = {
 }
 
 const profileReducer = (
-	state: ProfileInitialStateType = initialState,
+	state = initialState,
 	action: ProfileAction,
 ): ProfileInitialStateType => {
 	switch (action.type) {
