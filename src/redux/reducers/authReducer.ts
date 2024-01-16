@@ -28,7 +28,7 @@ const initialState: AuthInitialState = {
 
 export default (
 	state: AuthInitialState = initialState,
-	payload: AuthAction,
+	payload: AuthActionType,
 ): AuthInitialState => {
 	switch (payload.type) {
 		case 'SET_AUTH_USER_DATA':
@@ -42,8 +42,8 @@ export default (
 	}
 }
 
-export type AuthAction = ActionsTypes<typeof actions>
-type AuthThunkType = BaseThunkType<AuthAction>
+export type AuthActionType = ActionsTypes<typeof actions>
+type AuthThunkType = BaseThunkType<AuthActionType>
 
 const actions = {
 	setAuthUserData: (

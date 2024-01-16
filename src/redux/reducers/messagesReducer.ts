@@ -1,11 +1,21 @@
-import {
-	MessagesInitialStateType,
-	SendMessageActionCreatorType,
-	ToggleUserACType,
-} from '../../types/messageReducerTypes'
+import { ActionsTypes } from '../reduxStore'
 
-export const SEND_MESSAGE = 'SEND_MESSAGE'
-export const TOGGLE_USER = 'TOGGLE_USER'
+type MessagesType = {
+	id: number
+	fromMe: boolean
+	message: string
+}
+type UserType = {
+	id: number | null
+	active: boolean | null
+	name: string | null
+	messages: Array<MessagesType>
+}
+
+type MessagesInitialStateType = {
+	users: Array<UserType>
+}
+
 const initialState: MessagesInitialStateType = {
 	users: [
 		{
@@ -49,10 +59,10 @@ const initialState: MessagesInitialStateType = {
 
 const messagesReducer = (
 	state: MessagesInitialStateType = initialState,
-	action: any,
+	action: MessagesActionType,
 ): MessagesInitialStateType => {
 	switch (action.type) {
-		case SEND_MESSAGE:
+		case 'SEND_MESSAGE':
 			if (!action.text) return state
 			return {
 				...state,
@@ -78,7 +88,7 @@ const messagesReducer = (
 					}
 				}),
 			}
-		case TOGGLE_USER:
+		case 'TOGGLE_USER':
 			return {
 				...state,
 				users: [
@@ -92,18 +102,20 @@ const messagesReducer = (
 	}
 }
 
-export const sendMessageActionCreator = (
-	text: string,
-	id: number,
-): SendMessageActionCreatorType => ({
-	type: SEND_MESSAGE,
-	text,
-	id,
-})
+export type MessagesActionType = ActionsTypes<typeof MessagesActions>
+export const MessagesActions = {
+	sendMessageActionCreator: (text: string, id: number) =>
+		({
+			type: 'SEND_MESSAGE',
+			text,
+			id,
+		} as const),
 
-export const toggleUserAC = (id: number): ToggleUserACType => ({
-	type: TOGGLE_USER,
-	id,
-})
+	toggleUserAC: (id: number) =>
+		({
+			type: 'TOGGLE_USER',
+			id,
+		} as const),
+}
 
 export default messagesReducer

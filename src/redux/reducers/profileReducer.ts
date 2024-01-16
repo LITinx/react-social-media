@@ -34,7 +34,7 @@ const initialState: ProfileInitialStateType = {
 
 const profileReducer = (
 	state = initialState,
-	action: ProfileAction,
+	action: ProfileActionType,
 ): ProfileInitialStateType => {
 	switch (action.type) {
 		case 'ADD_POST':
@@ -66,8 +66,8 @@ const profileReducer = (
 	}
 }
 
-export type ProfileAction = ActionsTypes<typeof ProfileActions>
-type ProfileThunkType = BaseThunkType<ProfileAction>
+export type ProfileActionType = ActionsTypes<typeof ProfileActions>
+type ProfileThunkType = BaseThunkType<ProfileActionType>
 
 export const ProfileActions = {
 	addPostActionCreator: (postText: string) =>

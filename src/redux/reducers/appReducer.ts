@@ -7,7 +7,7 @@ const initialState = {
 
 export default (
 	state: InitialStateType = initialState,
-	action: AppAction,
+	action: AppActionType,
 ): InitialStateType => {
 	switch (action.type) {
 		case 'INITIALIZED_SUCCESS':
@@ -17,8 +17,8 @@ export default (
 	}
 }
 
-type AppAction = ActionsTypes<typeof actions>
-type AppThunkType = BaseThunkType<AppAction, void>
+type AppActionType = ActionsTypes<typeof actions>
+type AppThunkType = BaseThunkType<AppActionType, void>
 
 const actions = {
 	initializedSuccess: () =>

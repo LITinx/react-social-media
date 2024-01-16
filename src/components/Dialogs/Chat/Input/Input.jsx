@@ -2,7 +2,10 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import * as yup from 'yup'
-import { sendMessageActionCreator } from '../../../../redux/reducers/messagesReducer'
+import {
+	MessagesActions,
+	sendMessageActionCreator,
+} from '../../../../redux/reducers/messagesReducer'
 import input from './Input.module.css'
 const schema = yup.object().shape({
 	messageText: yup.string().max(150),
@@ -25,11 +28,7 @@ const Input = ({ onBtnClick, users }) => {
 				placeholder='Your message...'
 				className={input.input}
 			/>
-			<button
-				type='submit
-			'
-				className={input.button}
-			>
+			<button type='submit' className={input.button}>
 				Send
 			</button>
 		</form>
@@ -40,7 +39,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-	onBtnClick: sendMessageActionCreator,
+	onBtnClick: MessagesActions.sendMessageActionCreator,
 }
 
 const InputContainer = connect(mapStateToProps, mapDispatchToProps)(Input)
