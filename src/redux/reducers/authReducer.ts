@@ -1,8 +1,6 @@
-import { Dispatch } from 'redux'
-// @ts-ignore
 import { ResultCode, ResultCodeForCaptcha } from '../../api/api'
 import { authApi, securityApi } from '../../api/authApi'
-import { ActionsTypes } from '../reduxStore'
+import { ActionsTypes, BaseThunkType } from '../reduxStore'
 
 type AuthInitialState = {
 	userId: number | null
@@ -45,6 +43,7 @@ export default (
 }
 
 export type AuthAction = ActionsTypes<typeof actions>
+type AuthThunkType = BaseThunkType<AuthAction>
 
 const actions = {
 	setAuthUserData: (
@@ -70,8 +69,7 @@ const actions = {
 			captchaUrl,
 		} as const),
 }
-
-export const authMe = () => (dispatch: Dispatch<AuthAction>) => {
+export const authMe = (): AuthThunkType => (dispatch) => {
 	return authApi.me().then((response) => {
 		const { id, login, email } = response.data
 		if (response.resultCode === ResultCode.Success) {
@@ -80,29 +78,31 @@ export const authMe = () => (dispatch: Dispatch<AuthAction>) => {
 	})
 }
 
-export const authLogin = (data: AuthLoginDataType) => (dispatch: any) => {
-	authApi.login(data).then((response) => {
-		if (response.resultCode === ResultCode.Success) {
-			dispatch(authMe())
-			dispatch(actions.getCaptchaUrlSuccess(null))
-		} else {
-			if (response.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
-				dispatch(getCaptchaUrl())
+export const authLogin =
+	(data: AuthLoginDataType): AuthThunkType =>
+	(dispatch) => {
+		return authApi.login(data).then((response) => {
+			if (response.resultCode === ResultCode.Success) {
+				dispatch(authMe())
+				dispatch(actions.getCaptchaUrlSuccess(null))
+			} else {
+				if (response.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
+					dispatch(getCaptchaUrl())
+				}
+				const message = response.messages ? response.messages[0] : 'Some Error'
+				dispatch(actions.setErrorMessage(message))
 			}
-			const message = response.messages ? response.messages[0] : 'Some Error'
-			dispatch(actions.setErrorMessage(message))
-		}
-	})
-}
+		})
+	}
 
-export const authLogout = () => (dispatch: Dispatch<AuthAction>) => {
-	authApi.logout().then((response) => {
+export const authLogout = (): AuthThunkType => (dispatch) => {
+	return authApi.logout().then((response) => {
 		if (response.resultCode === ResultCode.Success) {
 			dispatch(actions.setAuthUserData(null, null, null, false))
 		}
 	})
 }
-export const getCaptchaUrl = () => async (dispatch: Dispatch<AuthAction>) => {
+export const getCaptchaUrl = (): AuthThunkType => async (dispatch) => {
 	const response = await securityApi.getCaptchaUrl()
 	const captchaUrl = response.url
 	dispatch(actions.getCaptchaUrlSuccess(captchaUrl))
