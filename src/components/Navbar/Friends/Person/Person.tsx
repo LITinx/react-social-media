@@ -1,6 +1,11 @@
 import { AiFillStar } from 'react-icons/ai'
 import person from './Person.module.css'
-const Person = ({ name, isBestFriend, id }) => {
+type PropsType = {
+	name: string
+	isBestFriend: boolean
+	id: number
+}
+const Person = ({ name, isBestFriend, id }: PropsType) => {
 	const friendChecker = {
 		color: `${isBestFriend ? '#178b17' : '#000'}`,
 	}

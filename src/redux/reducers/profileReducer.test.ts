@@ -1,29 +1,26 @@
 import { expect, test } from 'vitest'
-import profileReducer, {
-	addPostActionCreator,
-	deletePost,
-} from './profileReducer'
+import profileReducer, { ProfileActions } from './profileReducer'
 
 const state = {
 	profile: {
-		aboutMe: null,
+		aboutMe: '',
 		contacts: {
-			facebook: null,
-			website: null,
-			vk: null,
-			twitter: null,
-			instagram: null,
-			youtube: null,
-			github: null,
-			mainLink: null,
+			facebook: '',
+			website: '',
+			vk: '',
+			twitter: '',
+			instagram: '',
+			youtube: '',
+			github: '',
+			mainLink: '',
 		},
 		lookingForAJob: false,
-		lookingForAJobDescription: null,
+		lookingForAJobDescription: '',
 		fullName: 'No name',
 		userId: 0,
 		photos: {
-			small: null,
-			large: null,
+			small: '',
+			large: '',
 		},
 	},
 	posts: [
@@ -35,19 +32,19 @@ const state = {
 }
 
 test('length of posts should be incremented`', () => {
-	let action = addPostActionCreator('New Post')
+	let action = ProfileActions.addPostActionCreator('New Post')
 	let newState = profileReducer(state, action)
 	expect(newState.posts.length).toBe(4)
 })
 
 test('text of new post should be correct', () => {
 	let text = 'u r beautiful'
-	let action = addPostActionCreator(text)
+	let action = ProfileActions.addPostActionCreator(text)
 	let newState = profileReducer(state, action)
 	expect(newState.posts[0].message).toBe(text)
 })
 test('after deleting length of posts should be decrement', () => {
-	let action = deletePost(1)
+	let action = ProfileActions.deletePost(1)
 	let newState = profileReducer(state, action)
 	expect(newState.posts.length).toBe(2)
 })

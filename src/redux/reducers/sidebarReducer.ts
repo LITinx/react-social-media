@@ -1,10 +1,10 @@
-type Friends = {
+export type FriendsType = {
 	id: number
 	personName: string
 	bestFriend: boolean
 }
 type SidebarReducerInitialStateType = {
-	friends: Array<Friends>
+	friends: Array<FriendsType>
 }
 
 const initialState: SidebarReducerInitialStateType = {

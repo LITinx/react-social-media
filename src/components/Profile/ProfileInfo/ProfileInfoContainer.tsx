@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import withAuthRedirect from '../../../hoc/withAuthRedirect'
@@ -9,7 +9,17 @@ import {
 	setPhoto,
 	updateUserStatus,
 } from '../../../redux/reducers/profileReducer'
+import { RootReducerType } from '../../../redux/reduxStore'
+import { ProfileType } from '../../../types/profileReducerTypes'
 import ProfileInfo from './ProfileInfo'
+
+type PropsType = mapStateToPropsType &
+	mapDispatchToPropsType & {
+		params: {
+			'*': number
+		}
+		isAuth: boolean
+	}
 
 function ProfileInfoContainer({
 	params,
@@ -21,7 +31,7 @@ function ProfileInfoContainer({
 	status,
 	updateUserStatus,
 	setPhoto,
-}) {
+}: PropsType) {
 	const userId = Number(params['*'] ? params['*'] : id)
 	const isOwner = id === userId
 	useEffect(() => {
@@ -40,8 +50,19 @@ function ProfileInfoContainer({
 		/>
 	)
 }
+type mapStateToPropsType = {
+	profile: ProfileType
+	userId: number | null
+	status: string
+}
+type mapDispatchToPropsType = {
+	getUserProfile: (userId: number) => void
+	getUserStatus: (userId: number) => void
+	updateUserStatus: (status: string) => void
+	setPhoto: (file: File) => void
+}
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootReducerType) => ({
 	profile: state.profilePage.profile,
 	userId: state.auth.userId,
 	status: state.profilePage.status,
@@ -54,7 +75,10 @@ const mapDispatchToProps = {
 }
 
 export default compose(
-	connect(mapStateToProps, mapDispatchToProps),
+	connect<mapStateToPropsType, mapDispatchToPropsType, {}, RootReducerType>(
+		mapStateToProps,
+		mapDispatchToProps,
+	),
 	withRouter,
 	withAuthRedirect,
 )(ProfileInfoContainer)

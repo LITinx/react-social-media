@@ -2,7 +2,7 @@ export type PhotosType = {
 	small: string
 	large: string
 }
-type ContactsType = {
+export type ContactsType = {
 	facebook: string
 	website: string
 	vk: string
@@ -22,7 +22,7 @@ export type ProfileType = {
 	userId: number
 	photos: PhotosType
 }
-type PostsType = {
+export type PostsType = {
 	id: number
 	message: string
 	likesCount: number

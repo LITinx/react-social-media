@@ -6,8 +6,8 @@ import * as yup from 'yup'
 import { authLogin } from '../../redux/reducers/authReducer'
 import { RootReducerType } from '../../redux/reduxStore'
 import { AuthLoginDataType } from '../../redux/reducers/authReducer'
-// @ts-ignore
 import styles from './Login.module.css'
+
 const schema = yup.object().shape({
 	email: yup
 		.string()

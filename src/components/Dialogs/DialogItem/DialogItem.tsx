@@ -1,6 +1,21 @@
 import { NavLink } from 'react-router-dom'
 import dialog from './DialogItem.module.css'
-const DialogItem = ({ name, id, isActive, lastMessage, toggleUser }) => {
+
+type PropsType = {
+	name: string
+	id: number
+	isActive: boolean
+	lastMessage: string
+	toggleUser: (id: number) => void
+}
+
+const DialogItem = ({
+	name,
+	id,
+	isActive,
+	lastMessage,
+	toggleUser,
+}: PropsType) => {
 	const path = `/dialogs/${id}`
 	const onDialogClick = () => {
 		toggleUser(id)

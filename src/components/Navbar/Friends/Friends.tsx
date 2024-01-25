@@ -1,7 +1,8 @@
+import { FriendsType } from '../../../redux/reducers/sidebarReducer'
 import style from './Friends.module.css'
 import Person from './Person/Person'
-const Friends = ({ friends }) => {
-	const sortedFriends = friends.sort((a, b) => b.bestFriend - a.bestFriend)
+const Friends = ({ friends }: { friends: Array<FriendsType> }) => {
+	const sortedFriends = friends.sort((a, b) => +b.bestFriend - +a.bestFriend)
 
 	friends
 	return (

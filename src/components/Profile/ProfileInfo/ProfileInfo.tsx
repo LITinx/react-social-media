@@ -1,9 +1,18 @@
 import { useId } from 'react'
 import noLogo from '../../../assets/img/no-logo.jpg'
+import { ProfileType } from '../../../types/profileReducerTypes'
 import Preloader from '../../Preloader/Preloader'
 import styles from './ProfileInfo.module.css'
 import ProfileLinks from './ProfileLinks'
 import ProfileStatus from './ProfileStatus'
+
+type PropsType = {
+	profile: ProfileType
+	status: string
+	updateUserStatus: (status: string) => void
+	isOwner: boolean
+	setPhoto: (file: File) => void
+}
 
 const ProfileInfo = ({
 	profile,
@@ -11,11 +20,11 @@ const ProfileInfo = ({
 	updateUserStatus,
 	isOwner,
 	setPhoto,
-}) => {
+}: PropsType) => {
 	const inputId = useId()
 	if (!profile) return <Preloader variant='profile' />
-	const onLogoSelected = (e) => {
-		if (e.target.files.length) {
+	const onLogoSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files?.length) {
 			setPhoto(e.target.files[0])
 		}
 	}

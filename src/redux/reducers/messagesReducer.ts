@@ -5,15 +5,15 @@ type MessagesType = {
 	fromMe: boolean
 	message: string
 }
-type UserType = {
-	id: number | null
-	active: boolean | null
-	name: string | null
+export type MessagesUserType = {
+	id: number
+	active: boolean
+	name: string
 	messages: Array<MessagesType>
 }
 
 type MessagesInitialStateType = {
-	users: Array<UserType>
+	users: Array<MessagesUserType>
 }
 
 const initialState: MessagesInitialStateType = {

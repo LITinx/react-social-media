@@ -1,8 +1,9 @@
+import { ContactsType, ProfileType } from '../../../types/profileReducerTypes'
 import styles from './ProfileInfo.module.css'
-const ProfileLinks = ({ profile }) => {
+const ProfileLinks = ({ profile }: { profile: ProfileType }) => {
 	let contacts = []
 	for (let url in profile.contacts) {
-		profile.contacts[url] ? contacts.push(url) : null
+		profile.contacts[url as keyof ContactsType] ? contacts.push(url) : null
 	}
 	return (
 		<>
@@ -39,7 +40,12 @@ const ProfileLinks = ({ profile }) => {
 						? contacts.map((contact, index) => {
 								return (
 									<li className={styles.contacts} key={index}>
-										<a target='_blank' href={'//' + profile.contacts[contact]}>
+										<a
+											target='_blank'
+											href={
+												'//' + profile.contacts[contact as keyof ContactsType]
+											}
+										>
 											{contact}
 										</a>
 									</li>

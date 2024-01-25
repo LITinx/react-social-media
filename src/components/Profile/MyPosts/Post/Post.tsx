@@ -2,9 +2,28 @@ import { AiFillLike } from 'react-icons/ai'
 import { MdDeleteOutline } from 'react-icons/md'
 import { connect } from 'react-redux'
 import { ProfileActions } from '../../../../redux/reducers/profileReducer'
+import { RootReducerType } from '../../../../redux/reduxStore'
 import post from './Post.module.css'
 
-const Post = ({ children, likes, name = 'No name', deletePost, id, logo }) => {
+type OwnPropsType = {
+	children: string
+	likes: number
+	id: number
+	name: string
+	logo: string
+}
+type PropsType = OwnPropsType & mapDispatchToPropsType
+type mapDispatchToPropsType = {
+	deletePost: (postId: number) => void
+}
+const Post = ({
+	children,
+	likes,
+	name = 'No name',
+	deletePost,
+	id,
+	logo,
+}: PropsType) => {
 	const onBtnClick = () => {
 		deletePost(id)
 	}
@@ -31,4 +50,11 @@ const Post = ({ children, likes, name = 'No name', deletePost, id, logo }) => {
 		</div>
 	)
 }
-export default connect(null, { deletePost: ProfileActions.deletePost })(Post)
+export default connect<
+	{},
+	mapDispatchToPropsType,
+	OwnPropsType,
+	RootReducerType
+>(null, {
+	deletePost: ProfileActions.deletePost,
+})(Post)

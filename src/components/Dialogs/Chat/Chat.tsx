@@ -1,7 +1,9 @@
+import { MessagesUserType } from '../../../redux/reducers/messagesReducer'
 import Message from '../Message/Message'
 import chat from './Chat.module.css'
 import InputContainer from './Input/Input'
-const Chat = ({ users }) => {
+
+const Chat = ({ users }: { users: Array<MessagesUserType> }) => {
 	const activeUserIndex = users?.findIndex((el) => el.active === true)
 	return (
 		<div className={chat.messagesWrapper}>

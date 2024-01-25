@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom'
+import { MessagesUserType } from '../../../redux/reducers/messagesReducer'
 import style from './Links.module.css'
-const Links = ({ users }) => {
+const Links = ({ users }: { users: Array<MessagesUserType> }) => {
 	const activeUserIndex = users?.findIndex((el) => el.active === true)
-	const isActiveClass = ({ isActive }) =>
+	const isActiveClass = ({ isActive }: { isActive: boolean }) =>
 		isActive ? `${style.active} ${style.url}` : style.url
 	return (
 		<ul className={style.listUl}>

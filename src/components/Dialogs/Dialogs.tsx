@@ -1,8 +1,9 @@
 import Chat from './Chat/Chat'
 import DialogItem from './DialogItem/DialogItem'
 import dialog from './Dialogs.module.css'
+import { DialogsPropsType } from './DialogsContainer'
 
-function Dialogs({ users, toggleUser }) {
+function Dialogs({ users, toggleUser }: DialogsPropsType) {
 	return (
 		<div className={dialog.dialogs}>
 			<div className={dialog.dialogsItem}>

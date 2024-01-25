@@ -1,5 +1,9 @@
 import message from './Message.module.css'
-const Message = ({ children, fromMe }) => {
+type PropsType = {
+	children: string
+	fromMe: boolean
+}
+const Message = ({ children, fromMe }: PropsType) => {
 	return (
 		<div
 			className={`${message.message} ${

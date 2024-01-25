@@ -1,6 +1,7 @@
 import Post from '../Post/Post'
+import { PostsPropsType } from './PostsContainer'
 
-function Posts({ posts, name, logo }) {
+function Posts({ posts, name, logo }: PostsPropsType) {
 	return (
 		<div>
 			{posts?.map(({ id, message, likesCount }) => (
