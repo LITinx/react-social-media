@@ -74,11 +74,11 @@ const mapDispatchToProps = {
 	setPhoto,
 }
 
-export default compose(
+export default compose<React.FunctionComponent>(
 	connect<mapStateToPropsType, mapDispatchToPropsType, {}, RootReducerType>(
 		mapStateToProps,
 		mapDispatchToProps,
 	),
 	withRouter,
 	withAuthRedirect,
-)(ProfileInfoContainer)
+)(ProfileInfoContainer)	
