@@ -1,10 +1,11 @@
 import { Dispatch } from 'redux'
+import { APIResponseType } from '../../api/api'
 import { usersAPI } from '../../api/usersApi'
 import {
 	UserType,
 	UsersReducerInitialStateType,
 } from '../../types/usersReducerTypes'
-// @ts-ignore
+// @ts-expect-error not typed yet
 import { updateObjectInArray } from '../../utils/objectHelpers'
 import { ActionsTypes, BaseThunkType } from '../reduxStore'
 
@@ -122,12 +123,12 @@ export const requestUsers =
 const _followUnfollow = async (
 	dispatch: Dispatch<UsersAction>,
 	userId: number,
-	apiMethod: Function,
+	apiMethod: (id: number) => Promise<APIResponseType>,
 	actionCreator: (userId: number) => UsersAction,
 ) => {
 	dispatch(actions.toggleFollowingProgress(true, userId))
 	const response = await apiMethod(userId)
-	if (response.data.resultCode == 0) {
+	if (response.resultCode == 0) {
 		dispatch(actionCreator(userId))
 		dispatch(actions.toggleFollowingProgress(false, userId))
 	}

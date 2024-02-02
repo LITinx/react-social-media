@@ -20,10 +20,13 @@ const initialState: SidebarReducerInitialStateType = {
 	],
 }
 
-const sidebarReducer = (state = initialState, { type, payload }: any) => {
-	switch (type) {
+const sidebarReducer = (
+	state = initialState,
+	action: { type: string; payload: object },
+) => {
+	switch (action.type) {
 		case 'first':
-			return { ...state, ...payload }
+			return { ...state, ...action.payload }
 		default:
 			return state
 	}

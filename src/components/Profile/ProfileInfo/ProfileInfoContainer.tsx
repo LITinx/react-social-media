@@ -75,10 +75,10 @@ const mapDispatchToProps = {
 }
 
 export default compose<React.FunctionComponent>(
-	connect<mapStateToPropsType, mapDispatchToPropsType, {}, RootReducerType>(
+	connect<mapStateToPropsType, mapDispatchToPropsType, object, RootReducerType>(
 		mapStateToProps,
 		mapDispatchToProps,
 	),
 	withRouter,
 	withAuthRedirect,
-)(ProfileInfoContainer)	
+)(ProfileInfoContainer)
