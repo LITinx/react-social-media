@@ -32,19 +32,19 @@ const state = {
 }
 
 test('length of posts should be incremented`', () => {
-	let action = ProfileActions.addPostActionCreator('New Post')
-	let newState = profileReducer(state, action)
+	const action = ProfileActions.addPostActionCreator('New Post')
+	const newState = profileReducer(state, action)
 	expect(newState.posts.length).toBe(4)
 })
 
 test('text of new post should be correct', () => {
-	let text = 'u r beautiful'
-	let action = ProfileActions.addPostActionCreator(text)
-	let newState = profileReducer(state, action)
+	const text = 'u r beautiful'
+	const action = ProfileActions.addPostActionCreator(text)
+	const newState = profileReducer(state, action)
 	expect(newState.posts[0].message).toBe(text)
 })
 test('after deleting length of posts should be decrement', () => {
-	let action = ProfileActions.deletePost(1)
-	let newState = profileReducer(state, action)
+	const action = ProfileActions.deletePost(1)
+	const newState = profileReducer(state, action)
 	expect(newState.posts.length).toBe(2)
 })

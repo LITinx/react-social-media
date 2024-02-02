@@ -5,7 +5,7 @@ import {
 	UserType,
 	UsersReducerInitialStateType,
 } from '../../types/usersReducerTypes'
-// @ts-expect-error not typed yet
+// @ts-ignore
 import { updateObjectInArray } from '../../utils/objectHelpers'
 import { ActionsTypes, BaseThunkType } from '../reduxStore'
 

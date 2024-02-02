@@ -12,7 +12,7 @@ type mapDispatchToPropsType = {
 	onBtnClick: (postText: string) => void
 }
 
-export default connect<{}, mapDispatchToPropsType, {}, RootReducerType>(
+export default connect<object, mapDispatchToPropsType, object, RootReducerType>(
 	mapStateToProps,
 	mapDispatchToProps,
 )(PostTextarea)

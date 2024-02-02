@@ -19,8 +19,11 @@ type mapStateToPropsType = {
 }
 export type PostsPropsType = mapStateToPropsType
 
-const PostsContainer = connect<mapStateToPropsType, {}, {}, RootReducerType>(
-	mapStateToProps,
-)(Posts)
+const PostsContainer = connect<
+	mapStateToPropsType,
+	object,
+	object,
+	RootReducerType
+>(mapStateToProps)(Posts)
 
 export default PostsContainer

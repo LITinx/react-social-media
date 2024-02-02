@@ -51,7 +51,7 @@ const Post = ({
 	)
 }
 export default connect<
-	{},
+	object,
 	mapDispatchToPropsType,
 	OwnPropsType,
 	RootReducerType

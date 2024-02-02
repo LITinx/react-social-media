@@ -27,7 +27,7 @@ const mapStateToProps = (state: RootReducerType) => ({
 })
 
 export default compose(
-	connect<mapsStateToPropsType, mapDispatchToProps, {}, RootReducerType>(
+	connect<mapsStateToPropsType, mapDispatchToProps, object, RootReducerType>(
 		mapStateToProps,
 		{ toggleUser: MessagesActions.toggleUserAC },
 	),

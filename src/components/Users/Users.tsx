@@ -35,7 +35,7 @@ const Users = ({
 	isFetching,
 	followingInProgress,
 }: PropsType) => {
-	let pageCount = Math.ceil(totalCount / pageSize)
+	const pageCount = Math.ceil(totalCount / pageSize)
 
 	const handleClick = (_e: ChangeEvent<unknown>, page: number) => {
 		onPageChanged(page, pageSize)

@@ -1,8 +1,8 @@
 import { ContactsType, ProfileType } from '../../../types/profileReducerTypes'
 import styles from './ProfileInfo.module.css'
 const ProfileLinks = ({ profile }: { profile: ProfileType }) => {
-	let contacts = []
-	for (let url in profile.contacts) {
+	const contacts = []
+	for (const url in profile.contacts) {
 		profile.contacts[url as keyof ContactsType] ? contacts.push(url) : null
 	}
 	return (

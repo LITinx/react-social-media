@@ -57,7 +57,7 @@ type mapDispatchToPropsType = {
 const InputContainer = connect<
 	mapStateToPropsType,
 	mapDispatchToPropsType,
-	{},
+	object,
 	RootReducerType
 >(
 	mapStateToProps,

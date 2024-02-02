@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
-import { getUserProfile } from '../../redux/reducers/profileReducer'
 import style from './Settings.module.css'
 import GeneralListSection from './SettingsSections/GeneralListSection'
 import { NotificationsSection } from './SettingsSections/NotificationsSection'

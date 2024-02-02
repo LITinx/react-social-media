@@ -18,7 +18,6 @@ import {
 	getUsers, // @ts-ignore
 } from '../../redux/selectors/usersSelectors'
 import { UsersReducerInitialStateType } from '../../types/usersReducerTypes'
-// @ts-ignore
 import Users from './Users'
 
 type MapStateToPropsType = UsersReducerInitialStateType
@@ -60,7 +59,7 @@ const mapDispatchToProps: MapDispatchToPropsType = {
 
 export default compose(
 	withAuthRedirect,
-	connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootReducerType>(
+	connect<MapStateToPropsType, MapDispatchToPropsType, object, RootReducerType>(
 		mapStateToProps,
 		mapDispatchToProps,
 	),

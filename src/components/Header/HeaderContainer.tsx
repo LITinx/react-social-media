@@ -12,7 +12,7 @@ type MapDispatchToPropsType = {
 	authLogout: () => void
 }
 export type HeaderProps = MapStateToPropsType & MapDispatchToPropsType
-class HeaderContainer extends React.Component<HeaderProps, {}> {
+class HeaderContainer extends React.Component<HeaderProps, object> {
 	render() {
 		return (
 			<Header
@@ -36,7 +36,7 @@ const mapDispatchToProps: MapDispatchToPropsType = { authLogout }
 export default connect<
 	MapStateToPropsType,
 	MapDispatchToPropsType,
-	{},
+	object,
 	RootReducerType
 >(
 	mapStateToProps,

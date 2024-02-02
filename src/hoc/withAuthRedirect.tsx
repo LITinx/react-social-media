@@ -8,7 +8,7 @@ const mapStateToProps = (state: RootReducerType) => ({
 })
 type PropsType = { isAuth: boolean }
 
-function withAuthRedirect<WCP extends {}>(Component: ComponentType<WCP>) {
+function withAuthRedirect<WCP extends object>(Component: ComponentType<WCP>) {
 	const RedirectComponent: FC<PropsType> = (props) => {
 		if (!props.isAuth) {
 			return <Navigate to='/login' />
@@ -17,7 +17,7 @@ function withAuthRedirect<WCP extends {}>(Component: ComponentType<WCP>) {
 		return <Component {...(props as WCP & PropsType)} />
 	}
 
-	return connect<PropsType, {}, WCP, RootReducerType>(
+	return connect<PropsType, object, WCP, RootReducerType>(
 		mapStateToProps,
 		{},
 	)(RedirectComponent)

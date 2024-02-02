@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Action, applyMiddleware, combineReducers, createStore } from 'redux'
 import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import appReducer from './reducers/appReducer'
