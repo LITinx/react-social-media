@@ -57,7 +57,7 @@ const mapDispatchToProps: MapDispatchToPropsType = {
 	requestUsers,
 }
 
-export default compose(
+export default compose<React.FunctionComponent>(
 	withAuthRedirect,
 	connect<MapStateToPropsType, MapDispatchToPropsType, object, RootReducerType>(
 		mapStateToProps,

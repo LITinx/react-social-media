@@ -26,7 +26,7 @@ const mapStateToProps = (state: RootReducerType) => ({
 	users: state.messagesPage.users,
 })
 
-export default compose(
+export default compose<React.FunctionComponent>(
 	connect<mapsStateToPropsType, mapDispatchToProps, object, RootReducerType>(
 		mapStateToProps,
 		{ toggleUser: MessagesActions.toggleUserAC },
