@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Action, applyMiddleware, combineReducers, createStore } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import appReducer from './reducers/appReducer'
 import authReducer from './reducers/authReducer'
@@ -31,7 +32,10 @@ export type BaseThunkType<A extends Action, P = Promise<void>> = ThunkAction<
 	A
 >
 
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
+const store = createStore(
+	rootReducer,
+	composeWithDevTools(applyMiddleware(thunkMiddleware)),
+)
 // @ts-ignore
 window.store = store
 export default store

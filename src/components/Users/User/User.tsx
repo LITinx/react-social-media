@@ -11,7 +11,7 @@ type PropsType = {
 	status: string
 	follow: (id: number) => void
 	unfollow: (id: number) => void
-	photos: { small: string; large: string }
+	photos: { small: string | null; large: string | null }
 	followingInProgress: Array<number>
 }
 

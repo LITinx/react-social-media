@@ -44,6 +44,7 @@
 		"eslint": "^8.56.0",
 		"gh-pages": "^6.0.0",
 		"jsdom": "^22.1.0",
+		"redux-devtools-extension": "^2.13.9",
 		"typescript": "^5.3.3",
 		"vite": "^2.9.9",
 		"vitest": "^0.29.8"

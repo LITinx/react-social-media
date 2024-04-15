@@ -127,8 +127,10 @@ const _followUnfollow = async (
 	actionCreator: (userId: number) => UsersAction,
 ) => {
 	dispatch(actions.toggleFollowingProgress(true, userId))
+
 	const response = await apiMethod(userId)
-	if (response.resultCode == 0) {
+
+	if (response.resultCode === 0) {
 		dispatch(actionCreator(userId))
 		dispatch(actions.toggleFollowingProgress(false, userId))
 	}
@@ -139,13 +141,13 @@ export const follow =
 	async (dispatch) => {
 		const apiMethod = usersAPI.follow.bind(usersAPI)
 		const actionCreator = actions.followSuccess
-		_followUnfollow(dispatch, userId, apiMethod, actionCreator)
+		await _followUnfollow(dispatch, userId, apiMethod, actionCreator)
 	}
 export const unfollow =
 	(userId: number): UsersThunkType =>
 	async (dispatch) => {
 		const apiMethod = usersAPI.unfollow.bind(usersAPI)
 		const actionCreator = actions.unfollowSuccess
-		_followUnfollow(dispatch, userId, apiMethod, actionCreator)
+		await _followUnfollow(dispatch, userId, apiMethod, actionCreator)
 	}
 export default usersReducer
