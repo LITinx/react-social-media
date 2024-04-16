@@ -115,9 +115,18 @@ export const requestUsers =
 		dispatch(actions.toggleIsFetching(true))
 		const data = await usersAPI.getUsers(currentPage, pageSize)
 		dispatch(actions.setCurrentPage(currentPage))
-		dispatch(actions.toggleIsFetching(false))
 		dispatch(actions.setUsers(data.items))
 		dispatch(actions.setTotalCount(data.totalCount))
+		dispatch(actions.toggleIsFetching(false))
+	}
+
+export const searchUsers =
+	(query: string, pageSize: number): UsersThunkType =>
+	async (dispatch) => {
+		dispatch(actions.toggleIsFetching(true))
+		const response = await usersAPI.searchUsers(query, pageSize)
+		dispatch(actions.setUsers(response.items))
+		dispatch(actions.toggleIsFetching(false))
 	}
 
 const _followUnfollow = async (

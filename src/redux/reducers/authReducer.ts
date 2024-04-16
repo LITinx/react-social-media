@@ -80,8 +80,8 @@ export const authMe = (): AuthThunkType => (dispatch) => {
 
 export const authLogin =
 	(data: AuthLoginDataType): AuthThunkType =>
-	(dispatch) => {
-		return authApi.login(data).then((response) => {
+	async (dispatch) => {
+		return await authApi.login(data).then((response) => {
 			if (response.resultCode === ResultCode.Success) {
 				dispatch(authMe())
 				dispatch(actions.getCaptchaUrlSuccess(null))
@@ -95,8 +95,8 @@ export const authLogin =
 		})
 	}
 
-export const authLogout = (): AuthThunkType => (dispatch) => {
-	return authApi.logout().then((response) => {
+export const authLogout = (): AuthThunkType => async (dispatch) => {
+	return await authApi.logout().then((response) => {
 		if (response.resultCode === ResultCode.Success) {
 			dispatch(actions.setAuthUserData(null, null, null, false))
 		}

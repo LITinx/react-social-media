@@ -4,7 +4,12 @@ export const usersAPI = {
 	async getUsers(currentPage: number, pageSize: number) {
 		return await instance
 			.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}`)
-			.then((response) => response.data)
+			.then((res) => res.data)
+	},
+	async searchUsers(query: string, pageSize: number) {
+		return await instance
+			.get<GetItemsType>(`users?term=${query}&count=${pageSize}`)
+			.then((res) => res.data)
 	},
 	async follow(id: number) {
 		return await instance

@@ -1,6 +1,7 @@
 import { createTheme, Pagination, Stack, ThemeProvider } from '@mui/material'
 import { ChangeEvent } from 'react'
 import Preloader from '../Preloader/Preloader'
+import SearchForm from './SearchForm'
 import User from './User/User'
 import { UsersPropsType } from './UsersContainer'
 
@@ -43,22 +44,7 @@ const Users = ({
 
 	return (
 		<div>
-			<Stack
-				direction='row'
-				justifyContent='center'
-				alignItems='center'
-				style={{ marginTop: '20px' }}
-			>
-				<ThemeProvider theme={theme}>
-					<Pagination
-						count={pageCount}
-						boundaryCount={2}
-						siblingCount={4}
-						page={currentPage}
-						onChange={handleClick}
-					/>
-				</ThemeProvider>
-			</Stack>
+			<SearchForm />
 			{users?.map((user, i) => {
 				return isFetching ? (
 					<Preloader key={i} />
@@ -72,6 +58,22 @@ const Users = ({
 					/>
 				)
 			})}
+			<Stack
+				direction='row'
+				justifyContent='center'
+				alignItems='center'
+				style={{ marginTop: '20px', marginBottom: '20px' }}
+			>
+				<ThemeProvider theme={theme}>
+					<Pagination
+						count={pageCount}
+						boundaryCount={2}
+						siblingCount={4}
+						page={currentPage}
+						onChange={handleClick}
+					/>
+				</ThemeProvider>
+			</Stack>
 		</div>
 	)
 }

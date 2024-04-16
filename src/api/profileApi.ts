@@ -6,23 +6,23 @@ type SavePhotoResponseDataType = {
 }
 
 export const profileAPI = {
-	getProfile(userId: number) {
-		return instance
+	async getProfile(userId: number) {
+		return await instance
 			.get<ProfileType>(`profile/${userId}`)
 			.then((response) => response.data)
 	},
-	getStatus(userId: number) {
-		return instance.get<string>(`profile/status/${userId}`)
+	async getStatus(userId: number) {
+		return await instance.get<string>(`profile/status/${userId}`)
 	},
-	updateStatus(status: string) {
-		return instance
+	async updateStatus(status: string) {
+		return await instance
 			.put<APIResponseType>('profile/status', { status })
 			.then((res) => res.data)
 	},
-	savePhoto(photoFile: File) {
+	async savePhoto(photoFile: File) {
 		const formData = new FormData()
 		formData.append('image', photoFile)
-		return instance
+		return await instance
 			.put<APIResponseType<SavePhotoResponseDataType>>(
 				'profile/photo',
 				formData,
@@ -34,8 +34,8 @@ export const profileAPI = {
 			)
 			.then((res) => res.data)
 	},
-	saveProfile(data: ProfileType) {
-		return instance
+	async saveProfile(data: ProfileType) {
+		return await instance
 			.put<APIResponseType>('profile', data)
 			.then((res) => res.data)
 	},

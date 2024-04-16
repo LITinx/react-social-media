@@ -19,13 +19,13 @@ type CaptchaType = {
 }
 
 export const authApi = {
-	me() {
-		return instance
+	async me() {
+		return await instance
 			.get<APIResponseType<MeDataType>>('auth/me')
 			.then((response) => response.data)
 	},
-	login({ email, password, rememberMe, captcha }: AuthLoginDataType) {
-		return instance
+	async login({ email, password, rememberMe, captcha }: AuthLoginDataType) {
+		return await instance
 			.post<APIResponseType<LoginDataType, ResultCode | ResultCodeForCaptcha>>(
 				'auth/login',
 				{
@@ -37,14 +37,16 @@ export const authApi = {
 			)
 			.then((res) => res.data)
 	},
-	logout() {
-		return instance.post<APIResponseType>('auth/logout').then((res) => res.data)
+	async logout() {
+		return await instance
+			.post<APIResponseType>('auth/logout')
+			.then((res) => res.data)
 	},
 }
 
 export const securityApi = {
-	getCaptchaUrl() {
-		return instance
+	async getCaptchaUrl() {
+		return await instance
 			.get<CaptchaType>('security/get-captcha-url')
 			.then((res) => res.data)
 	},
