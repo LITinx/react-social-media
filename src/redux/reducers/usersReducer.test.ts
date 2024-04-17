@@ -34,6 +34,7 @@ beforeEach(() => {
 		currentPage: 1,
 		isFetching: false,
 		followingInProgress: [], // array of users ids
+		query: '',
 	}
 })
 describe('User Reducer Test', () => {

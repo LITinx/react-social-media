@@ -14,4 +14,5 @@ export type UsersReducerInitialStateType = {
 	currentPage: number
 	isFetching: boolean
 	followingInProgress: Array<number>
+	query: string
 }

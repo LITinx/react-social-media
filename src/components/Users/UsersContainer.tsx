@@ -9,46 +9,36 @@ import {
 	unfollow,
 } from '../../redux/reducers/usersReducer'
 import { RootReducerType } from '../../redux/reduxStore'
-import {
-	getCurrentPage,
-	getFollowingInProgress,
-	getIsFetching,
-	getPageSize,
-	getTotalCount,
-	getUsers, // @ts-ignore
-} from '../../redux/selectors/usersSelectors'
-import { UsersReducerInitialStateType } from '../../types/usersReducerTypes'
 import Users from './Users'
-
-type MapStateToPropsType = UsersReducerInitialStateType
+type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 type MapDispatchToPropsType = {
 	unfollow: (id: number) => void
 	follow: (id: number) => void
-	requestUsers: (currentPage: number, pageSize: number) => void
+	requestUsers: (currentPage: number) => void
 }
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 function UsersContainer(props: UsersPropsType) {
 	useEffect(() => {
 		if (props.users.length === 0) {
-			props.requestUsers(props.currentPage, props.pageSize)
+			props.requestUsers(props.currentPage)
 		}
 	}, [])
 
-	const onPageChanged = (currentPage: number, pageSize: number) => {
-		props.requestUsers(currentPage, pageSize)
+	const onPageChanged = (currentPage: number) => {
+		props.requestUsers(currentPage)
 	}
 
 	return <Users {...props} onPageChanged={onPageChanged} />
 }
 
-const mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
-	users: getUsers(state),
-	pageSize: getPageSize(state),
-	totalCount: getTotalCount(state),
-	currentPage: getCurrentPage(state),
-	isFetching: getIsFetching(state),
-	followingInProgress: getFollowingInProgress(state),
+const mapStateToProps = (state: RootReducerType) => ({
+	users: state.usersPage.users,
+	totalCount: state.usersPage.totalCount,
+	isFetching: state.usersPage.isFetching,
+	followingInProgress: state.usersPage.followingInProgress,
+	pageSize: state.usersPage.pageSize,
+	currentPage: state.usersPage.currentPage,
 })
 
 const mapDispatchToProps: MapDispatchToPropsType = {

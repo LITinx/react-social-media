@@ -16,6 +16,7 @@ const initialState: UsersReducerInitialStateType = {
 	currentPage: 1,
 	isFetching: false,
 	followingInProgress: [], // array of users ids
+	query: '',
 }
 
 const usersReducer = (state = initialState, action: UsersAction) => {
@@ -60,6 +61,11 @@ const usersReducer = (state = initialState, action: UsersAction) => {
 				followingInProgress: action.isFetching
 					? [...state.followingInProgress, action.userId]
 					: state.followingInProgress.filter((id) => id != action.userId),
+			}
+		case 'SET_QUERY':
+			return {
+				...state,
+				query: action.query,
 			}
 		default:
 			return state
@@ -107,25 +113,22 @@ export const actions = {
 			isFetching,
 			userId,
 		} as const),
+	setQuery: (query: string) =>
+		({
+			type: 'SET_QUERY',
+			query,
+		} as const),
 }
 
 export const requestUsers =
-	(currentPage: number, pageSize: number): UsersThunkType =>
-	async (dispatch) => {
+	(currentPage: number): UsersThunkType =>
+	async (dispatch, getState) => {
+		const { pageSize, query } = getState().usersPage
 		dispatch(actions.toggleIsFetching(true))
-		const data = await usersAPI.getUsers(currentPage, pageSize)
+		const data = await usersAPI.getUsers(currentPage, pageSize, query)
 		dispatch(actions.setCurrentPage(currentPage))
 		dispatch(actions.setUsers(data.items))
 		dispatch(actions.setTotalCount(data.totalCount))
-		dispatch(actions.toggleIsFetching(false))
-	}
-
-export const searchUsers =
-	(query: string, pageSize: number): UsersThunkType =>
-	async (dispatch) => {
-		dispatch(actions.toggleIsFetching(true))
-		const response = await usersAPI.searchUsers(query, pageSize)
-		dispatch(actions.setUsers(response.items))
 		dispatch(actions.toggleIsFetching(false))
 	}
 

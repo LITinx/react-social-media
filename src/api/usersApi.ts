@@ -1,9 +1,11 @@
 import { APIResponseType, GetItemsType, instance } from './api'
 
 export const usersAPI = {
-	async getUsers(currentPage: number, pageSize: number) {
+	async getUsers(currentPage: number, pageSize: number, query: string = '') {
 		return await instance
-			.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}`)
+			.get<GetItemsType>(
+				`users?page=${currentPage}&count=${pageSize}&term=${query}`,
+			)
 			.then((res) => res.data)
 	},
 	async searchUsers(query: string, pageSize: number) {

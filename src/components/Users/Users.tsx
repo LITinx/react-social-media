@@ -23,7 +23,7 @@ const theme = createTheme({
 	},
 })
 type PropsType = UsersPropsType & {
-	onPageChanged: (currentPage: number, pageSize: number) => void
+	onPageChanged: (currentPage: number) => void
 }
 const Users = ({
 	totalCount,
@@ -39,7 +39,7 @@ const Users = ({
 	const pageCount = Math.ceil(totalCount / pageSize)
 
 	const handleClick = (_e: ChangeEvent<unknown>, page: number) => {
-		onPageChanged(page, pageSize)
+		onPageChanged(page)
 	}
 
 	return (

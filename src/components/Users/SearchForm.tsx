@@ -3,7 +3,7 @@ import { Button, TextField } from '@mui/material'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import * as yup from 'yup'
-import { searchUsers } from '../../redux/reducers/usersReducer'
+import { actions, requestUsers } from '../../redux/reducers/usersReducer'
 import { RootReducerType } from '../../redux/reduxStore'
 import style from './Users.module.css'
 
@@ -15,16 +15,18 @@ type SearchFormSubmitType = {
 	searchQuery: string
 }
 type PropsType = {
-	pageSize: number
-	searchUsers: (query: string, pageSize: number) => void
+	currentPage: number
+	setQuery: (query: string) => void
+	requestUsers: (currentPage: number) => void
 }
-const SearchForm = ({ searchUsers, pageSize }: PropsType) => {
+const SearchForm = ({ setQuery, currentPage, requestUsers }: PropsType) => {
 	const { register, handleSubmit } = useForm<SearchFormSubmitType>({
 		resolver: yupResolver(schema),
 	})
 
 	const onSubmit: SubmitHandler<SearchFormSubmitType> = (data) => {
-		searchUsers(data.searchQuery, pageSize)
+		setQuery(data.searchQuery)
+		requestUsers(currentPage)
 	}
 
 	return (
@@ -43,11 +45,13 @@ const SearchForm = ({ searchUsers, pageSize }: PropsType) => {
 }
 
 const mapStateToProps = (state: RootReducerType) => ({
-	pageSize: state.usersPage.pageSize,
+	currentPage: state.usersPage.currentPage,
 })
 
 const mapDispatchToProps = {
-	searchUsers,
+	setQuery: actions.setQuery,
+	setCurrentPage: actions.setCurrentPage,
+	requestUsers,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchForm)
