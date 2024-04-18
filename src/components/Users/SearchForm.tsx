@@ -1,5 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Button, TextField } from '@mui/material'
+import {
+	Button,
+	FormControl,
+	FormControlLabel,
+	Radio,
+	RadioGroup,
+	TextField,
+} from '@mui/material'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import * as yup from 'yup'
@@ -40,6 +47,30 @@ const SearchForm = ({ setQuery, currentPage, requestUsers }: PropsType) => {
 			<Button variant='contained' type='submit' sx={searchButtonStyle}>
 				find
 			</Button>
+			<FormControl>
+				<RadioGroup
+					aria-labelledby='demo-radio-buttons-group-label'
+					defaultValue='All users'
+					name='radio-buttons-group'
+					row
+				>
+					<FormControlLabel
+						value='All users'
+						control={<Radio sx={checkedRadio} />}
+						label='All users'
+					/>
+					<FormControlLabel
+						value='Not Followed'
+						control={<Radio sx={checkedRadio} />}
+						label='Not Followed'
+					/>
+					<FormControlLabel
+						value='Followed'
+						control={<Radio sx={checkedRadio} />}
+						label='Followed'
+					/>
+				</RadioGroup>
+			</FormControl>
 		</form>
 	)
 }
@@ -66,5 +97,10 @@ const searchButtonStyle = {
 	marginLeft: '10px',
 	'&:hover': {
 		backgroundColor: 'var(--blue-primary)',
+	},
+}
+const checkedRadio = {
+	'&.Mui-checked': {
+		color: 'var(--blue-primary)',
 	},
 }

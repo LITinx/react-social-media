@@ -121,11 +121,11 @@ export const actions = {
 }
 
 export const requestUsers =
-	(currentPage: number): UsersThunkType =>
+	(currentPage: number, friend?: boolean): UsersThunkType =>
 	async (dispatch, getState) => {
 		const { pageSize, query } = getState().usersPage
 		dispatch(actions.toggleIsFetching(true))
-		const data = await usersAPI.getUsers(currentPage, pageSize, query)
+		const data = await usersAPI.getUsers(currentPage, pageSize, query, friend)
 		dispatch(actions.setCurrentPage(currentPage))
 		dispatch(actions.setUsers(data.items))
 		dispatch(actions.setTotalCount(data.totalCount))

@@ -1,10 +1,17 @@
 import { APIResponseType, GetItemsType, instance } from './api'
 
 export const usersAPI = {
-	async getUsers(currentPage: number, pageSize: number, query: string = '') {
+	async getUsers(
+		currentPage: number,
+		pageSize: number,
+		query: string = '',
+		friend?: boolean,
+	) {
 		return await instance
 			.get<GetItemsType>(
-				`users?page=${currentPage}&count=${pageSize}&term=${query}`,
+				`users?page=${currentPage}&count=${pageSize}&term=${query}&${
+					friend && 'friend=' + friend
+				}`,
 			)
 			.then((res) => res.data)
 	},
