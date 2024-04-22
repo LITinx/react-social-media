@@ -15,4 +15,5 @@ export type UsersReducerInitialStateType = {
 	isFetching: boolean
 	followingInProgress: Array<number>
 	query: string
+	isFriend: boolean | undefined
 }

@@ -20,19 +20,27 @@ const schema = yup.object().shape({
 
 type SearchFormSubmitType = {
 	searchQuery: string
+	radioOptions: string
 }
-type PropsType = {
-	currentPage: number
-	setQuery: (query: string) => void
-	requestUsers: (currentPage: number) => void
+type PropsType = mapStateToPropsType & mapDispatchToPropsType
+const radioOptionBoolean = (option: string) => {
+	if (option === 'allUsers') return undefined
+	return option === 'followed' ? true : false
 }
-const SearchForm = ({ setQuery, currentPage, requestUsers }: PropsType) => {
+
+const SearchForm = ({
+	setQuery,
+	currentPage,
+	requestUsers,
+	setIsFriend,
+}: PropsType) => {
 	const { register, handleSubmit } = useForm<SearchFormSubmitType>({
 		resolver: yupResolver(schema),
 	})
 
 	const onSubmit: SubmitHandler<SearchFormSubmitType> = (data) => {
 		setQuery(data.searchQuery)
+		setIsFriend(radioOptionBoolean(data.radioOptions))
 		requestUsers(currentPage)
 	}
 
@@ -50,24 +58,27 @@ const SearchForm = ({ setQuery, currentPage, requestUsers }: PropsType) => {
 			<FormControl>
 				<RadioGroup
 					aria-labelledby='demo-radio-buttons-group-label'
-					defaultValue='All users'
+					defaultValue='allUsers'
 					name='radio-buttons-group'
 					row
 				>
 					<FormControlLabel
-						value='All users'
+						value='allUsers'
 						control={<Radio sx={checkedRadio} />}
 						label='All users'
+						{...register('radioOptions')}
 					/>
 					<FormControlLabel
-						value='Not Followed'
+						value='notFollowed'
 						control={<Radio sx={checkedRadio} />}
 						label='Not Followed'
+						{...register('radioOptions')}
 					/>
 					<FormControlLabel
-						value='Followed'
+						value='followed'
 						control={<Radio sx={checkedRadio} />}
 						label='Followed'
+						{...register('radioOptions')}
 					/>
 				</RadioGroup>
 			</FormControl>
@@ -75,17 +86,31 @@ const SearchForm = ({ setQuery, currentPage, requestUsers }: PropsType) => {
 	)
 }
 
+type mapStateToPropsType = ReturnType<typeof mapStateToProps>
+type mapDispatchToPropsType = {
+	setQuery: (query: string) => void
+	requestUsers: (currentPage: number) => void
+	setIsFriend: (isFriend: boolean | undefined) => void
+}
 const mapStateToProps = (state: RootReducerType) => ({
 	currentPage: state.usersPage.currentPage,
 })
 
 const mapDispatchToProps = {
 	setQuery: actions.setQuery,
-	setCurrentPage: actions.setCurrentPage,
+	setIsFriend: actions.setIsFriend,
 	requestUsers,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchForm)
+export default connect<
+	mapStateToPropsType,
+	mapDispatchToPropsType,
+	object,
+	RootReducerType
+>(
+	mapStateToProps,
+	mapDispatchToProps,
+)(SearchForm)
 
 const searchButtonStyle = {
 	backgroundColor: 'var(--blue-secondary)',

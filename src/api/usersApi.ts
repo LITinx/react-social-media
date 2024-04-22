@@ -9,8 +9,8 @@ export const usersAPI = {
 	) {
 		return await instance
 			.get<GetItemsType>(
-				`users?page=${currentPage}&count=${pageSize}&term=${query}&${
-					friend && 'friend=' + friend
+				`users?page=${currentPage}&count=${pageSize}&term=${query}${
+					friend != undefined ? '&friend=' + friend : ''
 				}`,
 			)
 			.then((res) => res.data)

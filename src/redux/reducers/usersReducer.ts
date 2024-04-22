@@ -17,6 +17,7 @@ const initialState: UsersReducerInitialStateType = {
 	isFetching: false,
 	followingInProgress: [], // array of users ids
 	query: '',
+	isFriend: undefined,
 }
 
 const usersReducer = (state = initialState, action: UsersAction) => {
@@ -66,6 +67,11 @@ const usersReducer = (state = initialState, action: UsersAction) => {
 			return {
 				...state,
 				query: action.query,
+			}
+		case 'SET_IS_FRIEND':
+			return {
+				...state,
+				isFriend: action.isFriend,
 			}
 		default:
 			return state
@@ -118,14 +124,19 @@ export const actions = {
 			type: 'SET_QUERY',
 			query,
 		} as const),
+	setIsFriend: (isFriend: boolean | undefined) =>
+		({
+			type: 'SET_IS_FRIEND',
+			isFriend,
+		} as const),
 }
 
 export const requestUsers =
-	(currentPage: number, friend?: boolean): UsersThunkType =>
+	(currentPage: number): UsersThunkType =>
 	async (dispatch, getState) => {
-		const { pageSize, query } = getState().usersPage
+		const { pageSize, query, isFriend } = getState().usersPage
 		dispatch(actions.toggleIsFetching(true))
-		const data = await usersAPI.getUsers(currentPage, pageSize, query, friend)
+		const data = await usersAPI.getUsers(currentPage, pageSize, query, isFriend)
 		dispatch(actions.setCurrentPage(currentPage))
 		dispatch(actions.setUsers(data.items))
 		dispatch(actions.setTotalCount(data.totalCount))
