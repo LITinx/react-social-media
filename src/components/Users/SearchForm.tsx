@@ -7,6 +7,8 @@ import {
 	RadioGroup,
 	TextField,
 } from '@mui/material'
+import { useDebounce } from '@uidotdev/usehooks'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import * as yup from 'yup'
@@ -34,9 +36,16 @@ const SearchForm = ({
 	requestUsers,
 	setIsFriend,
 }: PropsType) => {
-	const { register, handleSubmit } = useForm<SearchFormSubmitType>({
+	const [searchQuery, setSearchQuery] = useState('')
+	const [isSearching, setIsSearching] = useState(false)
+	const { register, handleSubmit, getValues } = useForm<SearchFormSubmitType>({
 		resolver: yupResolver(schema),
 	})
+	const debouncedSearchTerm = useDebounce(searchQuery, 500)
+
+	const handleChange = (e: ChangeEvent<{ value: string }>) => {
+		setSearchQuery(e.target.value)
+	}
 
 	const onSubmit: SubmitHandler<SearchFormSubmitType> = (data) => {
 		setQuery(data.searchQuery)
@@ -44,16 +53,37 @@ const SearchForm = ({
 		requestUsers(currentPage)
 	}
 
+	useEffect(() => {
+		const debouncedSearch = async () => {
+			setIsSearching(true)
+			if (debouncedSearchTerm) {
+				setQuery(debouncedSearchTerm)
+				setIsFriend(radioOptionBoolean(getValues('radioOptions')))
+				await requestUsers(currentPage)
+			}
+			setIsSearching(false)
+		}
+		debouncedSearch()
+	}, [debouncedSearchTerm])
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={style.form}>
 			<TextField
+				value={searchQuery}
 				type='text'
 				variant='standard'
 				{...register('searchQuery')}
 				placeholder='Type name to find'
+				onChange={handleChange}
+				autoComplete='off'
 			/>
-			<Button variant='contained' type='submit' sx={searchButtonStyle}>
-				find
+			<Button
+				variant='contained'
+				disabled={isSearching}
+				type='submit'
+				sx={searchButtonStyle}
+			>
+				{isSearching ? '...' : 'Search'}
 			</Button>
 			<FormControl>
 				<RadioGroup
