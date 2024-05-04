@@ -15,6 +15,7 @@ import * as yup from 'yup'
 import { actions, requestUsers } from '../../redux/reducers/usersReducer'
 import { RootReducerType } from '../../redux/reduxStore'
 import style from './Users.module.css'
+import { radioOptionConverter } from '../../utils/radioOptionConverter'
 
 const schema = yup.object().shape({
 	messageText: yup.string().max(150),
@@ -24,18 +25,9 @@ type SearchFormSubmitType = {
 	searchQuery: string
 	radioOptions: string
 }
-type PropsType = mapStateToPropsType & mapDispatchToPropsType
-const radioOptionBoolean = (option: string) => {
-	if (option === 'allUsers') return undefined
-	return option === 'followed' ? true : false
-}
+type PropsType = mapDispatchToPropsType
 
-const SearchForm = ({
-	setQuery,
-	currentPage,
-	requestUsers,
-	setIsFriend,
-}: PropsType) => {
+const SearchForm = ({ setQuery, requestUsers, setIsFriend }: PropsType) => {
 	const [searchQuery, setSearchQuery] = useState('')
 	const [isSearching, setIsSearching] = useState(false)
 	const { register, handleSubmit, getValues } = useForm<SearchFormSubmitType>({
@@ -49,8 +41,8 @@ const SearchForm = ({
 
 	const onSubmit: SubmitHandler<SearchFormSubmitType> = (data) => {
 		setQuery(data.searchQuery)
-		setIsFriend(radioOptionBoolean(data.radioOptions))
-		requestUsers(currentPage)
+		setIsFriend(radioOptionConverter(data.radioOptions))
+		requestUsers(1)
 	}
 
 	useEffect(() => {
@@ -58,8 +50,8 @@ const SearchForm = ({
 			setIsSearching(true)
 			if (debouncedSearchTerm) {
 				setQuery(debouncedSearchTerm)
-				setIsFriend(radioOptionBoolean(getValues('radioOptions')))
-				await requestUsers(currentPage)
+				setIsFriend(radioOptionConverter(getValues('radioOptions')))
+				await requestUsers(1)
 			}
 			setIsSearching(false)
 		}
@@ -116,15 +108,11 @@ const SearchForm = ({
 	)
 }
 
-type mapStateToPropsType = ReturnType<typeof mapStateToProps>
 type mapDispatchToPropsType = {
 	setQuery: (query: string) => void
 	requestUsers: (currentPage: number) => void
 	setIsFriend: (isFriend: boolean | undefined) => void
 }
-const mapStateToProps = (state: RootReducerType) => ({
-	currentPage: state.usersPage.currentPage,
-})
 
 const mapDispatchToProps = {
 	setQuery: actions.setQuery,
@@ -132,13 +120,8 @@ const mapDispatchToProps = {
 	requestUsers,
 }
 
-export default connect<
-	mapStateToPropsType,
-	mapDispatchToPropsType,
-	object,
-	RootReducerType
->(
-	mapStateToProps,
+export default connect<object, mapDispatchToPropsType, object, RootReducerType>(
+	null,
 	mapDispatchToProps,
 )(SearchForm)
 

@@ -10,7 +10,15 @@ import {
 } from '../../redux/reducers/usersReducer'
 import { RootReducerType } from '../../redux/reduxStore'
 import Users from './Users'
-type MapStateToPropsType = ReturnType<typeof mapStateToProps>
+import { UserType } from '../../types/usersReducerTypes'
+type MapStateToPropsType = {
+	users: Array<UserType>
+	pageSize: number
+	totalCount: number
+	currentPage: number
+	isFetching: boolean
+	followingInProgress: Array<number>
+}
 type MapDispatchToPropsType = {
 	unfollow: (id: number) => void
 	follow: (id: number) => void
