@@ -3,9 +3,8 @@ import { useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import * as yup from 'yup'
-import { authLogin } from '../../redux/reducers/authReducer'
-import { RootReducerType } from '../../redux/reduxStore'
-import { AuthLoginDataType } from '../../redux/reducers/authReducer'
+import { AuthLoginDataType, authLogin } from '../../redux/reducers/authReducer'
+import { RootState } from '../../redux/reduxStore'
 import styles from './Login.module.css'
 
 const schema = yup.object().shape({
@@ -86,7 +85,7 @@ const LoginForm = ({
 	)
 }
 
-const mapStateToProps = (state: RootReducerType): MapStateToPropsType => ({
+const mapStateToProps = (state: RootState): MapStateToPropsType => ({
 	isAuth: state.auth.isAuth,
 	captchaUrl: state.auth.captchaUrl,
 	errorMessage: state.auth.errorMessage,

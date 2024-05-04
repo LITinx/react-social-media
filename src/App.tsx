@@ -10,7 +10,7 @@ import Preloader from './components/Preloader/Preloader'
 import ScrollToTop from './components/ScrollToTop'
 import { Settings } from './components/Settings/Settings'
 import { initializeApp } from './redux/reducers/appReducer'
-import { RootReducerType } from './redux/reduxStore'
+import { RootState } from './redux/reduxStore'
 
 const Profile = lazy(() => import('./components/Profile/Profile'))
 const DialogsContainer = lazy(
@@ -48,7 +48,7 @@ function App({ initializeApp, initialized }: PropsType) {
 }
 
 type mapStateToPropsType = ReturnType<typeof mapStateToProps>
-const mapStateToProps = (state: RootReducerType) => ({
+const mapStateToProps = (state: RootState) => ({
 	initialized: state.app.initialized,
 })
 
@@ -60,7 +60,7 @@ export default connect<
 	mapStateToPropsType,
 	mapDispatchToPropsType,
 	object,
-	RootReducerType
+	RootState
 >(mapStateToProps, {
 	initializeApp,
 })(App)

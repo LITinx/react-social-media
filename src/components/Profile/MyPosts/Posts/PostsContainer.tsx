@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
-import { RootReducerType } from '../../../../redux/reduxStore'
+import { RootState } from '../../../../redux/reduxStore'
 import { PostsType } from '../../../../types/profileReducerTypes'
 import noLogo from './../../../../assets/img/no-logo.jpg'
 import Posts from './Posts'
 
-const mapStateToProps = (state: RootReducerType) => ({
+const mapStateToProps = (state: RootState) => ({
 	posts: state.profilePage.posts,
 	name: state.profilePage.profile.fullName,
 	logo: state.profilePage.profile.photos?.small
@@ -19,11 +19,8 @@ type mapStateToPropsType = {
 }
 export type PostsPropsType = mapStateToPropsType
 
-const PostsContainer = connect<
-	mapStateToPropsType,
-	object,
-	object,
-	RootReducerType
->(mapStateToProps)(Posts)
+const PostsContainer = connect<mapStateToPropsType, object, object, RootState>(
+	mapStateToProps,
+)(Posts)
 
 export default PostsContainer

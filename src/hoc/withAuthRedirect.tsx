@@ -1,9 +1,9 @@
 import { ComponentType, FC } from 'react'
 import { connect } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-import { RootReducerType } from '../redux/reduxStore'
+import { RootState } from '../redux/reduxStore'
 
-const mapStateToProps = (state: RootReducerType) => ({
+const mapStateToProps = (state: RootState) => ({
 	isAuth: state.auth.isAuth,
 })
 type PropsType = { isAuth: boolean }
@@ -17,7 +17,7 @@ function withAuthRedirect<WCP extends object>(Component: ComponentType<WCP>) {
 		return <Component {...(props as WCP & PropsType)} />
 	}
 
-	return connect<PropsType, object, WCP, RootReducerType>(
+	return connect<PropsType, object, WCP, RootState>(
 		mapStateToProps,
 		{},
 	)(RedirectComponent)

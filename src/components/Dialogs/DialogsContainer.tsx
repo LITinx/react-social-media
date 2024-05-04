@@ -6,7 +6,7 @@ import {
 	MessagesActions,
 	MessagesUserType,
 } from '../../redux/reducers/messagesReducer'
-import { RootReducerType } from '../../redux/reduxStore'
+import { RootState } from '../../redux/reduxStore'
 import Dialogs from './Dialogs'
 
 type mapsStateToPropsType = {
@@ -22,12 +22,12 @@ const DialogsContainer: FC<DialogsPropsType> = (props) => {
 	return <Dialogs {...props} />
 }
 
-const mapStateToProps = (state: RootReducerType) => ({
+const mapStateToProps = (state: RootState) => ({
 	users: state.messagesPage.users,
 })
 
 export default compose<React.FunctionComponent>(
-	connect<mapsStateToPropsType, mapDispatchToProps, object, RootReducerType>(
+	connect<mapsStateToPropsType, mapDispatchToProps, object, RootState>(
 		mapStateToProps,
 		{ toggleUser: MessagesActions.toggleUserAC },
 	),

@@ -8,9 +8,9 @@ import {
 	requestUsers,
 	unfollow,
 } from '../../redux/reducers/usersReducer'
-import { RootReducerType } from '../../redux/reduxStore'
-import Users from './Users'
+import { RootState } from '../../redux/reduxStore'
 import { UserType } from '../../types/usersReducerTypes'
+import Users from './Users'
 type MapStateToPropsType = {
 	users: Array<UserType>
 	pageSize: number
@@ -40,7 +40,7 @@ function UsersContainer(props: UsersPropsType) {
 	return <Users {...props} onPageChanged={onPageChanged} />
 }
 
-const mapStateToProps = (state: RootReducerType) => ({
+const mapStateToProps = (state: RootState) => ({
 	users: state.usersPage.users,
 	totalCount: state.usersPage.totalCount,
 	isFetching: state.usersPage.isFetching,
@@ -57,7 +57,7 @@ const mapDispatchToProps: MapDispatchToPropsType = {
 
 export default compose<React.FunctionComponent>(
 	withAuthRedirect,
-	connect<MapStateToPropsType, MapDispatchToPropsType, object, RootReducerType>(
+	connect<MapStateToPropsType, MapDispatchToPropsType, object, RootState>(
 		mapStateToProps,
 		mapDispatchToProps,
 	),

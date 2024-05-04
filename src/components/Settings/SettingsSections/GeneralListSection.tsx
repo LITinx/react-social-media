@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import { setProfile } from '../../../redux/reducers/profileReducer'
-import { RootReducerType } from '../../../redux/reduxStore'
+import { RootState } from '../../../redux/reduxStore'
 import { ProfileType } from '../../../types/profileReducerTypes'
 import FormInput from '../../FormInput'
 import style from '../Settings.module.css'
@@ -125,7 +125,7 @@ type mapDispatchToPropsType = {
 	setProfile: (data: ProfileType) => void
 }
 
-const mapStateToProps = (state: RootReducerType) => ({
+const mapStateToProps = (state: RootState) => ({
 	profile: state.profilePage.profile,
 	userId: state.auth.userId,
 })
@@ -136,7 +136,7 @@ export default connect<
 	mapStateToPropsType,
 	mapDispatchToPropsType,
 	object,
-	RootReducerType
+	RootState
 >(
 	mapStateToProps,
 	mapDispatchToProps,

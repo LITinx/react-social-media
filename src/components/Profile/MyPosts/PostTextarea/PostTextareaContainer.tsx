@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { ProfileActions } from '../../../../redux/reducers/profileReducer'
+import { RootState } from '../../../../redux/reduxStore'
 import PostTextarea from './PostTextarea'
-import { RootReducerType } from '../../../../redux/reduxStore'
 
 const mapStateToProps = () => ({})
 
@@ -12,7 +12,7 @@ type mapDispatchToPropsType = {
 	onBtnClick: (postText: string) => void
 }
 
-export default connect<object, mapDispatchToPropsType, object, RootReducerType>(
+export default connect<object, mapDispatchToPropsType, object, RootState>(
 	mapStateToProps,
 	mapDispatchToProps,
 )(PostTextarea)

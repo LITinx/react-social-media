@@ -6,7 +6,7 @@ import {
 	MessagesActions,
 	MessagesUserType,
 } from '../../../../redux/reducers/messagesReducer'
-import { RootReducerType } from '../../../../redux/reduxStore'
+import { RootState } from '../../../../redux/reduxStore'
 import input from './Input.module.css'
 const schema = yup.object().shape({
 	messageText: yup.string().max(150),
@@ -40,7 +40,7 @@ const Input = ({ onBtnClick, users }: PropsType) => {
 		</form>
 	)
 }
-const mapStateToProps = (state: RootReducerType) => ({
+const mapStateToProps = (state: RootState) => ({
 	users: state.messagesPage.users,
 })
 
@@ -58,7 +58,7 @@ const InputContainer = connect<
 	mapStateToPropsType,
 	mapDispatchToPropsType,
 	object,
-	RootReducerType
+	RootState
 >(
 	mapStateToProps,
 	mapDispatchToProps,

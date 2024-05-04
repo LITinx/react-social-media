@@ -13,9 +13,9 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import * as yup from 'yup'
 import { actions, requestUsers } from '../../redux/reducers/usersReducer'
-import { RootReducerType } from '../../redux/reduxStore'
-import style from './Users.module.css'
+import { RootState } from '../../redux/reduxStore'
 import { radioOptionConverter } from '../../utils/radioOptionConverter'
+import style from './Users.module.css'
 
 const schema = yup.object().shape({
 	messageText: yup.string().max(150),
@@ -120,7 +120,7 @@ const mapDispatchToProps = {
 	requestUsers,
 }
 
-export default connect<object, mapDispatchToPropsType, object, RootReducerType>(
+export default connect<object, mapDispatchToPropsType, object, RootState>(
 	null,
 	mapDispatchToProps,
 )(SearchForm)

@@ -9,7 +9,7 @@ import {
 	setPhoto,
 	updateUserStatus,
 } from '../../../redux/reducers/profileReducer'
-import { RootReducerType } from '../../../redux/reduxStore'
+import { RootState } from '../../../redux/reduxStore'
 import { ProfileType } from '../../../types/profileReducerTypes'
 import ProfileInfo from './ProfileInfo'
 
@@ -62,7 +62,7 @@ type mapDispatchToPropsType = {
 	setPhoto: (file: File) => void
 }
 
-const mapStateToProps = (state: RootReducerType) => ({
+const mapStateToProps = (state: RootState) => ({
 	profile: state.profilePage.profile,
 	userId: state.auth.userId,
 	status: state.profilePage.status,
@@ -75,7 +75,7 @@ const mapDispatchToProps = {
 }
 
 export default compose<React.FunctionComponent>(
-	connect<mapStateToPropsType, mapDispatchToPropsType, object, RootReducerType>(
+	connect<mapStateToPropsType, mapDispatchToPropsType, object, RootState>(
 		mapStateToProps,
 		mapDispatchToProps,
 	),
